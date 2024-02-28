@@ -14,5 +14,21 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
             <CopyToPublishDirectory>Never</CopyToPublishDirectory>
         </None>
+        <None Remove="PM.Contracts\**" />
+        <None Remove="PM.Core\**" />
+        <None Remove="PM.DataAccess\**" />
+        <None Remove="PM.Services\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Remove="PM.Contracts\**" />
+      <Compile Remove="PM.Core\**" />
+      <Compile Remove="PM.DataAccess\**" />
+      <Compile Remove="PM.Services\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Remove="PM.Contracts\**" />
+      <EmbeddedResource Remove="PM.Core\**" />
+      <EmbeddedResource Remove="PM.DataAccess\**" />
+      <EmbeddedResource Remove="PM.Services\**" />
     </ItemGroup>
 </Project>

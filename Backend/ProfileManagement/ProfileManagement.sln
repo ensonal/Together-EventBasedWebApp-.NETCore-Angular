@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfileManagement", "ProfileManagement.csproj", "{AEC2C4CC-4981-4E6A-8392-85CA4BBE08CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfileManagement", "ProfileManagement\ProfileManagement.csproj", "{AEC2C4CC-4981-4E6A-8392-85CA4BBE08CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PM.Services", "PM.Services\PM.Services.csproj", "{DF91B621-DA26-4843-92E9-816531BC08BD}"
 EndProject
