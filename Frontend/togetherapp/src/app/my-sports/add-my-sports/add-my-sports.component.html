@@ -1,0 +1,27 @@
+<h6 mat-dialog-title class="mb-1">Add new sport</h6>
+<mat-divider></mat-divider>
+<mat-dialog-content class="d-flex flex-column m-2 mt-0 mb-0 pb-0">
+  <p class="fw-normal">Sport</p>
+  <mat-form-field appearance="outline">
+    <mat-select placeholder="Select your level">
+      <mat-option value="option1">Beginner</mat-option>
+      <mat-option value="option2">Intermediate</mat-option>
+      <mat-option value="option3">Professional</mat-option>
+      <mat-option value="option4">Expert</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p class="fw-normal">Experience Level</p>
+  <mat-form-field appearance="outline" required>
+    <mat-select placeholder="Select your level">
+      <mat-option value="option1">Beginner</mat-option>
+      <mat-option value="option2">Intermediate</mat-option>
+      <mat-option value="option3">Professional</mat-option>
+      <mat-option value="option4">Expert</mat-option>
+    </mat-select>
+    <mat-icon matPrefix>equalizer</mat-icon>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button (click)="onCancelDialog()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="addSport()">Save</button>
+</mat-dialog-actions>
