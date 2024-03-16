@@ -1,0 +1,17 @@
+<div class="rounded-3 w-100 pt-2 pb-2">
+    <div class="d-flex flex-row flex-wrap gap-3 w-100" >
+        <togetherapp-sport-card [header]="'Beach Volleyball'" [description]="'Expert'"
+            [icon]="'assets/images/beach.jpg'"></togetherapp-sport-card>
+        <togetherapp-sport-card [header]="'Camping'" [description]="'Intermediate'"
+            [icon]="'assets/images/camping.jpg'"></togetherapp-sport-card>
+        <togetherapp-sport-card [header]="'Hiking'" [description]="'Expert'"
+            [icon]="'assets/images/hiking.jpg'"></togetherapp-sport-card>
+        <togetherapp-sport-card [header]="'Running'" [description]="'Beginner'"
+            [icon]="'assets/images/run.avif'"></togetherapp-sport-card>
+        <togetherapp-sport-card [header]="'Yoga'" [description]="'Intermediate'"
+            [icon]="'assets/images/yoga.jpg'"></togetherapp-sport-card>
+    </div>
+    <div class="d-flex flex-row justify-content-center mt-3">
+        <button mat-raised-button color="primary" (click)="openAddSportDialog()">Add new sport</button>
+    </div>
+</div>

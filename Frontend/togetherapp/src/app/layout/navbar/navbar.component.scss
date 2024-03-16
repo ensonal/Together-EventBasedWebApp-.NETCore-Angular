@@ -1,3 +1,14 @@
+@use '../../../styles.scss' as variables;
+
 .example-spacer {
     flex: 1 1 auto;
+}
+
+.navbar {
+    background-color: white;
+    color: variables.$primary;
+}
+
+.icon {
+    color: variables.$primary;
 }

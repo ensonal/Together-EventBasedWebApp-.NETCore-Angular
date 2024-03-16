@@ -1,0 +1,18 @@
+<mat-card class="mat-card rounded-2" style="width: 177px; height: 250px;">
+    <div class="text-center mt-3">
+        <img class="rounded-3 shadow p-2" [src]="icon" width="125" height="125">
+    </div>
+    <mat-card-content>
+        <mat-divider class="mt-3"></mat-divider>
+        <p class="fs-6 fw-normal text-center text-dark p-3 pb-0 mb-1">{{header}}</p>
+        <p class="fw-light text-center text-dark p-0 m-0">{{description}}</p>
+    </mat-card-content>
+    <div class="button-container d-flex flex-row gap-3">
+        <button mat-mini-fab class="edit-button" (click)="openEditSportDialog()">
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-mini-fab class="edit-button" (click)="deleteSport()">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</mat-card>
