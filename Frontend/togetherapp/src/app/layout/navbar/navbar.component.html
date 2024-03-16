@@ -1,14 +1,7 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="navbar shadow">
     <span>Together</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with share icon">
-        <mat-icon>account_circle</mat-icon>
+    <button mat-icon-button class="example-icon" (click)="onRoute()">
+        <mat-icon class="icon">account_box</mat-icon>
     </button>
 </mat-toolbar>
-
-<mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="onRoute()">
-        <mat-icon>dialpad</mat-icon>
-        <span>My Account</span>
-    </button>
-</mat-menu>
