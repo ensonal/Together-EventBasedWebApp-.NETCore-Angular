@@ -1,0 +1,85 @@
+<div class="rounded-3 w-100 pt-2 pb-2">
+    <div class="d-flex flex-column">
+        <div class="d-flex flex-row justify-content-center gap-4">
+            <div class="about-me w-100 gap-2">
+                <p class="fs-6 fw-normal text-dark">About Me</p>
+                <mat-form-field appearance="outline" class="w-100">
+                    <textarea matInput placeholder="Write somethings about you..."></textarea>
+                </mat-form-field>
+            </div>
+            <div class="d-flex flex-column align-items-center">
+                <img src="https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg?size=338&ext=jpg&ga=GA1.1.735520172.1710460800&semt=sph"
+                    class="rounded-circle" width="100" height="100">
+                <input #fileInput type="file" (change)="onFileSelected($event)" style="display: none;">
+                <button mat-icon-button (click)="fileInput.click()">
+                    <mat-icon>cloud_upload</mat-icon>
+                </button>
+            </div>
+        </div>
+        <mat-divider class="w-100 mt-2 mb-2"></mat-divider>
+        <div class="d-flex flex-column justify-content-center gap-2 mt-2">
+            <div class="d-flex flex-row gap-4">
+                <div class="d-flex flex-column w-100">
+                    <p class="fs-6 fw-normal m-0 text-dark w-100 pb-1">Name</p>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-icon matPrefix>person</mat-icon>
+                        <input matInput placeholder="First Name">
+                    </mat-form-field>
+                </div>
+                <div class="d-flex flex-column w-100">
+                    <p class="fs-6 fw-normal m-0 text-dark w-100 pb-1">Last Name</p>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-icon matPrefix>person</mat-icon>
+                        <input matInput placeholder="Last Name">
+                    </mat-form-field>
+                </div>
+                <div class="d-flex flex-column w-100">
+                    <p class="fs-6 fw-normal m-0 text-dark w-100 pb-1">Gender</p>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-icon matPrefix>face</mat-icon>
+                        <mat-select placeholder="Gender">
+                            <mat-option>Male</mat-option>
+                            <mat-option>Female</mat-option>
+                            <mat-option>I don't prefer to say</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="d-flex flex-row gap-4">
+                <div class="d-flex flex-column w-100">
+                    <p class="fs-6 fw-normal m-0 text-dark w-100 pb-1">Email</p>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-icon matPrefix>email</mat-icon>
+                        <input matInput placeholder="Email">
+                    </mat-form-field>
+                </div>
+                <div class="d-flex flex-column w-100">
+                    <p class="fs-6 fw-normal m-0 text-dark w-100 pb-1">Phone</p>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-icon matPrefix>phone</mat-icon>
+                        <input matInput placeholder="Phone">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="d-flex flex-row gap-4">
+                <div class="d-flex flex-column w-100">
+                    <p class="fs-6 fw-normal m-0 text-dark w-100 pb-1">City</p>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-icon matPrefix>location_city</mat-icon>
+                        <input matInput placeholder="City">
+                    </mat-form-field>
+                </div>
+                <div class="d-flex flex-column w-100">
+                    <p class="fs-6 fw-normal m-0 text-dark w-100 pb-1">Country</p>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-icon matPrefix>public</mat-icon>
+                        <input matInput placeholder="Country">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end">
+            <button mat-raised-button color="primary" class="mt-2">Save Changes</button>
+        </div>
+    </div>
+</div>
