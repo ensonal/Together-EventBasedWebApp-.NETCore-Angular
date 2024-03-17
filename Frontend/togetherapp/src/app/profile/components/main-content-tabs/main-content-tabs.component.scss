@@ -6,3 +6,7 @@
   background: white;
   border-radius: 0.375rem;
 }
+
+::ng-deep .mat-mdc-tab-body-content {
+  overflow-y: hidden !important;
+}
