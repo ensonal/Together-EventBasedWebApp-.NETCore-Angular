@@ -1,0 +1,41 @@
+<p mat-dialog-title class="fw-normal mb-1">Create new event</p>
+<mat-divider></mat-divider>
+<mat-dialog-content class="d-flex flex-column m-2 mt-0 mb-0 pb-0">
+    <p class="fw-normal">Sport</p>
+    <mat-form-field appearance="outline">
+        <mat-select placeholder="Select your level">
+            <mat-option value="option1">Camping</mat-option>
+            <mat-option value="option2">Yoga</mat-option>
+            <mat-option value="option3">Trekking</mat-option>
+            <mat-option value="option4">Beach Volleyball</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <p class="fw-normal">Start Date</p>
+    <mat-form-field appearance="outline">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <p class="fw-normal">Finish Date</p>
+    <mat-form-field appearance="outline">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <p class="fw-normal">Location</p>
+    <mat-form-field appearance="outline">
+        <mat-label>Input</mat-label>
+        <input matInput>
+      </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button (click)="onCancelDialog()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="addEvent()">Add</button>
+</mat-dialog-actions>
