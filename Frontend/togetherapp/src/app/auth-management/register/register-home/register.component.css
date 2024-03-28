@@ -29,7 +29,7 @@
     border-radius: 15px;
     box-shadow: 0 10px 25px rgb(10 75 90);
     width: 100%;
-    max-width: 450px;
+    max-width: 800px;
 }
 
 .login-form h2 {
@@ -194,6 +194,12 @@ button {
 button:hover {
     background-color: #405d7d;
 }
+
+.link {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+  }
 
 /*Responsive*/
 @media screen and (min-width: 768px) {

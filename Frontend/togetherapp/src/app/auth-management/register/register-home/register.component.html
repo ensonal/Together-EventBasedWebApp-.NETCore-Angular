@@ -1,33 +1,54 @@
 <div class="parent">
-    <div class="container">
-      <div class="left-section"></div>
-      <div class="right-section">
-        <div class="login-container">
-          <form class="login-form">
-            <h2 class="login-title"><i class="fas fa-user-circle"></i> Login</h2>
-            <div class="form-control">
-              <i class="fas fa-user icon"></i>
-              <input type="text" name="userName" [(ngModel)]="loginObj.userName" placeholder="Username" id="username"
-                required>
-            </div>
-            <div class="form-control">
-              <i class="fas fa-lock icon"></i>
-              <input type="password" name="password" [(ngModel)]="loginObj.password" placeholder="Password" id="password">
-            </div>
-            <div class="remember-me">
-              <input type="checkbox" id="rememberMe" class="checkbox-input">
-              <span class="checkbox-custom"></span>
-              <label for="rememberMe">Remember me</label>
-            </div>
-  
-            <div class="social-login">
-              <i class="fab fa-google social-icon"></i>
-              <i class="fab fa-facebook-f social-icon"></i>
-              <i class="fab fa-twitter social-icon"></i>
-            </div>
-            <button type="button" (click)="onLogin()">Login</button>
-          </form>
+  <div class="container">
+    <div class="left-section"></div>
+    <div class="right-section">
+      <div class="login-container">
+        <h2 class="login-title"><i class="fas fa-user-circle"></i> Register</h2>
+        <div class="d-flex flex-row gap-3">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput>
+          </mat-form-field>
         </div>
+        <div class="d-flex flex-row gap-3">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>City</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Country</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
+        <div class="d-flex flex-row gap-3">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
+        <div class="d-flex flex-row gap-3">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Password Again</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
+        <button type="button" (click)="onLogin()">Register</button>
+        <p class="text-center mt-3 p-0 m-0">
+          Already have an account? <a mat-button href="/login" target="_self">Login</a>
+        </p>
       </div>
     </div>
   </div>
+</div>
