@@ -1,0 +1,54 @@
+<div class="parent">
+  <div class="container">
+    <div class="left-section"></div>
+    <div class="right-section">
+      <div class="login-container">
+        <h2 class="login-title"><i class="fas fa-user-circle"></i> Register</h2>
+        <div class="d-flex flex-row gap-3">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
+        <div class="d-flex flex-row gap-3">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>City</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Country</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
+        <div class="d-flex flex-row gap-3">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
+        <div class="d-flex flex-row gap-3">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Password Again</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
+        <button type="button" (click)="onLogin()">Register</button>
+        <p class="text-center mt-3 p-0 m-0">
+          Already have an account? <a mat-button href="/login" target="_self">Login</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
