@@ -17,8 +17,8 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
   constructor(private router: Router) { }
 
-  onRoute() {
+  onRoute(route: string) {
     console.log('onRoute');
-    this.router.navigateByUrl('/profile');
+    this.router.navigateByUrl(route);
   }
 }

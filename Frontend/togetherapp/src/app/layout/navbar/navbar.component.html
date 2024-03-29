@@ -1,7 +1,16 @@
 <mat-toolbar class="navbar shadow">
     <span>Together</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon" (click)="onRoute()">
-        <mat-icon class="icon">account_box</mat-icon>
+    <button mat-icon-button (click)="onRoute('/')">
+        <i class="bi bi-house"></i>
+    </button>
+    <button mat-icon-button (click)="onRoute('/calendar')">
+        <i class="bi bi-calendar"></i>
+    </button>
+    <button mat-icon-button (click)="onRoute('/messages')">
+        <i class="bi bi-chat-dots"></i>
+    </button>
+    <button mat-icon-button (click)="onRoute('/profile')">
+        <i class="bi bi-person-fill"></i>
     </button>
 </mat-toolbar>
