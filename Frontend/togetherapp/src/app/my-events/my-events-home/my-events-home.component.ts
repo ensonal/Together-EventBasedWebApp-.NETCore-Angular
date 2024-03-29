@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { CreateNewEventComponent } from '../create-new-event/create-new-event.component';
 import { MatDialog } from '@angular/material/dialog';
+import { EventCardComponent } from '../components/event-card/event-card.component';
+
 
 @Component({
   selector: 'togetherapp-my-events-home',
   standalone: true,
-  imports: [CommonModule, MatButtonModule],
+  imports: [CommonModule, MatButtonModule, EventCardComponent],
   templateUrl: './my-events-home.component.html',
   styleUrl: './my-events-home.component.scss',
 })
