@@ -6,11 +6,12 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MySportsComponent } from '../../../my-sports/my-sports-home/my-sports.component';
 import { MyEventsHomeComponent } from 'src/app/my-events/my-events-home/my-events-home.component';
 import { MyAccountComponent } from 'src/app/my-account/my-account-home/my-account.component';
+import { MyEquipmentsComponent } from 'src/app/my-equipments/my-equipments-home/my-equipments.component';
 
 @Component({
   selector: 'togetherapp-main-content-tabs',
   standalone: true,
-  imports: [CommonModule, MatTabsModule, MatCardModule, MatDividerModule, MySportsComponent, MyEventsHomeComponent, MyAccountComponent],
+  imports: [CommonModule, MatTabsModule, MatCardModule, MatDividerModule, MySportsComponent, MyEventsHomeComponent, MyAccountComponent, MyEquipmentsComponent],
   templateUrl: './main-content-tabs.component.html',
   styleUrl: './main-content-tabs.component.scss',
 })
