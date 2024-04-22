@@ -1,0 +1,17 @@
+<div class="rounded-3 w-100 pt-2 pb-2">
+    <div class="d-flex flex-row flex-wrap gap-3 w-100" >
+        <togetherapp-equipment-card [header]="'Beach Volleyball'" [description]="'Expert'"
+            [icon]="'assets/images/beach.jpg'"></togetherapp-equipment-card>
+        <togetherapp-equipment-card [header]="'Camping'" [description]="'Intermediate'"
+            [icon]="'assets/images/camping.jpg'"></togetherapp-equipment-card>
+        <togetherapp-equipment-card [header]="'Hiking'" [description]="'Expert'"
+            [icon]="'assets/images/hiking.jpg'"></togetherapp-equipment-card>
+        <togetherapp-equipment-card [header]="'Running'" [description]="'Beginner'"
+            [icon]="'assets/images/run.avif'"></togetherapp-equipment-card>
+        <togetherapp-equipment-card [header]="'Yoga'" [description]="'Intermediate'"
+            [icon]="'assets/images/yoga.jpg'"></togetherapp-equipment-card>
+    </div>
+    <div class="d-flex flex-row justify-content-center mt-3">
+        <button mat-raised-button color="primary" (click)="openAddEquipmentDialog()">Add new equipment</button>
+    </div>
+</div>
