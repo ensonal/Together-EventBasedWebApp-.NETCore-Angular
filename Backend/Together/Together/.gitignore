@@ -1,0 +1,16 @@
+*.suo
+*.cache
+*.pdb
+
+bin/
+obj/
+.vs/
+
+appsettings.Development.json
+
+/Together.DataAccess/Migrations/
+
+.idea/
+.rider/
+
+file_to_exclude.txt
