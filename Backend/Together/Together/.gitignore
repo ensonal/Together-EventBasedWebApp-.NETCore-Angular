@@ -12,5 +12,13 @@ appsettings.Development.json
 
 .idea/
 .rider/
+.vscode/
 
 file_to_exclude.txt
+
+project.assets.json
+project.nuget.cache
+project.packagespec.json
+
+rider.project.model.nuget.info
+rider.project.restore.info
