@@ -17,7 +17,10 @@ export class MyEventsHomeComponent {
   constructor(public dialog: MatDialog) { }
   
   openAddEventDialog() {
-    const dialogRef = this.dialog.open(CreateNewEventComponent);
+    const dialogRef = this.dialog.open(CreateNewEventComponent, {
+      width: '750px',
+      height: 'auto',
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

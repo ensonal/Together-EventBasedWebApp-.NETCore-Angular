@@ -8,8 +8,9 @@
                 </mat-form-field>
             </div>
             <div class="d-flex flex-column align-items-center">
-                <img src="https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg?size=338&ext=jpg&ga=GA1.1.735520172.1710460800&semt=sph"
-                    class="rounded-circle" width="100" height="100">
+                <img 
+                src="assets/images/profile-pic.jpeg"
+                class="rounded-circle object-fit-cover" width="100" height="100">
                 <input #fileInput type="file" (change)="onFileSelected($event)" style="display: none;">
                 <button mat-icon-button (click)="fileInput.click()">
                     <mat-icon>cloud_upload</mat-icon>
