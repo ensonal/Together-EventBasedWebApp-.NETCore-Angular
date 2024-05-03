@@ -6,4 +6,18 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Together.Contracts\Together.Contracts.csproj" />
+      <ProjectReference Include="..\Together.Core\Together.Core.csproj" />
+      <ProjectReference Include="..\Together.DataAccess\Together.DataAccess.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+      <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.14" />
+      <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="6.0.5" />
+    </ItemGroup>
+
 </Project>
