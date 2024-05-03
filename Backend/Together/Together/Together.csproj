@@ -6,4 +6,28 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="12.2.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.3" />
+      <PackageReference Include="NSwag.AspNetCore" Version="14.0.7" />
+      <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
+      <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <ProjectReference Include="..\Together.Contracts\Together.Contracts.csproj" />
+      <ProjectReference Include="..\Together.Core\Together.Core.csproj" />
+      <ProjectReference Include="..\Together.DataAccess\Together.DataAccess.csproj" />
+      <ProjectReference Include="..\Together.DependencyInjection\Together.DependencyInjection.csproj" />
+      <ProjectReference Include="..\Together.Service\Together.Service.csproj" />
+    </ItemGroup>
+
+
+
+
+
 </Project>
