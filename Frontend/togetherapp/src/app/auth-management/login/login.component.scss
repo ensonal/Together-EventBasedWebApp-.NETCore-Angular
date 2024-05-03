@@ -3,18 +3,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: #3f50b5;
 }
 
 .container {
     display: flex;
     height: 100vh;
-    align-items: stretch;
-}
-
-.left-section {
-    background: url('https://img.freepik.com/premium-vector/man-freelancer-sits-table-cafe-working-laptop-remote-worker-drinking-beverage-coworking-space-workplace-cafeteria-restaurant_575670-1291.jpg?size=626&ext=jpg&ga=GA1.1.1546980028.1702771200&semt=ais') no-repeat center center;
-    display: none;
-}
+    flex-direction: column;
+  }
 
 .right-section {
     flex-grow: 1;
@@ -24,7 +20,7 @@
 }
 
 .login-container {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255);
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgb(10 75 90);
