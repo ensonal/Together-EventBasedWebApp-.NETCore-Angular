@@ -1,20 +1,37 @@
 import { Routes as BaseRoutes, Route, Outlet } from "react-router-dom";
 import { NavBar } from "../components/NavBar/NavBar";
-import { Register } from "../routes/Register";
+import { RegisterPage } from "../routes/Register/RegisterPage";
+import { useLocation } from "react-router-dom";
 
 export default function Routes() {
+  const location = useLocation();
+
+  const isRegisterOrLogin =
+    location.pathname === "/register" || location.pathname === "/login";
+
   return (
     <BaseRoutes>
       <Route
         path="/"
         element={
           <>
-            <NavBar />
-            <Outlet />
+            {!isRegisterOrLogin && <NavBar />}
+            <div
+              style={{
+                backgroundColor: isRegisterOrLogin ? "#4A43EB" : "transparent",
+                minHeight: "100vh",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <div style={{ flex: 1 }}>
+                <Outlet />
+              </div>
+            </div>
           </>
         }
       >
-        <Route path="register" element={<Register />} />
+        <Route path="register" element={<RegisterPage />} />
       </Route>
     </BaseRoutes>
   );
