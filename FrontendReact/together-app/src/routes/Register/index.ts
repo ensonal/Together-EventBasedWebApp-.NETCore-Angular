@@ -1,1 +1,1 @@
-export { Register } from "../../api/services/UserService";
+export { Register } from "../../api/services/AuthenticationService";

@@ -3,7 +3,7 @@ import { LoginValues } from '../models/LoginValues';
 import RegisterForm from '../../routes/Register/RegisterForm';
 import { RegisterValues } from '../models/RegisterValues';
 import { useNavigate } from 'react-router-dom';
-import { post } from '../../api/axios';
+import { post } from '../axios';
 
 export function Login() {
   const navigate = useNavigate();
