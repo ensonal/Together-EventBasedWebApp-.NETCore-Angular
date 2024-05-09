@@ -3,6 +3,7 @@ using System.Net.Mail;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Together.Contracts;
 using Together.Core.DTO;
 using Together.Core.Models.Common;
@@ -34,7 +35,7 @@ public class UserService : IUserService
     {
         var existUser = await _userManager.FindByEmailAsync(registerRequest.Email);
         if (existUser != null)
-            throw new Exception($"Username '{registerRequest.UserName}' is already taken.");
+            throw new Exception($"Username '{registerRequest.Email}' is already taken.");
 
         if (!IsValidEmail(registerRequest.Email) || !IsValidatePassword(registerRequest.Password))
         {
@@ -50,7 +51,9 @@ public class UserService : IUserService
         
         var result = await _userManager.CreateAsync(user, registerRequest.Password);
         if (!result.Succeeded)
-            throw new Exception($"{result.Errors}");
+        {
+            return false;
+        }
 
         await _userManager.AddToRoleAsync(user, "Basic");
         await initalLevel(user.Id);
@@ -113,6 +116,44 @@ public class UserService : IUserService
         dto.RefreshToken = refreshToken.Token;
 
         return dto;
+    }
+    
+    public bool IsLoginSuccessful(string? token)
+    {
+        Console.WriteLine("TOKEN : ", token);
+            
+        if(string.IsNullOrEmpty(token))
+        {
+            return false;
+        }
+
+        if (string.IsNullOrEmpty(token)) {
+
+            Console.WriteLine("null or empty", string.IsNullOrEmpty(token));
+
+            return false; }
+
+        var validateToken = _jwtService.ValidateToken(token);
+
+        if (validateToken == null)
+            return false;
+        return true;
+    }
+    
+    public async Task<UserInfo> GetUserInfoAsync(string? token)
+    {
+        var userId = _jwtService.GetUserIdFromJWT(token);
+        var user = await _userManager.FindByIdAsync(userId);
+        var userEmail = await _userManager.GetEmailAsync(user);
+        var userInfo = await _context.UserInfo.Where(x => x.UserID == userId).FirstOrDefaultAsync();
+        
+        if (userInfo == null)
+            throw new ExceptionResponseModel("User Not Found");
+        
+        userInfo.Email = userEmail;
+        await _context.SaveChangesAsync();
+        
+        return (userInfo);
     }
 
     private static bool IsValidEmail(string email)

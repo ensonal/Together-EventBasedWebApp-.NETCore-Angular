@@ -2,3 +2,7 @@
 Backend/.DS_Store
 Backend/Together/.DS_Store
 Frontend/.DS_Store
+FrontendReact/together-app/package-lock.json
+Backend/Together/Together.Service/bin/Debug/net6.0/Together.Service.dll
+*.dll
+*.pdb

@@ -85,7 +85,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.DataAccess/Together.DataAccess.csproj": {
+                "projectPath": "/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.DataAccess/Together.DataAccess.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

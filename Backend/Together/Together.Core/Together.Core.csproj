@@ -15,4 +15,10 @@
 
 
 
+    <ItemGroup>
+      <ProjectReference Include="..\Together.DataAccess\Together.DataAccess.csproj" />
+    </ItemGroup>
+
+
+
 </Project>

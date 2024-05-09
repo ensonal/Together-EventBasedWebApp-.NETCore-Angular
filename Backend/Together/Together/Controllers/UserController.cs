@@ -74,6 +74,40 @@ public class UserController : ControllerBase
         
         return response;
     }
+    
+    [HttpGet("isLoginSuccessful")]
+    public async Task<BaseResponseModel> IsLoginSuccessful() {
+        var token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", string.Empty);
+        var isSucceed = _userService.IsLoginSuccessful(token);
+        var result = new BaseResponseModel
+        {
+            Succeeded = isSucceed
+        };
+        
+        if (isSucceed)
+        {
+            result.Message = "Successfully";
+            result.StatusCode = 200;
+        }
+        else
+        {
+            result.StatusCode = (int)HttpStatusCode.Unauthorized;
+            result.Message = "Invalid Token";
+            result.Error = "Unauthorized";
+        }
+        return result;
+
+    }
+    
+    [HttpGet]
+    [Route("GetCurrentUserInfo")]
+    public async Task<UserInfoResponseModel> GetCurrentUserInfo()
+    {
+        var token = HttpContext.Request.Headers.Authorization.ToString();
+        var userInfo = await _userService.GetUserInfoAsync(token);
+        return new UserInfoResponseModel(userInfo,true, "User Info ready",200);            
+
+    }
 
     private string GenerateIpAddress()
     {

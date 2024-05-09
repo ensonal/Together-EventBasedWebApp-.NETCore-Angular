@@ -54,13 +54,13 @@ public class JwtService : IJwtService
         return jwtSecurityToken;
     }
 
-    public IEnumerable<Claim> GetTokenClaims(string tokenStr)
+    public IEnumerable<Claim> GetTokenClaims(string? tokenStr)
     {
         var token = ValidateToken(tokenStr);
         return token.Claims;
     }
 
-    public JwtSecurityToken ValidateToken(string token)
+    public JwtSecurityToken ValidateToken(string? token)
     {
         if (string.IsNullOrEmpty(token))
         {
@@ -85,21 +85,21 @@ public class JwtService : IJwtService
         return jwtToken;
     }
 
-    public string GetUserIdFromJWT(string token)
+    public string GetUserIdFromJWT(string? token)
     {
         var jwt = GetTokenClaims(token);
         var userId = jwt.First(x => x.Type == "uid").Value;
         return userId;
     }
 
-    public string GetUserName(string token)
+    public string GetUserName(string? token)
     {
         var jwt = GetTokenClaims(token);
         var userName = jwt.First(x => x.Type == "sub").Value;
         return userName;
     }
 
-    public string GetUserRole(string token)
+    public string GetUserRole(string? token)
     {
         var jwt = GetTokenClaims(token);
         var userRole = jwt.First(x => x.Type == "roles").Value;
