@@ -9,6 +9,7 @@ export default interface IUserInfo {
     birthDay: Date;
     age: string;
     phoneNumber: string;
-    contry: string;
+    country: string;
+    city: string;
     address: string;
 }

@@ -6,13 +6,13 @@ import "./App.css";
 const theme: Theme = createTheme({
   palette: {
     primary: {
-      main: "#4A43EB",
+      main: "#3E50B6",
       contrastText: "#fafdff",
     },
     secondary: {
       light: "#ff7961",
-      main: "#f44336",
-      dark: "#ba000d",
+      main: "#ffffff",
+      dark: "#F57F18",
       contrastText: "#000",
     },
   },

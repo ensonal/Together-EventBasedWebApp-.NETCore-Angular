@@ -155,6 +155,41 @@ public class UserService : IUserService
         
         return (userInfo);
     }
+    
+    public async Task<UserInfo> SettingUserInfo(UserInfoDTO dto, string token)
+    {
+        var userId = _jwtService.GetUserIdFromJWT(token);
+        var existInfo = _context.UserInfo.Where(x => x.UserID == userId).FirstOrDefault();
+        var user = await _userManager.FindByIdAsync(userId);
+        var userEmail = await _userManager.GetEmailAsync(user);
+        await _userManager.SetEmailAsync(user, dto.Email);
+
+        if (existInfo == null)
+        {
+            var userInfo = new UserInfo();
+            userInfo = SetUserInfo(dto, userInfo, token, userId);
+            _context.UserInfo.Add(userInfo);
+            await _context.SaveChangesAsync();
+            return userInfo;
+        }
+        existInfo = SetUserInfo(dto, existInfo, token, userId);
+        await _context.SaveChangesAsync();
+        return existInfo;
+    }
+    
+    private UserInfo SetUserInfo(UserInfoDTO dto, UserInfo userInfo, string token, string userId)
+    {
+        userInfo.UserID = userId;
+        userInfo.Role = _jwtService.GetUserRole(token);
+        userInfo.UserName = dto.UserName;
+        userInfo.Surname = dto.Surname;
+        userInfo.Name = dto.Name;
+        userInfo.Email = dto.Email;
+        userInfo.Country = dto.Country;
+        userInfo.City = dto.City;
+        userInfo.PhoneNumber = dto.PhoneNumber;
+        return userInfo;
+    }
 
     private static bool IsValidEmail(string email)
     {

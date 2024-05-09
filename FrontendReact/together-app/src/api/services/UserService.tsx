@@ -1,46 +1,34 @@
-import LoginForm from '../../routes/Login/LoginForm';
-import { LoginValues } from '../models/LoginValues';
-import RegisterForm from '../../routes/Register/RegisterForm';
-import { RegisterValues } from '../models/RegisterValues';
-import { useNavigate } from 'react-router-dom';
-import { post } from '../../api/axios';
+import { get, post } from '../../api/axios';
+import IUserInfo from '../models/UserInfo';
 
-export function Login() {
-  const navigate = useNavigate();
-
-  async function handleSubmit(values: LoginValues) {
-    const data = await post('/User/login', values);
-
-    localStorage.setItem('jwToken', data.user.jwToken);
-    localStorage.setItem('id', data.user.id);
-    localStorage.setItem('userRole', data.user.roles[0]);
-
-    navigate('/');
-  }
-
-  return <LoginForm onSubmit={handleSubmit} />;
-}
-
-export function Register() {
-  const navigate = useNavigate();
-
-  async function handleSubmit(values: RegisterValues) {
-    const response = await post('/User/register', {
-      email: values.Email,
-      username: values.Username,
-      password: values.Password,
-      name: values.Name,
-      surname: values.Surname,
-      phoneNumber: values.PhoneNumber,
-      country: values.Country,
-      city: values.City,
-      birthday: new Date(),
-    });
+export async function getUserInfo() {
+  const url = '/User/GetCurrentUserInfo'; 
+  
+  try {
+    const response = await get(url);
 
     if (response.succeeded) {
-      navigate('/');
+      return response.userInfo as IUserInfo; 
+    } else {
+      throw new Error(response.data.Message || 'Failed to fetch user information');
     }
+  } catch (error) {
+    throw new Error('Failed to fetch user information');
   }
+}
 
-  return <RegisterForm onSubmit={handleSubmit} />;
+export async function updateUserInfo(userInfo: IUserInfo) {
+  const url = '/User/editUserInfo'; 
+  
+  try {
+    const response = await post(url, userInfo);
+
+    if (response.succeeded) {
+      return response.userInfo as IUserInfo; 
+    } else {
+      throw new Error(response.data.Message || 'Failed to update user information');
+    }
+  } catch (error) {
+    throw new Error('Failed to update user information');
+  }
 }
