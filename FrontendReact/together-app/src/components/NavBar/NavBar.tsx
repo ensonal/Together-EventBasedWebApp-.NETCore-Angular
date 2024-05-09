@@ -21,7 +21,7 @@ export const NavBar = () => {
         <Toolbar disableGutters>
           <Typography
             variant="h6"
-            sx={{ flexGrow: 1, cursor: "pointer" }}
+            sx={{ flexGrow: 1 }}
             onClick={() => {
               navigate("/");
             }}
