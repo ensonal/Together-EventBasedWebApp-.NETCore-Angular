@@ -36,7 +36,7 @@ export function MyAccount() {
       updateUser(userInfo);
     }
   };
-  
+
   const handleInputChange = (key: keyof IUserInfo, value: string) => {
     if (userInfo) {
       setUserInfo((prevUserInfo) => ({
@@ -101,7 +101,7 @@ export function MyAccount() {
                       </InputAdornment>
                     ),
                   }}
-                  value={userInfo.surname}
+                  value={userInfo?.surname}
                   onChange={(e) => handleInputChange("surname", e.target.value)}
                 />
               </div>
@@ -122,8 +122,8 @@ export function MyAccount() {
                       </InputAdornment>
                     ),
                   }}
-                  value={userInfo.email}
-                  onChange={(e) => handleInputChange("email", e.target.value)}
+                  disabled
+                  defaultValue={userInfo?.email}
                 />
               </div>
               <div>
