@@ -38,7 +38,7 @@ export function Register() {
     });
 
     if (response.succeeded) {
-      navigate('/');
+      navigate('/login');
     }
   }
 
