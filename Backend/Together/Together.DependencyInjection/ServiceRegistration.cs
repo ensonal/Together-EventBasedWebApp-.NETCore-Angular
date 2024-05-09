@@ -34,7 +34,6 @@ public static class ServiceRegistration
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                
             })
-             
                 .AddJwtBearer(o =>
                 {
                     o.RequireHttpsMetadata = false;

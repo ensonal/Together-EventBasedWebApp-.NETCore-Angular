@@ -846,7 +846,8 @@
       },
       "Together.Core/1.0.0": {
         "dependencies": {
-          "FluentValidation": "11.9.1"
+          "FluentValidation": "11.9.1",
+          "Together.DataAccess": "1.0.0"
         },
         "runtime": {
           "Together.Core.dll": {}

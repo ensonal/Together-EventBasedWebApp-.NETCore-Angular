@@ -1,46 +1,44 @@
-/*
-import LoginForm from '../../routes/Login/LoginForm/LoginForm';
-
-import { LoginValues } from '../../routes/Login/LoginForm/LoginForm';
-*/
+import LoginForm from '../../routes/Login/LoginForm';
+import { LoginValues } from '../models/LoginValues';
 import RegisterForm from '../../routes/Register/RegisterForm';
-import { RegisterValues } from '../../routes/Register/RegisterForm';
-
+import { RegisterValues } from '../models/RegisterValues';
 import { useNavigate } from 'react-router-dom';
 import { post } from '../../api/axios';
 
-/*
-export default function Login() {
-  let navigate = useNavigate();
+export function Login() {
+  const navigate = useNavigate();
 
   async function handleSubmit(values: LoginValues) {
-    const data = await post('/Account/authenticate', values);
+    const data = await post('/User/login', values);
 
     localStorage.setItem('jwToken', data.user.jwToken);
     localStorage.setItem('id', data.user.id);
     localStorage.setItem('userRole', data.user.roles[0]);
 
-    navigate('../home');
+    navigate('/');
   }
+
   return <LoginForm onSubmit={handleSubmit} />;
 }
-*/
 
 export function Register() {
-  let navigate = useNavigate();
-  if (localStorage.getItem('jwToken')) {
-    navigate('../home');
-  }
+  const navigate = useNavigate();
 
   async function handleSubmit(values: RegisterValues) {
-    const response = await post('/Account/register', {
+    const response = await post('/User/register', {
       email: values.Email,
       username: values.Username,
-      password: values.Password
+      password: values.Password,
+      name: values.Name,
+      surname: values.Surname,
+      phoneNumber: values.PhoneNumber,
+      country: values.Country,
+      city: values.City,
+      birthday: new Date(),
     });
-    console.log(response);
+
     if (response.succeeded) {
-      navigate('../login');
+      navigate('/');
     }
   }
 

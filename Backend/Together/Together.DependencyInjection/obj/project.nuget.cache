@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kyEt1eyNCQsSnI8oNKAVfC+yRoaow8MuxZF8Xy2031HiKUrqVGdAJwkD/cksD8nnKFfwxfH8ZYDbINVwI4P8sw==",
+  "dgSpecHash": "tBzColAmgC0wrzcTLouJq2tZMunJ6KmVg6jk2nCTm+ukkRg827g673Kcpg0UzWSTwcg01yXjHjQ5QVJgs8YP8A==",
   "success": true,
   "projectFilePath": "/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.DependencyInjection/Together.DependencyInjection.csproj",
   "expectedPackageFiles": [

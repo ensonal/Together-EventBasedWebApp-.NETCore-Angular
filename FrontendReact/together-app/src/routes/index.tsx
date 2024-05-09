@@ -1,6 +1,7 @@
 import { Routes as BaseRoutes, Route, Outlet } from "react-router-dom";
 import { NavBar } from "../components/NavBar/NavBar";
 import { RegisterPage } from "../routes/Register/RegisterPage";
+import { LoginPage } from "./Login/LoginPage";
 import { useLocation } from "react-router-dom";
 
 export default function Routes() {
@@ -31,7 +32,9 @@ export default function Routes() {
           </>
         }
       >
+        <Route path="/" element={<div>Home</div>} />
         <Route path="register" element={<RegisterPage />} />
+        <Route path="login" element={<LoginPage />} />
       </Route>
     </BaseRoutes>
   );

@@ -7,7 +7,7 @@ const Authenticate = () => {
   const [user, setUser] = useState<IUserInfo>();
 
   function requestForAuthenticate() {
-    get('/Account/isValid').then((response) => {
+    get('/User/isLoginSuccessful').then((response) => {
       if (response.succeeded) {
         setIsAuthenticate(true);
         getUser();
@@ -15,7 +15,7 @@ const Authenticate = () => {
     });
   }
   async function getUser() {
-    await get('/Account/GetCurrentUserInfo').then((response) => {
+    await get('/User/GetCurrentUserInfo').then((response) => {
       if (response.succeeded) setUser(response.userInfo);
     });
   }

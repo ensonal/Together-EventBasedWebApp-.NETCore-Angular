@@ -4,30 +4,12 @@ import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Card, CardActions, CardContent, Stack } from "@mui/material";
+import { RegisterValues } from "../../api/models/RegisterValues";
 
-export interface RegisterValues {
-  Username: string;
-  Name: string;
-  Surname: string;
-  Email: string;
-  Password: string;
-  PhoneNumber: string;
-  Country: string;
-  City: string;
-}
-/**
- *  confirmPassword: yup
-    .string()
-    .required()
-    .oneOf([ref('password')], 'Passwords do not match')
- */
 const validationSchema: yup.Schema<RegisterValues> = yup.object({
   Email: yup.string().email().required(),
   Name: yup.string().required(),
@@ -43,6 +25,7 @@ const validationSchema: yup.Schema<RegisterValues> = yup.object({
     ),
   Country: yup.string().required(),
   City: yup.string().required(),
+  Birthday: yup.date().required(),
 });
 
 interface RegisterProps {
@@ -61,12 +44,13 @@ export default function RegisterForm(props: RegisterProps) {
       Surname: "",
       Country: "",
       City: "",
+      Birthday: new Date(),
     },
     onSubmit: props.onSubmit,
   });
 
   return (
-    <Card sx={{ minWidth: 500  }}>
+    <Card sx={{ minWidth: 500 }}>
       <CardContent>
         <FormikProvider value={formik}>
           <Container component="main" maxWidth="md">
@@ -217,9 +201,6 @@ export default function RegisterForm(props: RegisterProps) {
                       value={formik.values.PhoneNumber}
                     />
                   </Stack>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DatePicker />
-                  </LocalizationProvider>
                   <TextField
                     required
                     fullWidth
@@ -254,6 +235,9 @@ export default function RegisterForm(props: RegisterProps) {
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
           color="primary"
+          onClick={() => {
+            formik.handleSubmit();
+          }}
         >
           Sign Up
         </Button>
