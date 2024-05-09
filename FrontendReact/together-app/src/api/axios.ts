@@ -58,6 +58,7 @@ export async function get(url: string, body?: string) {
   }
   return data.Message;
 }
+
 export async function getWithout(url: string) {
   const { data } = await axiosInstance.get(url);
   if (data.succeeded === true) {
