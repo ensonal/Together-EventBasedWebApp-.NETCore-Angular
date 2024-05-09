@@ -9,4 +9,5 @@ public interface IUserService
     Task<AuthenticationResponseDTO> Login(AuthenticationRequest authenticationRequest, string ipAddress);
     bool IsLoginSuccessful(string? token);
     Task<UserInfo> GetUserInfoAsync(string? token);
+    Task<UserInfo> SettingUserInfo(UserInfoDTO dto, string token);
 }

@@ -108,6 +108,17 @@ public class UserController : ControllerBase
         return new UserInfoResponseModel(userInfo,true, "User Info ready",200);            
 
     }
+    
+    [HttpPost]
+    [Route("editUserInfo")]
+    public async Task<UserInfoResponseModel> UserInfo(UserInfoDTO userInfoDTO)
+    {
+        var token = HttpContext.Request.Headers.Authorization.ToString();
+        var userInfo = await _userService.SettingUserInfo(userInfoDTO, token);
+        return new UserInfoResponseModel(userInfo, true, "User info edited.", 200);
+
+
+    }
 
     private string GenerateIpAddress()
     {
