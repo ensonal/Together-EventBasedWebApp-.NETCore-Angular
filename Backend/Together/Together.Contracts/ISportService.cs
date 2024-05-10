@@ -1,3 +1,5 @@
+using Together.Core.DTO.SportDTOs;
+using Together.Core.Models.SportModels;
 using Together.DataAccess.Entities;
 
 namespace Together.Contracts;
@@ -5,5 +7,8 @@ namespace Together.Contracts;
 public interface ISportService
 {
     Task<List<Sport>> GetAllSports();
-    Task<Sport?> GetSportById(int sportId);
+    Task<bool> AddUserSport(AddUserSportDto userSport, string token);
+    Task<UserSportResponseModel[]> GetAllUserSport(string token);
+    Task<bool> DeleteUserSport(int userSportId, string token);
+    Task<List<SportExperience>> GetAllSportExperience();
 }

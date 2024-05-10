@@ -1,14 +1,13 @@
-import { UserEquipment } from "../../../../../../api/models/UserEquipment";
+import { UserSport } from "../../../../../../api/models/UserSport";
+import "./SportCard.css";
 import { Card, Divider } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { deleteUserEquipment } from "../../../../../../api/services/UserEquipmentService";
-import "./EquipmentCard.css";
-import SportType from "../../../../../../api/enums/SportType";
+import { deleteUserSport } from "../../../../../../api/services/UserSportService";
 
-export function EquipmentCard(equipment: UserEquipment) {
+export function SportCard(sport: UserSport) {
   const handleDelete = () => {
-    deleteUserEquipment(equipment.userEquipmentId);
+    deleteUserSport(sport.userSportId);
   };
 
   return (
@@ -19,8 +18,8 @@ export function EquipmentCard(equipment: UserEquipment) {
     >
       <div className="text-center mt-3">
         <img
-          className="rounded-3 shadow p-2"
-          src="https://togetherwebapp.blob.core.windows.net/userequipmentimages/defaultequipmentlogo.png"
+          className="rounded-circle shadow p-2"
+          src={sport.imageUrl}
           width="125"
           height="125"
           alt="equipment"
@@ -29,13 +28,15 @@ export function EquipmentCard(equipment: UserEquipment) {
       </div>
       <Divider className="mt-3" />
       <p className="fs-6 fw-normal text-center text-dark p-3 pb-0 mb-1">
-        {equipment.equipmentName}
+        {sport.sportName}
       </p>
-      <p className="fw-light text-center text-dark p-0 m-0">
-        {SportType[equipment.sportId]}
-      </p>
+      <p className="fw-light text-center text-dark p-0 m-0">{sport.level}</p>
       <div className="button-container d-flex flex-row gap-3">
-        <IconButton aria-label="delete" className="delete-button" onClick={() => handleDelete()}>
+        <IconButton
+          aria-label="delete"
+          className="delete-button"
+          onClick={() => handleDelete()}
+        >
           <DeleteIcon className="button-icon" />
         </IconButton>
       </div>
