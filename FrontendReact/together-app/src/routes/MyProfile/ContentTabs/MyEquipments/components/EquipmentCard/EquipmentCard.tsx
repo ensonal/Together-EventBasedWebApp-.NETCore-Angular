@@ -4,6 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { deleteUserEquipment } from "../../../../../../api/services/UserEquipmentService";
 import "./EquipmentCard.css";
+import SportType from "../../../../../../api/enums/SportType";
 
 export function EquipmentCard(equipment: UserEquipment) {
   const handleDelete = () => {
@@ -32,7 +33,7 @@ export function EquipmentCard(equipment: UserEquipment) {
         {equipment.equipmentName}
       </p>
       <p className="fw-light text-center text-dark p-0 m-0">
-        {equipment.sportId}
+        {SportType[equipment.sportId]}
       </p>
       <div className="button-container d-flex flex-row gap-3">
         <IconButton aria-label="delete" className="delete-button" onClick={() => handleDelete()}>
