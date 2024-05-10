@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Together.Contracts;
 using Together.Core.DTO.EquipmentDTOs;
 using Together.DataAccess;
@@ -28,6 +29,30 @@ public class EquipmentService : IEquipmentService
         };
         
         await _context.UserEquipments.AddAsync(equipment);
+        await _context.SaveChangesAsync();
+        
+        return true;
+    }
+    
+    public async Task<List<UserEquipment>> GetUserEquipments(string token)
+    {
+        var userId = _jwtService.GetUserIdFromJWT(token);
+        var equipments = await _context.UserEquipments.Where(x => x.UserId == userId).ToListAsync();
+        
+        return equipments;
+    }
+    
+    public async Task<bool> DeleteUserEquipment(int userEquipmentId, string token)
+    {
+        var userId = _jwtService.GetUserIdFromJWT(token);
+        var equipment = await _context.UserEquipments.FirstOrDefaultAsync(x => x.UserId == userId && x.UserEquipmentId == userEquipmentId);
+        
+        if (equipment == null)
+        {
+            return false;
+        }
+        
+        _context.UserEquipments.Remove(equipment);
         await _context.SaveChangesAsync();
         
         return true;

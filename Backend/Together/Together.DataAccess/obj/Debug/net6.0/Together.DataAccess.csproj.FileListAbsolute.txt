@@ -1,0 +1,14 @@
+/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.DataAccess/bin/Debug/net6.0/Together.DataAccess.deps.json
+/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.DataAccess/bin/Debug/net6.0/Together.DataAccess.runtimeconfig.json
+/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.DataAccess/bin/Debug/net6.0/Together.DataAccess.dll
+/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.DataAccess/bin/Debug/net6.0/Together.DataAccess.pdb
+/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.DataAccess/obj/Debug/net6.0/Together.DataAccess.csproj.AssemblyReference.cache
+/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.DataAccess/obj/Debug/net6.0/Together.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.DataAccess/obj/Debug/net6.0/Together.DataAccess.AssemblyInfoInputs.cache
+/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.DataAccess/obj/Debug/net6.0/Together.DataAccess.AssemblyInfo.cs
+/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.DataAccess/obj/Debug/net6.0/Together.DataAccess.csproj.CoreCompileInputs.cache
+/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.DataAccess/obj/Debug/net6.0/Together.DataAccess.dll
+/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.DataAccess/obj/Debug/net6.0/refint/Together.DataAccess.dll
+/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.DataAccess/obj/Debug/net6.0/Together.DataAccess.pdb
+/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.DataAccess/obj/Debug/net6.0/Together.DataAccess.genruntimeconfig.cache
+/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.DataAccess/obj/Debug/net6.0/ref/Together.DataAccess.dll

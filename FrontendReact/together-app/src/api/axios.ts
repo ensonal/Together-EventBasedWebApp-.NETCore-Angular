@@ -56,7 +56,7 @@ export async function get(url: string, body?: string) {
   if (data.succeeded === true) {
     return data;
   }
-  return data.Message;
+  return data;
 }
 
 export async function getWithout(url: string) {
