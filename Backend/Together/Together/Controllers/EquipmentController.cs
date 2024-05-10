@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Together.Contracts;
 using Together.Core.DTO.EquipmentDTOs;
 using Together.Core.Models.Common;
+using Together.DataAccess.Entities;
 
 namespace Together.Controllers;
 
@@ -20,8 +21,8 @@ public class EquipmentController : ControllerBase
     #region Equipment Requests
 
     [HttpPost]
-    [Route("add")]
-    public async Task<BaseResponseModel> AddEquipment(AddEquipmentDto request)
+    [Route("AddUserEquipment")]
+    public async Task<BaseResponseModel> AddUserEquipment(AddEquipmentDto request)
     {
         try
         {
@@ -59,6 +60,15 @@ public class EquipmentController : ControllerBase
             };
             return response;
         }
+    }
+    
+    [HttpGet]
+    [Route("GetUserEquipments")]
+    public async Task<List<UserEquipment>> GetUserEquipments()
+    {
+        var token = HttpContext.Request.Headers.Authorization.ToString();
+        var equipment = await _equipmentService.GetUserEquipments(token);
+        return equipment;
     }
 
     #endregion

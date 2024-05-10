@@ -16,7 +16,7 @@ public class SportController : ControllerBase
     }
     
     [HttpGet]
-    [Route("GetCurrentUserInfo")]
+    [Route("GetAllSports")]
     public async Task<List<Sport>> GetAllSports()
     {
         return await _sportService.GetAllSports();

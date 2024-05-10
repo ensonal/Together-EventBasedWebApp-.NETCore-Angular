@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Together.Contracts;
 using Together.Core.DTO.EquipmentDTOs;
 using Together.DataAccess;
@@ -31,6 +32,14 @@ public class EquipmentService : IEquipmentService
         await _context.SaveChangesAsync();
         
         return true;
+    }
+    
+    public async Task<List<UserEquipment>> GetUserEquipments(string token)
+    {
+        var userId = _jwtService.GetUserIdFromJWT(token);
+        var equipments = await _context.UserEquipments.Where(x => x.UserId == userId).ToListAsync();
+        
+        return equipments;
     }
     
 }
