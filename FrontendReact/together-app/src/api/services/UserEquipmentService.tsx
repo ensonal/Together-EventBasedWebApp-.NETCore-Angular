@@ -4,7 +4,7 @@ import { get, post } from "../../api/axios";
 export async function addUserEquipment(equipment: UserEquipment) {
   const url = "/Equipment/AddUserEquipment";
   const response = await post(url, equipment);
-  return response as UserEquipment;
+  return response;
 }
 
 export async function getUserEquipments() {

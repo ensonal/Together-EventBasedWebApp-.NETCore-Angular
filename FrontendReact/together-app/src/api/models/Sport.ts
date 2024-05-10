@@ -1,4 +1,4 @@
 export interface Sport {
-    SportId: number;
-    SportName: string;
+    sportId: number;
+    name: string;
 }

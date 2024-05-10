@@ -5,6 +5,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { MyAccount } from './MyAccount/MyAccount';
+import { MyEquipments } from './MyEquipments/MyEquipments';
 
 export default function MainContentTab() {
   const [value, setValue] = React.useState('1');
@@ -26,7 +27,7 @@ export default function MainContentTab() {
         </Box>
         <TabPanel value="1"><MyAccount /></TabPanel>
         <TabPanel value="3">My Sports</TabPanel>
-        <TabPanel value="4">My Equipments</TabPanel>
+        <TabPanel value="4"><MyEquipments /></TabPanel>  
         <TabPanel value="2">My Events</TabPanel>
       </TabContext>
     </Box>

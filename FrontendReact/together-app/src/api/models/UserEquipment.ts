@@ -1,7 +1,7 @@
 export interface UserEquipment {
-    UserEquipmentId: number;
-    UserId: string;
-    SportId: number;
-    EquipmentName: string;
-    ImageUrl: string;
+    userEquipmentId: number;
+    userId: string;
+    sportId: number;
+    equipmentName: string;
+    imageUrl: string;
 }
