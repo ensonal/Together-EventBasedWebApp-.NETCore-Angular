@@ -10,7 +10,7 @@ export function AuthenticatedNav() {
 
   return (
     <Box sx={{ flexGrow: 0 }}>
-      <IconButton sx={{ color: "white" }} size="large">
+      <IconButton sx={{ color: "white" }} size="large" onClick={() => navigate("/")}>
         <HomeRoundedIcon sx={{ color: "white" }} fontSize="inherit" />
       </IconButton>
       <IconButton sx={{ color: "white" }} size="large">

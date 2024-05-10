@@ -18,7 +18,7 @@ export function SportCard(sport: UserSport) {
     >
       <div className="text-center mt-3">
         <img
-          className="rounded-circle shadow p-2"
+          className="rounded-1 shadow-sm p-2"
           src={sport.imageUrl}
           width="125"
           height="125"
