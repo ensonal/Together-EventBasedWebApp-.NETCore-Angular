@@ -42,4 +42,20 @@ public class EquipmentService : IEquipmentService
         return equipments;
     }
     
+    public async Task<bool> DeleteUserEquipment(int userEquipmentId, string token)
+    {
+        var userId = _jwtService.GetUserIdFromJWT(token);
+        var equipment = await _context.UserEquipments.FirstOrDefaultAsync(x => x.UserId == userId && x.UserEquipmentId == userEquipmentId);
+        
+        if (equipment == null)
+        {
+            return false;
+        }
+        
+        _context.UserEquipments.Remove(equipment);
+        await _context.SaveChangesAsync();
+        
+        return true;
+    }
+    
 }

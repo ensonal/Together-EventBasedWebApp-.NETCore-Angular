@@ -2,9 +2,15 @@ import { UserEquipment } from "../../../../../../api/models/UserEquipment";
 import { Card, Divider } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { deleteUserEquipment } from "../../../../../../api/services/UserEquipmentService";
 import "./EquipmentCard.css";
 
 export function EquipmentCard(equipment: UserEquipment) {
+  const handleDelete = () => {
+    console.log(equipment.userEquipmentId);
+    deleteUserEquipment(equipment.userEquipmentId);
+  };
+
   return (
     <Card
       sx={{ width: "177px", height: "235px" }}
@@ -29,7 +35,7 @@ export function EquipmentCard(equipment: UserEquipment) {
         {equipment.sportId}
       </p>
       <div className="button-container d-flex flex-row gap-3">
-        <IconButton aria-label="delete" className="delete-button">
+        <IconButton aria-label="delete" className="delete-button" onClick={() => handleDelete()}>
           <DeleteIcon className="button-icon" />
         </IconButton>
       </div>
