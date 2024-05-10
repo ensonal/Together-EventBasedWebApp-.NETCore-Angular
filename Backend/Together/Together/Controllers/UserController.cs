@@ -19,6 +19,8 @@ public class UserController : ControllerBase
         _userService = userService;
     }
 
+    #region User Requests
+
     [HttpPost]
     [Route("register")]
     public async Task<BaseResponseModel> Register(UserRegisterDto request)
@@ -119,6 +121,8 @@ public class UserController : ControllerBase
 
 
     }
+
+    #endregion
 
     private string GenerateIpAddress()
     {
