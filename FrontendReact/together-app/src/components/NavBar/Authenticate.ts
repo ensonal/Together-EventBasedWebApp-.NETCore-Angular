@@ -6,14 +6,18 @@ const Authenticate = () => {
   const [isAuthenticate, setIsAuthenticate] = useState(false);
   const [user, setUser] = useState<IUserInfo>();
 
-  function requestForAuthenticate() {
+  async function requestForAuthenticate() {
+    console.log("dsadsa")
     get('/User/isLoginSuccessful').then((response) => {
       if (response.succeeded) {
         setIsAuthenticate(true);
         getUser();
+      }else{
+        setIsAuthenticate(false);
       }
     });
   }
+
   async function getUser() {
     await get('/User/GetCurrentUserInfo').then((response) => {
       if (response.succeeded) setUser(response.userInfo);
@@ -21,8 +25,9 @@ const Authenticate = () => {
   }
 
   useEffect(() => {
-    requestForAuthenticate();
+    requestForAuthenticate(); 
   }, [localStorage.getItem('jwToken')]);
+  
 
   return { isAuthenticate, setIsAuthenticate, user };
 };
