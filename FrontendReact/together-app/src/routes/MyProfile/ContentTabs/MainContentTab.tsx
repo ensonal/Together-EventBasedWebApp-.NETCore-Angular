@@ -19,15 +19,15 @@ export default function MainContentTab() {
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
             <Tab label="My Account" value="1" />
-            <Tab label="My Events" value="2" />
             <Tab label="My Sports" value="3" />
             <Tab label="My Equipments" value="4" />
+            <Tab label="My Events" value="2" />
           </TabList>
         </Box>
         <TabPanel value="1"><MyAccount /></TabPanel>
-        <TabPanel value="2">My Events</TabPanel>
         <TabPanel value="3">My Sports</TabPanel>
         <TabPanel value="4">My Equipments</TabPanel>
+        <TabPanel value="2">My Events</TabPanel>
       </TabContext>
     </Box>
   );

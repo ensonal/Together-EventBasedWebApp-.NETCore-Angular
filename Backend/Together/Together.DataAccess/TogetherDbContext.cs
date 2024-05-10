@@ -13,6 +13,9 @@ public class TogetherDbContext : IdentityDbContext<IdentityUser>
 
     public DbSet<UserInfo> UserInfo { get; set; }
     public DbSet<UserAccountLevel> UserAccountLevels { get; set; }
+    public DbSet<UserEquipment> UserEquipments { get; set; }
+    public DbSet<Sport> Sports { get; set; }
+    
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -176,6 +176,8 @@ public class UserService : IUserService
         await _context.SaveChangesAsync();
         return existInfo;
     }
+
+    #region Helper Methods
     
     private UserInfo SetUserInfo(UserInfoDTO dto, UserInfo userInfo, string token, string userId)
     {
@@ -270,4 +272,7 @@ public class UserService : IUserService
         await _context.SaveChangesAsync();
         return true;
     }
+
+    #endregion
+
 }
