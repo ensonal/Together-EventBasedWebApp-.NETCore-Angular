@@ -5,9 +5,8 @@ import { useEffect, useState } from "react";
 import { UserEquipment } from "../../../../../api/models/UserEquipment";
 import { addEquipment } from "../hooks/addUserEquipment";
 import TextField from "@mui/material/TextField";
-import { getAllSports } from "../../../../../api/services/SportService";
+import { getAllSports } from "../../../../../api/services/UserSportService";
 import { Sport } from "../../../../../api/models/Sport";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Button } from "@mui/material";
@@ -124,7 +123,7 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 500,
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  borderRadius: 2,
   boxShadow: 24,
   p: 2,
 };
