@@ -23,9 +23,9 @@ export function UserCard() {
   };
 
   return (
-    <Card sx={{ borderRadius: 3 }}>
+    <Card sx={{ borderRadius: 3 }} variant="outlined">
       <CardContent>
-        <UserCardHeader userInfo={userInfo}/>
+        <UserCardHeader userInfo={userInfo} />
         <UserCardInfo userInfo={userInfo} />
       </CardContent>
     </Card>

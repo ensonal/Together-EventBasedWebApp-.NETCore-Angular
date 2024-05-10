@@ -7,7 +7,6 @@ const Authenticate = () => {
   const [user, setUser] = useState<IUserInfo>();
 
   async function requestForAuthenticate() {
-    console.log("dsadsa")
     get('/User/isLoginSuccessful').then((response) => {
       if (response.succeeded) {
         setIsAuthenticate(true);

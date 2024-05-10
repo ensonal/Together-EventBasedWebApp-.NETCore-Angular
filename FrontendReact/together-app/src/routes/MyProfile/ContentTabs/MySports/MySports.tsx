@@ -31,7 +31,7 @@ export function MySports() {
   return (
     <Card sx={{ padding: 3, paddingBottom: 1 }} variant="outlined">
       <div className="rounded-3 w-100 pt-2 pb-2">
-        <div className="d-flex flex-row flex-wrap gap-3 w-100">
+        <div className="d-flex flex-row flex-wrap gap-3 w-100 justify-content-center">
           {sports?.length > 0 ? (
             sports.map((sport) => (
               <SportCard key={sport.userSportId} {...sport} />

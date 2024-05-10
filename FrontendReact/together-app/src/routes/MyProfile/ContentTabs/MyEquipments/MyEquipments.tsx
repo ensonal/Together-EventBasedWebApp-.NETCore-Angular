@@ -30,7 +30,7 @@ export function MyEquipments() {
   return (
     <Card sx={{ padding: 3, paddingBottom: 1 }} variant="outlined">
       <div className="rounded-3 w-100 pt-2 pb-2">
-        <div className="d-flex flex-row flex-wrap gap-3 w-100">
+        <div className="d-flex flex-row flex-wrap gap-3 w-100 justify-content-center">
           {equipments?.length > 0 ? (
             equipments.map((equipment) => (
               <EquipmentCard key={equipment.userEquipmentId} {...equipment} />
