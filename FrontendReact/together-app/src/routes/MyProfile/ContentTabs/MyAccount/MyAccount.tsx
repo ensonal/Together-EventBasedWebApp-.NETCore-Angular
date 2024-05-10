@@ -65,9 +65,9 @@ export function MyAccount() {
             />
           </div>
           <Divider />
-          <div className="pt-4 d-flex flex-column gap-1">
+          <div className="forms pt-4 d-flex flex-column gap-1">
             <div className="d-flex flex-row gap-3">
-              <div>
+              <div className="w-100">
                 <p className="fs-6 fw-normal m-0 text-dark w-100 mt-1 mb-2">
                   Name
                 </p>
@@ -84,9 +84,10 @@ export function MyAccount() {
                   }}
                   value={userInfo.name}
                   onChange={(e) => handleInputChange("name", e.target.value)}
+                  fullWidth
                 />
               </div>
-              <div>
+              <div className="w-100">
                 <p className="fs-6 fw-normal m-0 text-dark w-100 mt-1 mb-2">
                   Last Name
                 </p>
@@ -103,11 +104,12 @@ export function MyAccount() {
                   }}
                   value={userInfo?.surname}
                   onChange={(e) => handleInputChange("surname", e.target.value)}
+                  fullWidth
                 />
               </div>
             </div>
             <div className="d-flex flex-row gap-3">
-              <div>
+              <div className="w-100">
                 <p className="fs-6 fw-normal m-0 text-dark w-100 mt-2 mb-2">
                   Email
                 </p>
@@ -124,9 +126,10 @@ export function MyAccount() {
                   }}
                   disabled
                   defaultValue={userInfo?.email}
+                  fullWidth
                 />
               </div>
-              <div>
+              <div className="w-100">
                 <p className="fs-6 fw-normal m-0 text-dark w-100 mt-2 mb-2">
                   Phone
                 </p>
@@ -145,11 +148,12 @@ export function MyAccount() {
                   onChange={(e) =>
                     handleInputChange("phoneNumber", e.target.value)
                   }
+                  fullWidth
                 />
               </div>
             </div>
             <div className="d-flex flex-row gap-3">
-              <div>
+              <div className="w-100">
                 <p className="fs-6 fw-normal m-0 text-dark w-100 mt-2 mb-2">
                   City
                 </p>
@@ -166,9 +170,10 @@ export function MyAccount() {
                   }}
                   value={userInfo.city}
                   onChange={(e) => handleInputChange("city", e.target.value)}
+                  fullWidth
                 />
               </div>
-              <div>
+              <div className="w-100">
                 <p className="fs-6 fw-normal m-0 text-dark w-100 mt-2 mb-2">
                   Country
                 </p>
@@ -185,6 +190,7 @@ export function MyAccount() {
                   }}
                   value={userInfo.country}
                   onChange={(e) => handleInputChange("country", e.target.value)}
+                  fullWidth
                 />
               </div>
             </div>

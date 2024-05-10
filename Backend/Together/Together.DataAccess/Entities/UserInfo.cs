@@ -12,4 +12,6 @@ public class UserInfo
     public string? City { get; set; }
     public DateTime? BirthDay { get; set; }
     public string? Role { get; set; }
+    public DateTime? MembershipDate { get; set; }
+    
 }
