@@ -69,7 +69,8 @@ public class UserService : IUserService
             PhoneNumber = registerRequest.PhoneNumber,
             BirthDay = registerRequest.BirthDay,
             Country = registerRequest.Country,
-            City = registerRequest.City
+            City = registerRequest.City,
+            MembershipDate = DateTime.Now
         };
 
         await _context.UserInfo.AddAsync(userInfo);

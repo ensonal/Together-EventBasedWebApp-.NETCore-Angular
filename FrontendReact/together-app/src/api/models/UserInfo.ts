@@ -12,4 +12,5 @@ export default interface IUserInfo {
     country: string;
     city: string;
     address: string;
+    membershipDate: Date;
 }

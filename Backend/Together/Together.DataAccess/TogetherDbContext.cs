@@ -17,7 +17,10 @@ public class TogetherDbContext : IdentityDbContext<IdentityUser>
     public DbSet<Sport> Sports { get; set; }
     public DbSet<UserSport> UserSports { get; set; }
     public DbSet<SportExperience> SportExperience { get; set; }
-    
+    public DbSet<UserEvent> UserEvents { get; set; }
+    public DbSet<EventStatus> EventStatuses { get; set; }
+    public DbSet<UserEventRequest> UserEventRequests { get; set; }
+    public DbSet<EventRequestStatus> EventRequestStatuses { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
