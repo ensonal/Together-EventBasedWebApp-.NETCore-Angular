@@ -4,7 +4,7 @@ import { UserCard } from "./UserInfo/UserCard";
 export function MyProfilePage() {
   
   return (
-    <div className="pt-3" style={{marginRight: '15%', marginLeft: '15%'}}>
+    <div className="pt-3" style={{marginRight: '20%', marginLeft: '20%'}}>
       <div className="d-flex flex-row justify-content-center">
         <div className="col-md-3 order-md-1 mt-1 align-self-start">
           <UserCard />
