@@ -7,6 +7,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import { MyAccount } from "./MyAccount/MyAccount";
 import { MyEquipments } from "./MyEquipments/MyEquipments";
 import { MySports } from "./MySports/MySports";
+import { MyEvents } from "./MyEvents/MyEvents";
 
 export default function MainContentTab() {
   const [value, setValue] = React.useState("1");
@@ -43,7 +44,7 @@ export default function MainContentTab() {
           <MyEquipments />
         </TabPanel>
         <TabPanel value="2" sx={{ padding: 0, paddingBlockStart: 2 }}>
-          My Events
+          <MyEvents />
         </TabPanel>
       </TabContext>
     </Box>

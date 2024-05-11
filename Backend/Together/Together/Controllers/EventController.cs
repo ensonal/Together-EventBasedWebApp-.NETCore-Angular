@@ -15,6 +15,8 @@ public class EventController : ControllerBase
         _eventService = eventService;
     }
 
+    [HttpPost]
+    [Route("AddUserEvent")]
     public async Task<IActionResult> AddUserEvent(AddUserEventDto request)
     {
         var token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", string.Empty);
