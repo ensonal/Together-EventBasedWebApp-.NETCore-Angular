@@ -27,6 +27,7 @@ public static class ServiceRegistration
         services.AddScoped<IJwtService, JwtService>();
         services.AddScoped<IEquipmentService, EquipmentService>();
         services.AddScoped<ISportService, SportService>();
+        services.AddScoped<IEventService, EventService>();
 
         services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 
