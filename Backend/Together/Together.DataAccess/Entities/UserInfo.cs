@@ -13,5 +13,6 @@ public class UserInfo
     public DateTime? BirthDay { get; set; }
     public string? Role { get; set; }
     public DateTime? MembershipDate { get; set; }
+    public string? ProfileImageUrl { get; set; }
     
 }

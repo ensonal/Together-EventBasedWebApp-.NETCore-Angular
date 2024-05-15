@@ -177,6 +177,15 @@ public class UserService : IUserService
         await _context.SaveChangesAsync();
         return existInfo;
     }
+    
+    public async Task<UserInfo?> ChangeUserProfileImage(string url, string token)
+    {
+        var userId = _jwtService.GetUserIdFromJWT(token);
+        var userInfo = await _context.UserInfo.Where(x => x.UserID == userId).FirstOrDefaultAsync();
+        if (userInfo != null) userInfo.ProfileImageUrl = url;
+        await _context.SaveChangesAsync();
+        return userInfo;
+    }
 
     #region Helper Methods
     

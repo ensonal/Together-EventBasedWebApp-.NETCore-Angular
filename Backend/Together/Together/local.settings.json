@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "DefaultConnection": "Server=localhost; Database=TogetherDb; uid=SA; pwd=reallyStrongPwd123; TrustServerCertificate=true",
+    "BlobConnectionString": "DefaultEndpointsProtocol=https;AccountName=togetherwebapp;AccountKey=wBJWyjzuN9nFqN8unEMSG5jDHLXmbq4RDjpEclW/rP7xQuqP67WHHZxMiu2pHLx0Wq23Q1fwhDYt+AStGJNEMA==;EndpointSuffix=core.windows.net",
+    "JwtSettings:Key": "TogetherSecretKey",
+    "JwtSettings:Issuer": "Together",
+    "JwtSettings:Audience": "Together",
+    "JwtSettings:DurationInMinutes": "60"
+  }
+}
