@@ -9,4 +9,5 @@ export interface UserEvent {
     eventDate: Date;
     eventHour: string,
     location: string;
+    eventImageUrl: string;
 }

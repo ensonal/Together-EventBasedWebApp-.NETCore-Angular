@@ -23,12 +23,14 @@ public class EventService : IEventService
         {
             UserId = userId,
             SportId = request.SportId,
+            EventStatusId = 1,
             SportExperienceId = request.SportExperienceId,
             Title = request.Title,
             Description = request.Description,
             EventDate = request.EventDate,
             EventHour = request.EventHour,
-            Location = request.Location
+            Location = request.Location,
+            EventImageUrl = request.EventImageUrl
         };
         
         await _context.UserEvents.AddAsync(userEvent);

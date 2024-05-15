@@ -1,9 +1,13 @@
 import { Button, Card } from "@mui/material";
 import { useState, useEffect } from "react";
 import { UserEvent } from "../../../../api/models/UserEvent";
+import { useNavigate } from "react-router-dom";
 
 export function MyEvents(){
     const [userEvents, setUserEvents] = useState([] as UserEvent[]);
+
+    const navigate = useNavigate();
+
 
     return (
         <Card sx={{ padding: 3, paddingBottom: 1 }} variant="outlined">
@@ -20,8 +24,9 @@ export function MyEvents(){
             <Button
               variant="contained"
               className="mt-2"
+              onClick={() => navigate("/create-event")}
             >
-              Add new event
+              Create new event
             </Button>
           </div>
         </div>

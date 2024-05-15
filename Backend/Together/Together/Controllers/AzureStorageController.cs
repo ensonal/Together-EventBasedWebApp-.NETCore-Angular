@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Net;
 using Together.Contracts;
+using Together.Core.Models.AzureStorage;
 using Together.Core.Models.Common;
 
 namespace Together.Controllers;
@@ -22,12 +23,16 @@ namespace Together.Controllers;
         }
 
         [HttpPost("UploadFile")]
-        public async Task<IActionResult> UploadFile(IFormFile[] file)
+        public async Task<ActionResult<string>> Upload([FromForm] UploadBlobRequestModel model, IFormFile file)
         {
             try
             {
+                if (file == null || file.Length == 0)
+                {
+                    return BadRequest("File is empty.");
+                }
                 var token = HttpContext.Request.Headers.Authorization.ToString();
-                var uploadedImageUrl = await _azureStorageService.UploadFilesToBlobStorage(file);
+                var uploadedImageUrl = await _azureStorageService.UploadFilesToBlobStorage(model,file);
                 return Ok(uploadedImageUrl);
             }
             catch (ValidationException exception)

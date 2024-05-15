@@ -7,6 +7,7 @@ public class AddUserEventDto
     public string Title { get; set; }
     public string Description { get; set; }
     public DateTime EventDate { get; set; }
-    public TimeSpan EventHour { get; set; }
+    public string EventHour { get; set; }
     public string Location { get; set; }
+    public string? EventImageUrl { get; set; }
 }
