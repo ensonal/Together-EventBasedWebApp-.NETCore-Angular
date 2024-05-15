@@ -10,4 +10,5 @@ public interface IUserService
     bool IsLoginSuccessful(string? token);
     Task<UserInfo> GetUserInfoAsync(string? token);
     Task<UserInfo> SettingUserInfo(UserInfoDTO dto, string token);
+    Task<UserInfo?> ChangeUserProfileImage(string url, string token);
 }

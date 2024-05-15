@@ -7,12 +7,12 @@ import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import PublicIcon from "@mui/icons-material/Public";
 import Button from "@mui/material/Button";
-import ProfilePic from "../../../../assets/images/profile-pic.jpeg";
 import Card from "@mui/material/Card";
 import { useEffect, useState } from "react";
 import { getUser } from "./hooks/getUser";
 import { updateUser } from "./hooks/updateUser";
 import IUserInfo from "../../../../api/models/UserInfo";
+import { UploadProfileImage } from "./components/UploadProfileImage";
 
 export function MyAccount() {
   const [userInfo, setUserInfo] = useState<IUserInfo | undefined>(undefined);
@@ -51,19 +51,13 @@ export function MyAccount() {
   }
 
   return (
-    <Card sx={{ padding: 3, paddingBottom: 1, width:'100%' }} variant="outlined">
+    <Card
+      sx={{ padding: 3, paddingBottom: 1, width: "100%" }}
+      variant="outlined"
+    >
       <div className="rounded-3 w-100 pt-2 pb-2">
         <div className="d-flex flex-column justify-content-between">
-          <div className="d-flex flex-column justify-content-center align-items-center pb-3">
-            <img
-              src={ProfilePic}
-              className="rounded-circle object-fit-cover"
-              width="100"
-              height="100"
-              alt="profile-pic"
-              style={{ objectFit: "cover" }}
-            />
-          </div>
+          <UploadProfileImage profileImageUrl={userInfo.profileImageUrl} />
           <Divider />
           <div className="forms pt-4 d-flex flex-column gap-1">
             <div className="d-flex flex-row gap-3">
