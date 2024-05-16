@@ -2,6 +2,7 @@ import { Card, Typography } from "@mui/material";
 import {
   UserEvent,
   convertUserEventToEnum,
+  splitDateToMonthName,
 } from "../../../../../../api/models/UserEvent";
 import { useEffect, useState } from "react";
 import { EventActionButtons } from "./EventActionButtons";
@@ -12,10 +13,14 @@ export function EventCard(event: UserEvent) {
     event.eventStatusId,
     event.sportExperienceId
   );
+  const eventDate = new Date(event.eventDate);
   const [trimmedDescription, setTrimmedDescription] = useState("");
 
   useEffect(() => {
-    setTrimmedDescription(event.description.substring(0, 32));
+    setTrimmedDescription(
+      event.description.substring(0, 32) +
+        (event.description.length > 32 ? "..." : "")
+    );
   }, [event.description]);
 
   return (
@@ -24,9 +29,13 @@ export function EventCard(event: UserEvent) {
       variant="outlined"
       className="shadow rounded-3"
     >
-      <EventActionButtons userEventId={event.userEventId}/>
+      <EventActionButtons userEventId={event.userEventId} />
       <img
-        src={event.eventImageUrl}
+        src={
+          event.eventImageUrl
+            ? event.eventImageUrl
+            : "https://placehold.co/350x275"
+        }
         alt="event"
         width={350}
         height={150}
@@ -37,8 +46,12 @@ export function EventCard(event: UserEvent) {
         style={{ width: "350px" }}
       >
         <div className="d-flex flex-column text-center h-100">
-          <p>SEP</p>
-          <p>12</p>
+          <div className="d-flex flex-column text-center h-100">
+            <p className="fw-bold" style={{ color: "#3D52F3" }}>
+              {splitDateToMonthName(eventDate).month}
+            </p>
+            <p>{eventDate.getDate()}</p>
+          </div>
         </div>
         <div className="d-flex flex-column gap-3 h-100 w-100">
           <div className="d-flex flex-row justify-content-between w-100">
@@ -58,7 +71,7 @@ export function EventCard(event: UserEvent) {
                 whiteSpace: "nowrap",
               }}
             >
-              {trimmedDescription}...
+              {trimmedDescription}
             </Typography>
             <Typography variant="caption" className="m-0">
               {event.location}

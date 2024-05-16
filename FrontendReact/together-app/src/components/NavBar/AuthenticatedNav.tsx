@@ -10,17 +10,17 @@ export function AuthenticatedNav() {
 
   return (
     <Box sx={{ flexGrow: 0 }}>
-      <IconButton sx={{ color: "white" }} size="large" onClick={() => navigate("/")}>
-        <HomeRoundedIcon sx={{ color: "white" }} fontSize="inherit" />
+      <IconButton sx={{ color: "3D52F3" }} size="large" onClick={() => navigate("/")}>
+        <HomeRoundedIcon sx={{ color: "#3D52F3" }} fontSize="inherit" />
       </IconButton>
-      <IconButton sx={{ color: "white" }} size="large">
-        <CalendarMonthRoundedIcon sx={{ color: "white" }} fontSize="inherit" />
+      <IconButton sx={{ color: "#3D52F3" }} size="large">
+        <CalendarMonthRoundedIcon sx={{ color: "#3D52F3" }} fontSize="inherit" />
       </IconButton>
-      <IconButton sx={{ color: "white" }} size="large">
-        <ChatRoundedIcon sx={{ color: "white" }} fontSize="inherit" />
+      <IconButton sx={{ color: "#3D52F3" }} size="large">
+        <ChatRoundedIcon sx={{ color: "#3D52F3" }} fontSize="inherit" />
       </IconButton>
-      <IconButton sx={{ color: "white" }} size="large" onClick={() => navigate("/my-profile")}>
-        <PersonRoundedIcon sx={{ color: "white" }} fontSize="inherit" />
+      <IconButton sx={{ color: "#3D52F3" }} size="large" onClick={() => navigate("/my-profile")}>
+        <PersonRoundedIcon sx={{ color: "#3D52F3" }} fontSize="inherit" />
       </IconButton>
     </Box>
   );

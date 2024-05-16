@@ -24,4 +24,24 @@ function convertUserEventToEnum(sportId: number, eventStatusId: number, sportExp
     }
 }
 
-export { convertUserEventToEnum };
+function splitDateToMonthName(date: Date){
+    const monthNames = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+    return {
+        month: monthNames[date.getMonth()],
+    }
+}
+
+export { convertUserEventToEnum, splitDateToMonthName};

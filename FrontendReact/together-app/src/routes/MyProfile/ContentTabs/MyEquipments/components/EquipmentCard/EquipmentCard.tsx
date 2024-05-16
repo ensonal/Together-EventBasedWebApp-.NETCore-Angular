@@ -20,7 +20,7 @@ export function EquipmentCard(equipment: UserEquipment) {
       <div className="text-center mt-3">
         <img
           className="rounded-3 shadow p-2"
-          src="https://togetherwebapp.blob.core.windows.net/userequipmentimages/defaultequipmentlogo.png"
+          src={equipment.imageUrl ? equipment.imageUrl :"https://placehold.co/125x125"}
           width="125"
           height="125"
           alt="equipment"
@@ -35,7 +35,11 @@ export function EquipmentCard(equipment: UserEquipment) {
         {SportType[equipment.sportId]}
       </p>
       <div className="button-container d-flex flex-row gap-3">
-        <IconButton aria-label="delete" className="delete-button" onClick={() => handleDelete()}>
+        <IconButton
+          aria-label="delete"
+          className="delete-button"
+          onClick={() => handleDelete()}
+        >
           <DeleteIcon className="button-icon" />
         </IconButton>
       </div>
