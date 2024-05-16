@@ -17,8 +17,11 @@ export function EventCard(event: UserEvent) {
   const [trimmedDescription, setTrimmedDescription] = useState("");
 
   useEffect(() => {
-    setTrimmedDescription(event.description.substring(0, 32));
+    setTrimmedDescription(
+      event.description.substring(0, 32) + (event.description.length > 32 ? "..." : "")
+    );
   }, [event.description]);
+  
 
 
   return (
@@ -29,7 +32,7 @@ export function EventCard(event: UserEvent) {
     >
       <EventActionButtons userEventId={event.userEventId} />
       <img
-        src={event.eventImageUrl}
+        src={event.eventImageUrl ? event.eventImageUrl : "https://placehold.co/350x275"}
         alt="event"
         width={350}
         height={150}
@@ -63,7 +66,7 @@ export function EventCard(event: UserEvent) {
                 whiteSpace: "nowrap",
               }}
             >
-              {trimmedDescription}...
+              {trimmedDescription}
             </Typography>
             <Typography variant="caption" className="m-0">
               {event.location}
