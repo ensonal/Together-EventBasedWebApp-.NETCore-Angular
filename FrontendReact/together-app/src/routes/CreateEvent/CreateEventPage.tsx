@@ -1,11 +1,8 @@
-import { Card, TextField } from "@mui/material";
-import React from "react";
 import IconButton from "@mui/material/IconButton";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { CreateEventCard } from "./components/CreateEventCard";
 
 export function CreateEventPage() {
-
 
   return (
     <div className="pt-3" style={{ marginRight: "20%", marginLeft: "20%" }}>

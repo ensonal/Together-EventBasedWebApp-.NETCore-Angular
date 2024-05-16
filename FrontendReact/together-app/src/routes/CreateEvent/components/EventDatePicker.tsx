@@ -16,9 +16,10 @@ export function EventDatePicker({ setUserEvent }: { setUserEvent: Dispatch<SetSt
     setUserEvent((userEvent: UserEvent) => ({
       ...userEvent,
       eventDate: newDate?.toDate() ?? new Date(),
-      eventHour: newDate?.format('HH:mm') ?? '',
+      eventHour: `${newDate?.hour() ?? 0}:${newDate?.minute() ?? 0}`
     }));
   };
+  
 
   return (
     <div className="d-flex flex-column gap-2">
