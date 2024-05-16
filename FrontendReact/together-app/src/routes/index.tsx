@@ -16,6 +16,7 @@ export default function Routes() {
   const isRegisterOrLogin =
     location.pathname === "/register" || location.pathname === "/login";
 
+    {/*
   useEffect(() => {
     location.pathname === "/register" || location.pathname === "/login"
       ? setVerticalNavFlex(0)
@@ -24,6 +25,7 @@ export default function Routes() {
       ? setVerticalNavFlex(0.1)
       : setVerticalNavFlex(1);
   }, [location.pathname]);
+  */}
 
   return (
     <BaseRoutes>

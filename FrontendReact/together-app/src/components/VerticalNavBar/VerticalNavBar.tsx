@@ -24,6 +24,7 @@ export function VerticalNavBar(verticalNavFlex: any) {
     setActiveRoute(route);
   };
 
+  {/*
   useEffect(() => {
     if (verticalNavFlex.verticalNavFlex === 0.1) {
       setOpen(false);
@@ -31,6 +32,7 @@ export function VerticalNavBar(verticalNavFlex: any) {
       setOpen(true);
     }
   }, [verticalNavFlex]);
+  */}
 
   return (
     <div className="d-flex flex-column gap-2">
