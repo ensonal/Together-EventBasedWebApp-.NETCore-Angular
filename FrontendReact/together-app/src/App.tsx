@@ -6,7 +6,7 @@ import "./App.css";
 const theme: Theme = createTheme({
   palette: {
     primary: {
-      main: "#4A43EB",
+      main: "#3D52F3",
       contrastText: "#fafdff",
     },
     secondary: {
