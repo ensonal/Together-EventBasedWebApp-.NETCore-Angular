@@ -45,7 +45,7 @@ export const NavBar = () => {
           >
             Together
           </Typography>
-          {isAuthenticate ? <AuthenticatedNav /> : <DefaultNav />}
+          {isAuthenticate && user ? <AuthenticatedNav user={user} /> : <DefaultNav />}
         </Toolbar>
       </Container>
     </AppBar>

@@ -1,27 +1,24 @@
-import { Box, IconButton } from "@mui/material";
-import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-import ChatRoundedIcon from "@mui/icons-material/ChatRounded";
-import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
+import { Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import IUserInfo from '../../api/models/UserInfo';
 
-export function AuthenticatedNav() {
+export function AuthenticatedNav({ user }: { user: IUserInfo }) {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ flexGrow: 0 }}>
-      <IconButton sx={{ color: "3D52F3" }} size="large" onClick={() => navigate("/")}>
-        <HomeRoundedIcon sx={{ color: "#3D52F3" }} fontSize="inherit" />
-      </IconButton>
-      <IconButton sx={{ color: "#3D52F3" }} size="large">
-        <CalendarMonthRoundedIcon sx={{ color: "#3D52F3" }} fontSize="inherit" />
-      </IconButton>
-      <IconButton sx={{ color: "#3D52F3" }} size="large">
-        <ChatRoundedIcon sx={{ color: "#3D52F3" }} fontSize="inherit" />
-      </IconButton>
-      <IconButton sx={{ color: "#3D52F3" }} size="large" onClick={() => navigate("/my-profile")}>
-        <PersonRoundedIcon sx={{ color: "#3D52F3" }} fontSize="inherit" />
-      </IconButton>
+    <Box sx={{ flexGrow: 0, gap: 2, display: "flex", flexDirection:'row', alignItems:'center' }}>
+      <Button variant="outlined" sx={{maxHeight:'40px'}} size="medium" onClick={() => navigate("/create-event")}>
+        Create Event
+      </Button>
+      <img
+        src={user.profileImageUrl}
+        alt="profile"
+        width={50}
+        height={50}
+        className="rounded-circle shadow-lg"
+        style={{ objectFit: "cover", cursor: "pointer"}}
+        onClick={() => navigate("/my-profile")}
+      />
     </Box>
   );
 }
