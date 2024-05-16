@@ -13,4 +13,5 @@ export default interface IUserInfo {
     city: string;
     address: string;
     membershipDate: Date;
+    profileImageUrl: string;
 }

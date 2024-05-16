@@ -1,5 +1,6 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using Together.Contracts;
 using Together.Core.DTO;
 using Together.Core.Models;
@@ -121,6 +122,17 @@ public class UserController : ControllerBase
 
 
     }
+    
+    [HttpPost]
+    [Route("changeUserProfileImage")]
+    public async Task<UserInfoResponseModel> ChangeUserProfileImage(UserProfileImageRequestModel requestModel)
+    {
+        var token = HttpContext.Request.Headers.Authorization.ToString();
+        var userInfo = await _userService.ChangeUserProfileImage(requestModel.ProfileImageUrl, token);
+        return new UserInfoResponseModel(userInfo, true, "User profile image changed.", 200);
+    }
+
+
 
     #endregion
 

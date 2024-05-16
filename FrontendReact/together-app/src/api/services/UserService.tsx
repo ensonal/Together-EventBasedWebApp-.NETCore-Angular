@@ -32,3 +32,19 @@ export async function updateUserInfo(userInfo: IUserInfo) {
     throw new Error('Failed to update user information');
   }
 }
+
+export async function changeProfileImageUrl(profileImageUrl: string) {
+  const url = '/User/changeUserProfileImage'; 
+  
+  try {
+    const response = await post(url, { profileImageUrl: profileImageUrl});
+
+    if (response.succeeded) {
+      return response.profileImageUrl as string; 
+    } else {
+      throw new Error(response.data.Message || 'Failed to change profile image');
+    }
+  } catch (error) {
+    throw new Error('Failed to change profile image');
+  }
+}

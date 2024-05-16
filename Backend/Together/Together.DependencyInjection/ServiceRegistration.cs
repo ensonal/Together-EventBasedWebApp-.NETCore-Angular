@@ -28,6 +28,7 @@ public static class ServiceRegistration
         services.AddScoped<IEquipmentService, EquipmentService>();
         services.AddScoped<ISportService, SportService>();
         services.AddScoped<IEventService, EventService>();
+        services.AddScoped<IAzureStorageService, AzureStorageService>();
 
         services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 

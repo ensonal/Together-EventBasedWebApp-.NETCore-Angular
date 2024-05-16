@@ -12,7 +12,6 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.RegisterServices(configuration);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 builder.Services.AddCors(p => p.AddPolicy("devCorsPolicy", 
     builder => {
     builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
@@ -20,12 +19,6 @@ builder.Services.AddCors(p => p.AddPolicy("devCorsPolicy",
     ));
 
 var app = builder.Build();
-
-if(app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 app.UseCors("devCorsPolicy");
 app.UseHttpsRedirection();
