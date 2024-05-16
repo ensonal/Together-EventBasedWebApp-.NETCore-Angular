@@ -16,7 +16,7 @@ export function UploadProfileImage({ profileImageUrl }: { profileImageUrl: strin
         const response = await uploadImage(selectedFile, "userprofileimages");
         if (response) {
           try {
-            const updatedProfileImageUrl = await changeProfileImageUrl(response);
+            await changeProfileImageUrl(response);
           } catch (error) {
             console.error("Failed to change profile image:", error);
           }
