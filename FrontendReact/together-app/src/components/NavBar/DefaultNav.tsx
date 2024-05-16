@@ -6,10 +6,10 @@ export function DefaultNav() {
 
   return (
     <Box sx={{ flexGrow: 0 }}>
-        <Button variant="contained" color="secondary" sx={{marginRight: 1}} onClick={() => navigate("/register")}>
+        <Button variant="outlined" sx={{marginRight: 1}} onClick={() => navigate("/register")}>
           Register
         </Button>
-        <Button variant="contained" color="secondary" onClick={() => navigate("/login")} >
+        <Button variant="outlined" onClick={() => navigate("/login")} >
           Login
         </Button>
     </Box>

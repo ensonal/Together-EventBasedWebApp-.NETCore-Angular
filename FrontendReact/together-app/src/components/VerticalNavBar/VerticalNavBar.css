@@ -5,15 +5,15 @@
 }
 
 .nav-item:hover {
-  background-color: #81beff40;
-  color: #3D52F3;
+  background-color: #8fc4fc1a;
+  color: #4f62f4;
 }
 
 .nav-item.active {
-  background-color: #558ded54;
-  color: #3D52F3;
+  background-color: #81beff2b;
+  color: #4f62f4;
 }
 
 .nav-item:hover .MuiSvgIcon-root, .nav-item.active .MuiSvgIcon-root {
-  color: #3D52F3;
+  color: #4f62f4;
 }
