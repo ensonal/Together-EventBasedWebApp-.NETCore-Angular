@@ -21,9 +21,7 @@ export default function MainContentTab() {
       <TabContext value={value}>
         <Box
           sx={{
-            borderBottom: 1,
-            borderColor: "divider",
-            border: "1px solid rgba(0,0,0,0.12)",
+            backgroundColor: "white",
           }}
           className="rounded-2"
         >

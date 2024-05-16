@@ -51,10 +51,7 @@ export function MyAccount() {
   }
 
   return (
-    <Card
-      sx={{ padding: 3, paddingBottom: 1, width: "100%" }}
-      variant="outlined"
-    >
+    <Card sx={{ padding: 3, paddingBottom: 1, width: "100%", boxShadow: 0 }}>
       <div className="rounded-3 w-100 pt-2 pb-2">
         <div className="d-flex flex-column justify-content-between">
           <UploadProfileImage profileImageUrl={userInfo.profileImageUrl} />

@@ -69,6 +69,7 @@ export default function Routes() {
         <Route path="login" element={<LoginPage />} />
         <Route path="my-profile" element={<MyProfilePage />} />
         <Route path="create-event" element={<CreateEventPage />} />
+        <Route path="events" element={<div>Events</div>} />
       </Route>
     </BaseRoutes>
   );
