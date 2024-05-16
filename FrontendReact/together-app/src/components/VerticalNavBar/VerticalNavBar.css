@@ -1,0 +1,19 @@
+.nav-item {
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: initial;
+}
+
+.nav-item:hover {
+  background-color: #81beff40;
+  color: #3D52F3;
+}
+
+.nav-item.active {
+  background-color: #558ded54;
+  color: #3D52F3;
+}
+
+.nav-item:hover .MuiSvgIcon-root, .nav-item.active .MuiSvgIcon-root {
+  color: #3D52F3;
+}
