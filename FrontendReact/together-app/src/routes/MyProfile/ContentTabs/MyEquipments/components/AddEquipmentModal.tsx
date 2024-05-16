@@ -10,6 +10,10 @@ import { Sport } from "../../../../../api/models/Sport";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Button } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import React from "react";
+import { uploadImage } from "../../../../../api/services/AzureStorageService";
 
 export function AddEquipmentModal({
   openAddModal = false,
@@ -18,9 +22,10 @@ export function AddEquipmentModal({
   const [open, setOpen] = useState(false);
   const [equipment, setEquipment] = useState({} as UserEquipment);
   const [sportList, setSportList] = useState<Sport[]>([]);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState(null as string | null);
 
   const handleChange = (event: SelectChangeEvent) => {
-    setEquipment({ ...equipment, sportId: Number(event.target.value)});
+    setEquipment({ ...equipment, sportId: Number(event.target.value) });
   };
 
   useEffect(() => {
@@ -47,14 +52,38 @@ export function AddEquipmentModal({
     }
   }, [openAddModal]);
 
-    const handleAddEquipment = async () => {
-        try {
-        const response = await addEquipment()(equipment);
-        handleClose();
-        } catch (error) {
-        console.error("Failed to add equipment:", error);
+  const handleAddEquipment = async () => {
+    try {
+      const response = await addEquipment()(equipment);
+      handleClose();
+    } catch (error) {
+      console.error("Failed to add equipment:", error);
+    }
+  };
+
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+
+  const handleUpload = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      const selectedFile = event.target.files[0];
+      
+      try{
+        const response = await uploadImage(selectedFile, "userequipmentimages");
+        if(response){
+          setUploadedImageUrl(response);
+          setEquipment({...equipment, imageUrl: response});
         }
-    };
+      }catch(error){
+        console.error("Failed to upload file:", error);
+      }
+    }
+  };
 
   return (
     <Modal
@@ -76,10 +105,25 @@ export function AddEquipmentModal({
           <div className="d-flex flex-column align-items-center mt-1">
             <p className="fw-normal m-0">Equipment Photo</p>
             <img
-              src="https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg?size=338&ext=jpg&ga=GA1.1.735520172.1710460800&semt=sph"
+              src={uploadedImageUrl ? uploadedImageUrl :"https://placehold.co/100x100"}
               width="100"
               height="100"
               alt="placeholder"
+              style={{ objectFit: "cover" }}
+            />
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="span"
+              onClick={handleUpload}
+            >
+              <CloudUploadIcon />
+            </IconButton>
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              style={{ display: "none" }}
             />
           </div>
           <p className="fw-normal m-1">Equipment Name</p>
@@ -101,15 +145,21 @@ export function AddEquipmentModal({
               fullWidth
             >
               {sportList.map((sport) => (
-                  <MenuItem key={sport.sportId} value={sport.sportId}>{sport.name}</MenuItem>
+                <MenuItem key={sport.sportId} value={sport.sportId}>
+                  {sport.name}
+                </MenuItem>
               ))}
             </Select>
           </div>
         </div>
         <div className="text-center">
-            <Button variant="contained" className="mt-2" onClick={() => handleAddEquipment()}>
-              Add equipment
-            </Button>
+          <Button
+            variant="contained"
+            className="mt-2"
+            onClick={() => handleAddEquipment()}
+          >
+            Add equipment
+          </Button>
         </div>
       </Box>
     </Modal>
