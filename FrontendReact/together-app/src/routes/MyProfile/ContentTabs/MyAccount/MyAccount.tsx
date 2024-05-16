@@ -67,7 +67,6 @@ export function MyAccount() {
                 </p>
                 <TextField
                   id="input-first-name"
-                  label="First Name"
                   variant="outlined"
                   InputProps={{
                     startAdornment: (
@@ -87,7 +86,6 @@ export function MyAccount() {
                 </p>
                 <TextField
                   id="input-with-icon-textfield"
-                  label="Last Name"
                   variant="outlined"
                   InputProps={{
                     startAdornment: (
@@ -109,7 +107,6 @@ export function MyAccount() {
                 </p>
                 <TextField
                   id="input-with-icon-textfield"
-                  label="Email"
                   variant="outlined"
                   InputProps={{
                     startAdornment: (
@@ -129,7 +126,6 @@ export function MyAccount() {
                 </p>
                 <TextField
                   id="input-with-icon-textfield"
-                  label="Phone"
                   variant="outlined"
                   InputProps={{
                     startAdornment: (
@@ -153,7 +149,6 @@ export function MyAccount() {
                 </p>
                 <TextField
                   id="input-with-icon-textfield"
-                  label="City"
                   variant="outlined"
                   InputProps={{
                     startAdornment: (
@@ -173,7 +168,6 @@ export function MyAccount() {
                 </p>
                 <TextField
                   id="input-with-icon-textfield"
-                  label="Country"
                   variant="outlined"
                   InputProps={{
                     startAdornment: (

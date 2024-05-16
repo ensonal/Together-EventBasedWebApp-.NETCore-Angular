@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, IconButton } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
+import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded';
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { deleteUserEvent } from "../../../../../../api/services/EventService";
 
@@ -22,7 +22,7 @@ export function EventActionButtons({ userEventId }: { userEventId: number }) {
         className="shadow rounded-3"
       >
         <IconButton color="primary">
-          <EditIcon />
+          <EditNoteRoundedIcon />
         </IconButton>
       </Card>
       <Card
