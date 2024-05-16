@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Together.Contracts;
 using Together.Core.DTO.EventDTOs;
 using Together.DataAccess;
@@ -23,18 +24,41 @@ public class EventService : IEventService
         {
             UserId = userId,
             SportId = request.SportId,
+            EventStatusId = 1,
             SportExperienceId = request.SportExperienceId,
             Title = request.Title,
             Description = request.Description,
             EventDate = request.EventDate,
             EventHour = request.EventHour,
-            Location = request.Location
+            Location = request.Location,
+            EventImageUrl = request.EventImageUrl
         };
         
         await _context.UserEvents.AddAsync(userEvent);
         await _context.SaveChangesAsync();
         
         return true;
+    }
+    
+    public async Task<bool> DeleteUserEvent(int userEventId)
+    {
+        var userEvent = await _context.UserEvents.FindAsync(userEventId);
+        if (userEvent == null)
+        {
+            return false;
+        }
+        
+        _context.UserEvents.Remove(userEvent);
+        await _context.SaveChangesAsync();
+        
+        return true;
+    }
+    
+    public async Task<List<UserEvent>> GetUserEvents(string token)
+    {
+        var userId = _jwtService.GetUserIdFromJWT(token);
+        var userEvents = await _context.UserEvents.Where(x => x.UserId == userId).ToListAsync();
+        return userEvents;
     }
     
 }

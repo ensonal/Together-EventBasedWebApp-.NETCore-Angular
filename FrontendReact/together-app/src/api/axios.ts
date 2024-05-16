@@ -41,6 +41,14 @@ export async function post(url: string, body?: any) {
   return data;
 }
 
+export async function postWithAddHeader(url: string, body?: any, headers?: any) {
+  const { data } = await axiosInstance.post(url, body, {headers});
+  if (data.succeeded === true) {
+    return data;
+  }
+  return data;
+}
+
 export async function deleted(url: string) {
   var headers = getHeaders();
   const { data } = await axiosInstance.delete(url, { headers });

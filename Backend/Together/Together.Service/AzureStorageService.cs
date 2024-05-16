@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Together.Contracts;
+using Together.Core.Models.AzureStorage;
 using Together.DataAccess;
 
 namespace Together.Service;
@@ -23,22 +24,26 @@ public class AzureStorageService : IAzureStorageService
         this.context = context;
     }
 
-    public async Task<string> UploadFilesToBlobStorage(IFormFile[] fileRequestDto)
+    public async Task<string> UploadFilesToBlobStorage(UploadBlobRequestModel request, IFormFile file)
     {
-        var uploadedImageUrl = string.Empty;
-        foreach (var file in fileRequestDto)
+        if (file == null)
         {
-            uploadedImageUrl = await UploadFileToBlobStorage(file);
+            throw new ArgumentNullException("File is required.");
         }
 
-        return uploadedImageUrl;
+        if (string.IsNullOrEmpty(request.ContainerName))
+        {
+            throw new ArgumentNullException("Container name is required.");
+        }
+
+        return await UploadFileToBlobStorage(file, request.ContainerName);
     }
 
-    private async Task<string> UploadFileToBlobStorage(IFormFile fileRequestDto)
+    private async Task<string> UploadFileToBlobStorage(IFormFile fileRequestDto, string containerName)
     {
         try
         {
-            var containerClient = new BlobContainerClient(storageConnectionString, "userprofileimages\n");
+            var containerClient = new BlobContainerClient(storageConnectionString, containerName);
 
             var fileName = Guid.NewGuid().ToString();
 

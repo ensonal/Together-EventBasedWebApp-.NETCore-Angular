@@ -9,7 +9,6 @@ export function UserCardHeader({ userInfo }: { userInfo: IUserInfo }) {
     const diffTime = Math.abs(today.getTime() - membership.getTime());
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   };
-  console.log(userInfo);
 
   return (
     <>
