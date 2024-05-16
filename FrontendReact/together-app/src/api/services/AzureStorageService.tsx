@@ -9,13 +9,11 @@ export async function uploadImage(
   formData.append("file", file);
   formData.append("containerName", containerName);
 
-  console.log("Uploading file:", formData);
   const response = await postWithAddHeader(url, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
-  console.log("Uploaded file:", response);
 
   return response;
 }

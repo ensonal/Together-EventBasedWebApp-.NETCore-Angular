@@ -13,9 +13,4 @@ public class UserEvent
     public string EventHour { get; set; }
     public string Location { get; set; }
     public string? EventImageUrl { get; set; }
-    
-    public virtual Sport Sports { get; set; }
-    public virtual EventStatus EventStatuses { get; set; }
-    public virtual SportExperience SportExperiences { get; set; }
-    public virtual UserEventRequest UserEventRequests { get; set; }
 }

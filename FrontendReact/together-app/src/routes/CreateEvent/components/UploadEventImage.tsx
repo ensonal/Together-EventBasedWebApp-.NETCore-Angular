@@ -17,7 +17,6 @@ export function UploadEventImage({ setUserEvent }: { setUserEvent: Dispatch<SetS
             ...prevUserEvent,
             eventImageUrl: response,
           }));
-          console.log("Updated eventImageUrl:", response);
         }
       } catch (error) {
         console.error("Failed to upload file:", error);

@@ -23,6 +23,23 @@ public class EventController : ControllerBase
         var result = await _eventService.AddUserEvent(request, token);
         return Ok(result);
     }
+    
+    [HttpPost]
+    [Route("DeleteUserEvent/{userEventId}")]
+    public async Task<IActionResult> DeleteUserEvent(int userEventId)
+    {
+        var result = await _eventService.DeleteUserEvent(userEventId);
+        return Ok(result);
+    }
+    
+    [HttpGet]
+    [Route("GetUserEvents")]
+    public async Task<IActionResult> GetUserEvents()
+    {
+        var token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", string.Empty);
+        var result = await _eventService.GetUserEvents(token);
+        return Ok(result);
+    }
 }
     
     

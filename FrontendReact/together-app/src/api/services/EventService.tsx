@@ -6,3 +6,15 @@ export async function addUserEvent(userEvent : UserEvent) {
     const response = await post(url, userEvent);
     return response;
 }
+
+export async function getUserEvents() {
+    const url = "/Event/GetUserEvents";
+    const response = await get(url);
+    return response;
+}
+
+export async function deleteUserEvent(userEventId : number) {
+    const url = `/Event/DeleteUserEvent/${userEventId}`;
+    const response = await post(url);
+    return response;
+}
