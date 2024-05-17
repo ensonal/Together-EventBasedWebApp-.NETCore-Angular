@@ -75,6 +75,7 @@ export default function Routes() {
         <Route path="my-profile" element={<MyProfilePage />} />
         <Route path="create-event" element={<CreateEventPage />} />
         <Route path="events" element={<EventsPage />} />
+        <Route path="*" element={<div>Not Found</div>} />
       </Route>
     </BaseRoutes>
   );
