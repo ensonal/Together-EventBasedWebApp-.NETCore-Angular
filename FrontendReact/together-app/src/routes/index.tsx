@@ -7,6 +7,7 @@ import { CreateEventPage } from "../routes/CreateEvent/CreateEventPage";
 import { useLocation } from "react-router-dom";
 import { VerticalNavBar } from "../components/VerticalNavBar/VerticalNavBar";
 import { useEffect, useState } from "react";
+import { EventsPage } from "./Events/EventsPage";
 
 export default function Routes() {
   const location = useLocation();
@@ -16,7 +17,8 @@ export default function Routes() {
   const isRegisterOrLogin =
     location.pathname === "/register" || location.pathname === "/login";
 
-    {/*
+  {
+    /*
   useEffect(() => {
     location.pathname === "/register" || location.pathname === "/login"
       ? setVerticalNavFlex(0)
@@ -25,7 +27,8 @@ export default function Routes() {
       ? setVerticalNavFlex(0.1)
       : setVerticalNavFlex(1);
   }, [location.pathname]);
-  */}
+  */
+  }
 
   return (
     <BaseRoutes>
@@ -71,7 +74,7 @@ export default function Routes() {
         <Route path="login" element={<LoginPage />} />
         <Route path="my-profile" element={<MyProfilePage />} />
         <Route path="create-event" element={<CreateEventPage />} />
-        <Route path="events" element={<div>Events</div>} />
+        <Route path="events" element={<EventsPage />} />
       </Route>
     </BaseRoutes>
   );
