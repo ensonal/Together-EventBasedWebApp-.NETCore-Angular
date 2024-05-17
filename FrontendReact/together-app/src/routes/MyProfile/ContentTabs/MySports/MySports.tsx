@@ -29,7 +29,7 @@ export function MySports() {
   };
 
   return (
-    <Card sx={{ padding: 3, paddingBottom: 1 }} variant="outlined">
+    <Card sx={{ padding: 3, paddingBottom: 1, boxShadow: 0 }}>
       <div className="rounded-3 w-100 pt-2 pb-2">
         <div className="d-flex flex-row flex-wrap gap-3 w-100 justify-content-center">
           {sports?.length > 0 ? (

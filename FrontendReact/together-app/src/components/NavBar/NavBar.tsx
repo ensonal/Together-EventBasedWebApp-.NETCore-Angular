@@ -16,6 +16,7 @@ export const NavBar = () => {
         paddingLeft: "20rem",
         paddingRight: "20rem",
         backgroundColor: "#F1F2F6",
+        marginTop: "0.5rem",
       }}
     >
       <Container
@@ -45,7 +46,7 @@ export const NavBar = () => {
           >
             Together
           </Typography>
-          {isAuthenticate ? <AuthenticatedNav /> : <DefaultNav />}
+          {isAuthenticate && user ? <AuthenticatedNav user={user} /> : <DefaultNav />}
         </Toolbar>
       </Container>
     </AppBar>
