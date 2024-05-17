@@ -4,80 +4,90 @@ import {
   convertUserEventToEnum,
   splitDateToMonthName,
 } from "../../../../../../api/models/UserEvent";
-import { useEffect, useState } from "react";
-import { EventActionButtons } from "./EventActionButtons";
+import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
+import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
+import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
+import Chip from "@mui/material/Chip";
 
-export function EventCard(event: UserEvent) {
+export function EventCard({ userEvent }: { userEvent: UserEvent }) {
   const { sport, eventStatus, sportExperience } = convertUserEventToEnum(
-    event.sportId,
-    event.eventStatusId,
-    event.sportExperienceId
+    userEvent.sportId,
+    userEvent.eventStatusId,
+    userEvent.sportExperienceId
   );
-  const eventDate = new Date(event.eventDate);
-  const [trimmedDescription, setTrimmedDescription] = useState("");
 
-  useEffect(() => {
-    setTrimmedDescription(
-      event.description.substring(0, 32) +
-        (event.description.length > 32 ? "..." : "")
-    );
-  }, [event.description]);
+  const eventDate = new Date(userEvent.eventDate);
+  const { month } = splitDateToMonthName(eventDate);
+
+  const chipColor =
+    sportExperience === "Beginner"
+      ? "success"
+      : sportExperience === "Intermediate"
+      ? "info"
+      : sportExperience === "Advanced"
+      ? "warning"
+      : "error";
 
   return (
     <Card
-      sx={{ width: 350, height: 275, position: "relative" }}
-      variant="outlined"
-      className="shadow rounded-3"
+      sx={{ boxShadow: 0 }}
+      className="rounded-4 p-3 shadow"
+      style={{ width: 315, height: 290 }}
     >
-      <EventActionButtons userEventId={event.userEventId} />
-      <img
-        src={
-          event.eventImageUrl
-            ? event.eventImageUrl
-            : "https://placehold.co/350x275"
-        }
-        alt="event"
-        width={350}
-        height={150}
-        style={{ objectFit: "cover" }}
-      />
-      <div
-        className="d-flex flex-row align-items-center p-3 h-50 gap-5"
-        style={{ width: "350px" }}
-      >
-        <div className="d-flex flex-column text-center h-100">
-          <div className="d-flex flex-column text-center h-100">
-            <p className="fw-bold" style={{ color: "#3D52F3" }}>
-              {splitDateToMonthName(eventDate).month}
-            </p>
-            <p>{eventDate.getDate()}</p>
+      <div className="d-flex flex-column align-items-center">
+        <img
+          src={
+            userEvent.eventImageUrl
+              ? userEvent.eventImageUrl
+              : "https://eagleexaminer.com/wp-content/uploads/2018/04/boston-marathon-900x600.jpg"
+          }
+          alt="Event"
+          className="rounded-3 shadow"
+          width={283}
+          height={140}
+          style={{ objectFit: "cover" }}
+        />
+      </div>
+      <div className="d-flex flex-row justify-content-between align-items-center mt-1">
+        <div>
+          <div className="d-flex flex-row justify-content-start align-items-center gap-1 mt-2">
+            <Chip label={sportExperience} size="small" color={chipColor} />
+            <Chip label={sport} size="small" />
+          </div>
+          <Typography variant="subtitle1" fontWeight="bold" className="mt-2">
+            {userEvent.title}
+          </Typography>
+          <div className="d-flex flex-row justify-content-start align-items-center gap-1 mt-1">
+            <FmdGoodOutlinedIcon
+              fontSize="inherit"
+              style={{ color: "#929292" }}
+            />
+            <Typography variant="body2" style={{ color: "#929292" }}>
+              {userEvent.location}
+            </Typography>
+          </div>
+          <div className="d-flex flex-row gap-2 align-items-center">
+            <div className="d-flex flex-row justify-content-start align-items-center gap-1 mt-1">
+              <CalendarMonthRoundedIcon
+                fontSize="inherit"
+                style={{ color: "#929292" }}
+              />
+              <Typography variant="body2" style={{ color: "#929292" }}>
+                {eventDate.getDay()} {month}
+              </Typography>
+            </div>
+            <div className="d-flex flex-row justify-content-start align-items-center gap-1 mt-1">
+              <AccessTimeRoundedIcon
+                fontSize="inherit"
+                style={{ color: "#929292" }}
+              />
+              <Typography variant="body2" style={{ color: "#929292" }}>
+                {eventDate.getHours()}:{eventDate.getMinutes()}
+              </Typography>
+            </div>
           </div>
         </div>
-        <div className="d-flex flex-column gap-3 h-100 w-100">
-          <div className="d-flex flex-row justify-content-between w-100">
-            <p className="m-0">{event.title}</p>
-            <Typography variant="inherit" className="m-0" color="primary">
-              {sport}
-            </Typography>
-          </div>
-          <div className="d-flex flex-column">
-            <Typography
-              variant="caption"
-              className="m-0"
-              noWrap={true}
-              style={{
-                display: "inline-block",
-                overflow: "hidden",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {trimmedDescription}
-            </Typography>
-            <Typography variant="caption" className="m-0">
-              {event.location}
-            </Typography>
-          </div>
-        </div>
+        <div className="mt-3 align-self-start"></div>
       </div>
     </Card>
   );

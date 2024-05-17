@@ -61,4 +61,10 @@ public class EventService : IEventService
         return userEvents;
     }
     
+    public async Task<List<UserEvent>> GetAllEvents()
+    {
+        var userEvents = await _context.UserEvents.ToListAsync();
+        return userEvents;
+    }
+    
 }

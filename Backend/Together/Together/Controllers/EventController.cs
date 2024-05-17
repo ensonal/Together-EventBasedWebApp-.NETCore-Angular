@@ -40,6 +40,14 @@ public class EventController : ControllerBase
         var result = await _eventService.GetUserEvents(token);
         return Ok(result);
     }
+    
+    [HttpGet]
+    [Route("GetAllEvents")]
+    public async Task<IActionResult> GetAllEvents()
+    {
+        var result = await _eventService.GetAllEvents();
+        return Ok(result);
+    }
 }
     
     
