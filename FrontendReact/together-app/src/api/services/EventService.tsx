@@ -18,3 +18,9 @@ export async function deleteUserEvent(userEventId : number) {
     const response = await post(url);
     return response;
 }
+
+export async function getAllEvents() {
+    const url = "/Event/GetAllEvents";
+    const response = await get(url);
+    return response;
+}

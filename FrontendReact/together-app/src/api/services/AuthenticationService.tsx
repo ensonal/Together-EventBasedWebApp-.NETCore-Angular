@@ -8,7 +8,7 @@ import { post } from '../axios';
 export function Login() {
   const navigate = useNavigate();
 
-  async function handleSubmit(values: LoginValues) {
+  async function handleLoginSubmit(values: LoginValues) {
     const data = await post('/User/login', values);
 
     localStorage.setItem('jwToken', data.user.jwToken);
@@ -18,13 +18,13 @@ export function Login() {
     navigate('/');
   }
 
-  return <LoginForm onSubmit={handleSubmit} />;
+  return <LoginForm onSubmit={handleLoginSubmit} />;
 }
 
 export function Register() {
   const navigate = useNavigate();
 
-  async function handleSubmit(values: RegisterValues) {
+  async function handleRegisterSubmit(values: RegisterValues) {
     const response = await post('/User/register', {
       email: values.Email,
       username: values.Username,
@@ -42,5 +42,5 @@ export function Register() {
     }
   }
 
-  return <RegisterForm onSubmit={handleSubmit} />;
+  return <RegisterForm onSubmit={handleRegisterSubmit} />;
 }

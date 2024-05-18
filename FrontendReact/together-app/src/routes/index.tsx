@@ -39,7 +39,7 @@ export default function Routes() {
             {!isRegisterOrLogin && <NavBar />}
             <div
               style={{
-                backgroundColor: isRegisterOrLogin ? "#3D52F3" : "#F1F2F6",
+                backgroundColor: isRegisterOrLogin ? "white" : "#F1F2F6",
                 minHeight: "100vh",
                 display: "flex",
                 flexDirection: "column",
@@ -75,6 +75,7 @@ export default function Routes() {
         <Route path="my-profile" element={<MyProfilePage />} />
         <Route path="create-event" element={<CreateEventPage />} />
         <Route path="events" element={<EventsPage />} />
+        <Route path="*" element={<div>Not Found</div>} />
       </Route>
     </BaseRoutes>
   );

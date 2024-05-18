@@ -19,8 +19,8 @@ export function AdditionalFilters() {
           sx={{
             boxShadow: 0,
             cursor: "pointer",
-            border: "0.5px solid #474D4B",
-            padding: "0.4rem",
+            border: "1px solid #c6c6c6",
+            padding: "0.3rem",
             display: "flex",
             alignItems: "center",
             gap: "0.5rem",
@@ -30,10 +30,10 @@ export function AdditionalFilters() {
           }}
           onClick={handleClick}
         >
-          <Typography sx={{ color: "#474D4B", whiteSpace: "nowrap" }}>
+          <Typography sx={{ color: "#474D4B", whiteSpace: "nowrap" }} fontSize={14} variant="body1">
             Filters
           </Typography>
-          <FilterListRoundedIcon style={{ color: "#474D4B" }} />
+          <FilterListRoundedIcon style={{ color: "#474D4B" }} fontSize="small"/>
         </Card>
         {open && (
           <>
