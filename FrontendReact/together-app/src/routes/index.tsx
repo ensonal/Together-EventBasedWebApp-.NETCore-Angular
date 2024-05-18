@@ -7,7 +7,7 @@ import { CreateEventPage } from "../routes/CreateEvent/CreateEventPage";
 import { useLocation } from "react-router-dom";
 import { VerticalNavBar } from "../components/VerticalNavBar/VerticalNavBar";
 import { useEffect, useState } from "react";
-import { EventsPage } from "./Events/EventsPage";
+import { EventsPage } from "./EventHome/EventsPage";
 
 export default function Routes() {
   const location = useLocation();
