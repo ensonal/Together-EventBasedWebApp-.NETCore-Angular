@@ -1,14 +1,16 @@
-import { Box } from "@mui/material";
+import { Box } from "@mui/system";
 import { Register } from "../Register";
-import combineLogo from "../../assets/images/logo/combineLogo.png";
+import { RegisterImageContainer } from "./RegisterImageContainer/RegisterImageContainer";
 
 export function RegisterPage() {
   return (
-    <div className="d-flex flex-column vh-100 align-items-center">
-      <Box>
-        <img src={combineLogo} alt="logo" />
+    <div className="d-flex flex-row vh-100">
+      <Box sx={{ flex: 1 }}>
+        <RegisterImageContainer />
       </Box>
-      <Register />
+      <Box sx={{ flex: 1 }}>
+        <Register />
+      </Box>
     </div>
   );
 }
