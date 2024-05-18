@@ -1,4 +1,4 @@
-import attemptPic from "../attempt.jpg";
+import registerImage from "../../../assets/images/containerimages/registerImage.jpeg";
 import newLogo from "../../../assets/images/newLogo.png";
 import "./RegisterImageContainer.css";
 
@@ -6,7 +6,7 @@ export function RegisterImageContainer() {
   return (
     <div style={{ position: "relative", width: "100%", height: "100vh" }}>
       <img
-        src={attemptPic}
+        src={registerImage}
         alt="Register"
         style={{ width: "100%", height: "100%", objectFit: "cover" }}
       />
