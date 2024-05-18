@@ -1,0 +1,14 @@
+.grey-background {
+  background-color: rgba(24, 24, 24, 0.631);
+}
+
+.together-text {
+  margin-top: 6px;
+  font-size: 45px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(76, 76, 76, 0.481);
+}
+
+.logo {
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.231));
+}
