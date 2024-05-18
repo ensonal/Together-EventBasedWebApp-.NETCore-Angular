@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 import { VerticalNavBar } from "../components/VerticalNavBar/VerticalNavBar";
 import { useEffect, useState } from "react";
 import { EventsPage } from "./EventHome/EventsPage";
+import { EventDetailsPage } from "./EventDetails/EventDetailsPage";
 
 export default function Routes() {
   const location = useLocation();
@@ -70,12 +71,13 @@ export default function Routes() {
         }
       >
         <Route path="/" element={<div>Home</div>} />
+        <Route path="*" element={<div>Not Found</div>} />
         <Route path="register" element={<RegisterPage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="my-profile" element={<MyProfilePage />} />
         <Route path="create-event" element={<CreateEventPage />} />
         <Route path="events" element={<EventsPage />} />
-        <Route path="*" element={<div>Not Found</div>} />
+        <Route path="event/:eventId" element={<EventDetailsPage />} />
       </Route>
     </BaseRoutes>
   );

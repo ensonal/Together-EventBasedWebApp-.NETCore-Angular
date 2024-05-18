@@ -67,4 +67,10 @@ public class EventService : IEventService
         return userEvents;
     }
     
+    public async Task<UserEvent> GetEventById(int userEventId)
+    {
+        var userEvent = await _context.UserEvents.FindAsync(userEventId);
+        return userEvent;
+    }
+    
 }

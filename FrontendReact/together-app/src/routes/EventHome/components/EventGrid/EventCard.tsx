@@ -8,6 +8,7 @@ import {
   splitDateToMonthName,
   convertUserEventToEnum,
 } from "../../../../api/models/UserEvent";
+import { useNavigate } from "react-router-dom";
 
 export function EventCard({ userEvent }: { userEvent: UserEvent }) {
   const { sport, eventStatus, sportExperience } = convertUserEventToEnum(
@@ -28,11 +29,14 @@ export function EventCard({ userEvent }: { userEvent: UserEvent }) {
       ? "warning"
       : "error";
 
+  const navigate = useNavigate();
+
   return (
     <Card
       sx={{ boxShadow: 0 }}
       className="rounded-4 p-3 shadow-sm"
-      style={{ width: 315, height: 290 }}
+      style={{ width: 315, height: 290, cursor: "pointer"}}
+      onClick={() => navigate(`/event/${userEvent.userEventId}`)}
     >
       <div className="d-flex flex-column align-items-center">
         <img

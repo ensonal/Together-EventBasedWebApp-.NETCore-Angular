@@ -9,4 +9,5 @@ public interface IEventService
     Task<bool> DeleteUserEvent(int userEventId);
     Task<List<UserEvent>> GetUserEvents(string token);
     Task<List<UserEvent>> GetAllEvents();
+    Task<UserEvent> GetEventById(int userEventId);
 }
