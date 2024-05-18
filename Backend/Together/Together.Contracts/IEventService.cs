@@ -1,4 +1,5 @@
 using Together.Core.DTO.EventDTOs;
+using Together.Core.Models.EventModels;
 using Together.DataAccess.Entities;
 
 namespace Together.Contracts;
@@ -9,5 +10,5 @@ public interface IEventService
     Task<bool> DeleteUserEvent(int userEventId);
     Task<List<UserEvent>> GetUserEvents(string token);
     Task<List<UserEvent>> GetAllEvents();
-    Task<UserEvent> GetEventById(int userEventId);
+    Task<UserEventResponseModel> GetEventById(int userEventId);
 }

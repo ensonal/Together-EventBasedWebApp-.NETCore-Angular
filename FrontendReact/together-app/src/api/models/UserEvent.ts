@@ -1,6 +1,7 @@
 import SportType from "../enums/SportType";
 import EventStatus from "../enums/EventStatus";
 import SportExperience from "../enums/SportExperience";
+import IUserInfo from "./UserInfo";
 
 export interface UserEvent {
     userEventId: number;
@@ -14,6 +15,7 @@ export interface UserEvent {
     eventHour: string,
     location: string;
     eventImageUrl: string;
+    userInfo: IUserInfo;
 }
 
 function convertUserEventToEnum(sportId: number, eventStatusId: number, sportExperienceId: number){
@@ -26,18 +28,18 @@ function convertUserEventToEnum(sportId: number, eventStatusId: number, sportExp
 
 function splitDateToMonthName(date: Date){
     const monthNames = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
+        "January",
+        "February",
+        "March",
+        "April",
         "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
+        "June",
+        "Julu",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
       ];
     return {
         month: monthNames[date.getMonth()],

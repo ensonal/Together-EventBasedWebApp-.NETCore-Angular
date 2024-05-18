@@ -1,6 +1,8 @@
-namespace Together.DataAccess.Entities;
+using Together.DataAccess.Entities;
 
-public class UserEvent
+namespace Together.Core.Models.EventModels;
+
+public class UserEventResponseModel
 {
     public int UserEventId { get; set; }
     public string UserId { get; set; }
@@ -13,6 +15,5 @@ public class UserEvent
     public string EventHour { get; set; }
     public string Location { get; set; }
     public string? EventImageUrl { get; set; }
-    
-    public virtual UserInfo UserInfo { get; set; }
+    public UserInfo UserInfo { get; set; }
 }
