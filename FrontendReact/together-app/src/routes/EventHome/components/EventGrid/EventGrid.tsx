@@ -10,6 +10,7 @@ export function EventGrid({ userEvents }: { userEvents: UserEvent[]}) {
         direction="row"
         useFlexGap
         flexWrap="wrap"
+        className="w-100"
       >
         {userEvents.map((userEvent) => (
           <EventCard key={userEvent.userEventId} userEvent={userEvent} />
