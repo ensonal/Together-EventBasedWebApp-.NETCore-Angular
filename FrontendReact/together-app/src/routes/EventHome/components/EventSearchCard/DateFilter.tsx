@@ -3,14 +3,45 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { EventFilters } from "../../../../api/models/EventModels/EventFilters";
 
-export function DateFilter() {
+export function DateFilter({
+  filters,
+  setFilters,
+}: {
+  filters: EventFilters;
+  setFilters: any;
+}) {
+  const handleDateChange = (name: string, value: any) => {
+    setFilters((prevFilters: EventFilters) => ({
+      ...prevFilters,
+      [name]: value,
+    }));
+  };
+
   return (
     <div className="p-0">
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DemoContainer components={["DatePicker", "DatePicker"]} sx={{padding: 0}}>
-          <DatePicker label="Date From" name="DateFrom" className="w-100"/>
-          <DatePicker label="Date To" name="DateTo" className="w-100" />
+        <DemoContainer
+          components={["DatePicker", "DatePicker"]}
+          sx={{ padding: 0 }}
+        >
+          <DatePicker
+            label="Date From"
+            name="DateFrom"
+            className="w-100"
+            disableHighlightToday={true}
+            slotProps={{ textField: { size: "small" } }}
+            onChange={(date) => handleDateChange("dateFrom", date)}
+          />
+          <DatePicker
+            label="Date To"
+            name="DateTo"
+            className="w-100"
+            disableHighlightToday={true}
+            slotProps={{ textField: { size: "small" } }}
+            onChange={(date) => handleDateChange("dateTo", date)}
+          />
         </DemoContainer>
       </LocalizationProvider>
     </div>

@@ -19,7 +19,7 @@ export function CreateEventCard() {
 
   const createEvent = () => {
     addUserEvent(userEvent);
-  }
+  };
 
   return (
     <Card className="p-4 rounded-3 gap-2">
@@ -43,17 +43,32 @@ export function CreateEventCard() {
         </div>
         <SportSelectForm setUserEvent={setUserEvent} />
         <EventDatePicker setUserEvent={setUserEvent} />
-        <>
-          <p className="fs-5 m-0 mt-2">Location</p>
-          <TextField
-            className="w-100"
-            variant="outlined"
-            onChange={(e) => handleChange("location", e.target.value)}
-          />
-        </>
+        <div className="d-flex flex-row w-100 gap-3">
+          <div className="d-flex flex-column w-100">
+            <p className="fs-5 m-0 mt-2">City</p>
+            <TextField
+              className="w-100"
+              variant="outlined"
+              onChange={(e) => handleChange("city", e.target.value)}
+            />
+          </div>
+          <div className="d-flex flex-column w-100">
+            <p className="fs-5 m-0 mt-2">Country</p>
+            <TextField
+              className="w-100"
+              variant="outlined"
+              onChange={(e) => handleChange("country", e.target.value)}
+            />
+          </div>
+        </div>
       </div>
       <div className="text-center mt-3">
-        <Button variant="contained" color="primary" fullWidth={false} onClick={() => createEvent()}>
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth={false}
+          onClick={() => createEvent()}
+        >
           Create event
         </Button>
       </div>

@@ -75,7 +75,7 @@ export function EventCard({ userEvent }: { userEvent: UserEvent }) {
                 style={{ color: "#929292" }}
               />
               <Typography variant="body2" style={{ color: "#929292" }}>
-                {userEvent.location}
+                {userEvent.city} / {userEvent.country}
               </Typography>
             </div>
             <div className="d-flex flex-row gap-2 align-items-center">

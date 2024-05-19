@@ -1,8 +1,8 @@
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
-import { Button, Card, IconButton } from "@mui/material";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import { IconButton } from "@mui/material";
 
 export function QuerySearch() {
   return (
@@ -21,8 +21,8 @@ export function QuerySearch() {
         fullWidth
         size="small"
       />
-      <IconButton className="rounded-2" sx={{border:'1px solid #3D52F3'}}>
-        <KeyboardDoubleArrowRightIcon color="primary" fontSize="small"/>
+      <IconButton className="rounded-2" sx={{ border: "1px solid #3D52F3" }}>
+        <KeyboardDoubleArrowRightIcon color="primary" fontSize="small" />
       </IconButton>
     </div>
   );
