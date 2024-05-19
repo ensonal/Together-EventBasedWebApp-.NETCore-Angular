@@ -7,7 +7,7 @@ import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneR
 import AutoModeRoundedIcon from "@mui/icons-material/AutoModeRounded";
 import BookmarkBorderRoundedIcon from "@mui/icons-material/BookmarkBorderRounded";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
-import "./VerticalNavBar.css"; // CSS dosyasını import ediyoruz
+import "./VerticalNavBar.css";
 
 export function VerticalNavBar(verticalNavFlex: any) {
   const location = useLocation();

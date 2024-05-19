@@ -220,6 +220,78 @@ namespace Together.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Together.DataAccess.Entities.EventRequestStatus", b =>
+                {
+                    b.Property<int>("EventRequestStatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EventRequestStatusId"), 1L, 1);
+
+                    b.Property<string>("RequestStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EventRequestStatusId");
+
+                    b.ToTable("EventRequestStatuses");
+                });
+
+            modelBuilder.Entity("Together.DataAccess.Entities.EventStatus", b =>
+                {
+                    b.Property<int>("EventStatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EventStatusId"), 1L, 1);
+
+                    b.Property<string>("EventStatusName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EventStatusId");
+
+                    b.ToTable("EventStatuses");
+                });
+
+            modelBuilder.Entity("Together.DataAccess.Entities.Sport", b =>
+                {
+                    b.Property<int>("SportId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SportId"), 1L, 1);
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SportId");
+
+                    b.ToTable("Sports");
+                });
+
+            modelBuilder.Entity("Together.DataAccess.Entities.SportExperience", b =>
+                {
+                    b.Property<int>("SportExperienceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SportExperienceId"), 1L, 1);
+
+                    b.Property<string>("Level")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SportExperienceId");
+
+                    b.ToTable("SportExperience");
+                });
+
             modelBuilder.Entity("Together.DataAccess.Entities.UserAccountLevel", b =>
                 {
                     b.Property<string>("UserId")
@@ -231,6 +303,110 @@ namespace Together.DataAccess.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("UserAccountLevel", (string)null);
+                });
+
+            modelBuilder.Entity("Together.DataAccess.Entities.UserEquipment", b =>
+                {
+                    b.Property<int>("UserEquipmentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserEquipmentId"), 1L, 1);
+
+                    b.Property<string>("EquipmentName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SportId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserEquipmentId");
+
+                    b.ToTable("UserEquipments");
+                });
+
+            modelBuilder.Entity("Together.DataAccess.Entities.UserEvent", b =>
+                {
+                    b.Property<int>("UserEventId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserEventId"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EventDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EventHour")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EventImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EventStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SportExperienceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SportId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserEventId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserEvents");
+                });
+
+            modelBuilder.Entity("Together.DataAccess.Entities.UserEventRequest", b =>
+                {
+                    b.Property<int>("UserEventRequestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserEventRequestId"), 1L, 1);
+
+                    b.Property<int>("EventRequestStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserEventId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserEventRequestId");
+
+                    b.HasIndex("EventRequestStatusId");
+
+                    b.HasIndex("UserEventId");
+
+                    b.ToTable("UserEventRequests");
                 });
 
             modelBuilder.Entity("Together.DataAccess.Entities.UserInfo", b =>
@@ -250,10 +426,16 @@ namespace Together.DataAccess.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("MembershipDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfileImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Role")
@@ -268,6 +450,33 @@ namespace Together.DataAccess.Migrations
                     b.HasKey("UserID");
 
                     b.ToTable("UserInfo", (string)null);
+                });
+
+            modelBuilder.Entity("Together.DataAccess.Entities.UserSport", b =>
+                {
+                    b.Property<int>("UserSportId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserSportId"), 1L, 1);
+
+                    b.Property<int>("SportExperienceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SportId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserSportId");
+
+                    b.HasIndex("SportExperienceId");
+
+                    b.HasIndex("SportId");
+
+                    b.ToTable("UserSports");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -319,6 +528,60 @@ namespace Together.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Together.DataAccess.Entities.UserEvent", b =>
+                {
+                    b.HasOne("Together.DataAccess.Entities.UserInfo", "UserInfo")
+                        .WithMany("UserEvents")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserInfo");
+                });
+
+            modelBuilder.Entity("Together.DataAccess.Entities.UserEventRequest", b =>
+                {
+                    b.HasOne("Together.DataAccess.Entities.EventRequestStatus", "EventRequestStatuses")
+                        .WithMany()
+                        .HasForeignKey("EventRequestStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Together.DataAccess.Entities.UserEvent", "UserEvents")
+                        .WithMany()
+                        .HasForeignKey("UserEventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EventRequestStatuses");
+
+                    b.Navigation("UserEvents");
+                });
+
+            modelBuilder.Entity("Together.DataAccess.Entities.UserSport", b =>
+                {
+                    b.HasOne("Together.DataAccess.Entities.SportExperience", "SportExperience")
+                        .WithMany()
+                        .HasForeignKey("SportExperienceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Together.DataAccess.Entities.Sport", "Sport")
+                        .WithMany()
+                        .HasForeignKey("SportId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sport");
+
+                    b.Navigation("SportExperience");
+                });
+
+            modelBuilder.Entity("Together.DataAccess.Entities.UserInfo", b =>
+                {
+                    b.Navigation("UserEvents");
                 });
 #pragma warning restore 612, 618
         }

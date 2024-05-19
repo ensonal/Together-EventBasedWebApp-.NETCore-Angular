@@ -71,6 +71,14 @@ public class EquipmentController : ControllerBase
         return equipment;
     }
     
+    [HttpGet]
+    [Route("GetUserEquipmentsByUserId/{userId}")]
+    public async Task<List<UserEquipment>> GetUserEquipmentsByUserId(string userId)
+    {
+        var equipment = await _equipmentService.GetUserEquipmentsByUserId(userId);
+        return equipment;
+    }
+    
     [HttpPost]
     [Route("DeleteUserEquipment/{userEquipmentId}")]
     public async Task<BaseResponseModel> DeleteUserEquipment(int userEquipmentId)

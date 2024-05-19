@@ -13,4 +13,6 @@ public class UserEvent
     public string EventHour { get; set; }
     public string Location { get; set; }
     public string? EventImageUrl { get; set; }
+    
+    public virtual UserInfo UserInfo { get; set; }
 }

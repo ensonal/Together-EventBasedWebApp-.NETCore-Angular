@@ -37,5 +37,11 @@ public class TogetherDbContext : IdentityDbContext<IdentityUser>
             entity.HasKey(c => c.UserId);
             entity.ToTable(name: "UserAccountLevel");
         });
+        
+        modelBuilder.Entity<UserEvent>()
+            .HasOne(ue => ue.UserInfo)
+            .WithMany(ui => ui.UserEvents)
+            .HasForeignKey(ue => ue.UserId)
+            .HasPrincipalKey(ui => ui.UserID);
     }
 }

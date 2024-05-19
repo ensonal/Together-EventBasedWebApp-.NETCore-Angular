@@ -70,7 +70,37 @@ public class SportService : ISportService
 
         return userSportResponseModels.ToArray();
     }
-    
+
+    public async Task<UserSportResponseModel[]> GetUserSportsByUserId(string userId)
+    {
+        var userSports = await _context.UserSports
+            .Include(x => x.Sport)
+            .Include(x => x.SportExperience)
+            .Where(x => x.UserId == userId)
+            .ToListAsync();
+
+        var userSportResponseModels = new List<UserSportResponseModel>();
+
+        foreach (var userSport in userSports)
+        {
+            var sport = await GetSportById(userSport.SportId);
+            var sportExperience = await GetSportExperienceById(userSport.SportExperienceId);
+
+            var userSportResponseModel = new UserSportResponseModel
+            {
+                UserSportId = userSport.UserSportId,
+                UserId = userSport.UserId,
+                ImageUrl = sport!.ImageUrl,
+                SportName = sport.Name,
+                Level = sportExperience!.Level,
+            };
+
+            userSportResponseModels.Add(userSportResponseModel);
+        }
+        
+        return userSportResponseModels.ToArray();
+    }
+
     public async Task<bool> DeleteUserSport(int userSportId, string token)
     {
         var userId = _jwtService.GetUserIdFromJWT(token);

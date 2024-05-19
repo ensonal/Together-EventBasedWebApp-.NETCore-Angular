@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Together.Contracts;
 using Together.Core.DTO.EventDTOs;
+using Together.Core.Models.EventModels;
 using Together.DataAccess;
 using Together.DataAccess.Entities;
 
@@ -65,6 +66,46 @@ public class EventService : IEventService
     {
         var userEvents = await _context.UserEvents.ToListAsync();
         return userEvents;
+    }
+    
+    public async Task<List<UserEvent>> GetUserEventsByUserId(string userId)
+    {
+        var userEvents = await _context.UserEvents.Where(x => x.UserId == userId).ToListAsync();
+        return userEvents;
+    }
+    
+    public async Task<UserEventResponseModel> GetEventById(int userEventId)
+    {
+        var userEvent = await _context.UserEvents
+            .Include(x => x.UserInfo)
+            .FirstOrDefaultAsync(x => x.UserEventId == userEventId);
+        
+        var userEventResponseModel = new UserEventResponseModel()
+        {
+            UserEventId = userEvent!.UserEventId,
+            UserId = userEvent.UserId,
+            SportId = userEvent.SportId,
+            EventStatusId = userEvent.EventStatusId,
+            SportExperienceId = userEvent.SportExperienceId,
+            Title = userEvent.Title,
+            Description = userEvent.Description,
+            EventDate = userEvent.EventDate,
+            EventHour = userEvent.EventHour,
+            Location = userEvent.Location,
+            EventImageUrl = userEvent.EventImageUrl,
+            UserInfo = new UserInfo()
+            {
+                UserID = userEvent.UserInfo.UserID,
+                Name = userEvent.UserInfo.Name,
+                Surname = userEvent.UserInfo.Surname,
+                UserName = userEvent.UserInfo.UserName,
+                ProfileImageUrl = userEvent.UserInfo.ProfileImageUrl,
+                Country = userEvent.UserInfo.Country,
+                City = userEvent.UserInfo.City,
+            }
+        };
+        
+        return userEventResponseModel;
     }
     
 }

@@ -118,7 +118,7 @@ export default function LoginForm(props: LoginProps) {
                 sx={{ fontSize: 15, fontWeight: "bold" }}
                 onClick={() => navigate("/register")}
               >
-                Sign up
+                Create an account
               </Typography>
             </div>
             </Box>

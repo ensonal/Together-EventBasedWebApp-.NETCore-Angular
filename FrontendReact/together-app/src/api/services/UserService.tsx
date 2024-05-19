@@ -48,3 +48,14 @@ export async function changeProfileImageUrl(profileImageUrl: string) {
     throw new Error('Failed to change profile image');
   }
 }
+
+export async function getUserViewInfo(userId : string){
+  const url = `/User/GetUserInfo/${userId}`;
+  
+  try {
+    const response = await get(url);
+    return response as IUserInfo;
+  }catch(error){
+    throw new Error('Failed to fetch user information');
+  }
+}

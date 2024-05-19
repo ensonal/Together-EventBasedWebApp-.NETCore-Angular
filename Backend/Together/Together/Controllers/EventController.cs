@@ -42,10 +42,26 @@ public class EventController : ControllerBase
     }
     
     [HttpGet]
+    [Route("GetUserEventsByUserId/{userId}")]
+    public async Task<IActionResult> GetUserEventsByUserId(string userId)
+    {
+        var result = await _eventService.GetUserEventsByUserId(userId);
+        return Ok(result);
+    }
+    
+    [HttpGet]
     [Route("GetAllEvents")]
     public async Task<IActionResult> GetAllEvents()
     {
         var result = await _eventService.GetAllEvents();
+        return Ok(result);
+    }
+    
+    [HttpGet]
+    [Route("GetEventById/{userEventId}")]
+    public async Task<IActionResult> GetEventById(int userEventId)
+    {
+        var result = await _eventService.GetEventById(userEventId);
         return Ok(result);
     }
 }

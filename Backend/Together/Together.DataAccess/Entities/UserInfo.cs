@@ -15,4 +15,6 @@ public class UserInfo
     public DateTime? MembershipDate { get; set; }
     public string? ProfileImageUrl { get; set; }
     
+    public virtual ICollection<UserEvent> UserEvents { get; set; }
+    
 }

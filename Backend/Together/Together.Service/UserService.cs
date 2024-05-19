@@ -157,6 +157,14 @@ public class UserService : IUserService
         return (userInfo);
     }
     
+    public async Task<UserInfo> GetUserInfo(string userId)
+    {
+        var userInfo = await _context.UserInfo.Where(x => x.UserID == userId).FirstOrDefaultAsync();
+        if (userInfo == null)
+            throw new ExceptionResponseModel("User Not Found");
+        return userInfo;
+    }
+    
     public async Task<UserInfo> SettingUserInfo(UserInfoDTO dto, string token)
     {
         var userId = _jwtService.GetUserIdFromJWT(token);
