@@ -57,7 +57,7 @@ export function EventInfoCard({ event }: { event: UserEvent }) {
                 variant="body2"
                 style={{ color: "#505050", fontSize: 16 }}
               >
-                {event.location}
+                {event.city} / {event.country}
               </Typography>
             </div>
             <div className="d-flex flex-row gap-2 align-items-center">

@@ -31,7 +31,8 @@ public class EventService : IEventService
             Description = request.Description,
             EventDate = request.EventDate,
             EventHour = request.EventHour,
-            Location = request.Location,
+            City = request.City,
+            Country = request.Country,
             EventImageUrl = request.EventImageUrl
         };
         
@@ -91,7 +92,8 @@ public class EventService : IEventService
             Description = userEvent.Description,
             EventDate = userEvent.EventDate,
             EventHour = userEvent.EventHour,
-            Location = userEvent.Location,
+            City = userEvent.City,
+            Country = userEvent.Country,
             EventImageUrl = userEvent.EventImageUrl,
             UserInfo = new UserInfo()
             {

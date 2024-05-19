@@ -17,3 +17,6 @@
 /Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.Service/obj/Debug/net6.0/refint/Together.Service.dll
 /Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.Service/obj/Debug/net6.0/Together.Service.pdb
 /Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.Service/obj/Debug/net6.0/ref/Together.Service.dll
+/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.Service/bin/Debug/net6.0/Microsoft.AspNetCore.Mvc.Abstractions.dll
+/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.Service/bin/Debug/net6.0/Microsoft.AspNetCore.Routing.Abstractions.dll
+/Users/enesonal/Documents/Together-EventBasedWebApp-.NETCore-Angular/Backend/Together/Together.Service/bin/Debug/net6.0/Microsoft.Extensions.Features.dll

@@ -16,7 +16,8 @@
           "Microsoft.Extensions.Identity.Core": "6.0.5",
           "Together.Contracts": "1.0.0",
           "Together.Core": "1.0.0",
-          "Together.DataAccess": "1.0.0"
+          "Together.DataAccess": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.Abstractions": "6.0.0.0"
         },
         "runtime": {
           "Together.Service.dll": {}
@@ -943,6 +944,30 @@
         "runtime": {
           "Together.DataAccess.dll": {}
         }
+      },
+      "Microsoft.AspNetCore.Mvc.Abstractions/6.0.0.0": {
+        "runtime": {
+          "Microsoft.AspNetCore.Mvc.Abstractions.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1523.12404"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Routing.Abstractions/6.0.0.0": {
+        "runtime": {
+          "Microsoft.AspNetCore.Routing.Abstractions.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1523.12404"
+          }
+        }
+      },
+      "Microsoft.Extensions.Features/6.0.0.0": {
+        "runtime": {
+          "Microsoft.Extensions.Features.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1523.12404"
+          }
+        }
       }
     }
   },
@@ -1531,6 +1556,21 @@
     },
     "Together.DataAccess/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.AspNetCore.Mvc.Abstractions/6.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.AspNetCore.Routing.Abstractions/6.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Extensions.Features/6.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }
