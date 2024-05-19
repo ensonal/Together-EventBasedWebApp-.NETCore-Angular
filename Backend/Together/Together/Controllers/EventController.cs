@@ -1,6 +1,9 @@
+using System.Web;
 using Microsoft.AspNetCore.Mvc;
 using Together.Contracts;
 using Together.Core.DTO.EventDTOs;
+using Together.Core.Models.Common;
+using Together.Core.Models.FilterModels;
 
 namespace Together.Controllers;
 
@@ -51,9 +54,9 @@ public class EventController : ControllerBase
     
     [HttpGet]
     [Route("GetAllEvents")]
-    public async Task<IActionResult> GetAllEvents()
+    public async Task<IActionResult> GetAllEvents([FromQuery] EventFilterDto filter)
     {
-        var result = await _eventService.GetAllEvents();
+        var result = await _eventService.GetAllEvents(filter);
         return Ok(result);
     }
     

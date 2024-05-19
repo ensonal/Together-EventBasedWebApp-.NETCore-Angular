@@ -13,7 +13,8 @@ export interface UserEvent {
     description: string;
     eventDate: Date;
     eventHour: string,
-    location: string;
+    city: string;
+    country: string;
     eventImageUrl: string;
     userInfo: IUserInfo;
 }

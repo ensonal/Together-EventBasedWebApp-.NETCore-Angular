@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Together.Contracts;
 using Together.Core.DTO.EventDTOs;
+using Together.Core.Models.Common;
 using Together.Core.Models.EventModels;
+using Together.Core.Models.FilterModels;
 using Together.DataAccess;
 using Together.DataAccess.Entities;
 
@@ -31,7 +33,8 @@ public class EventService : IEventService
             Description = request.Description,
             EventDate = request.EventDate,
             EventHour = request.EventHour,
-            Location = request.Location,
+            City = request.City,
+            Country = request.Country,
             EventImageUrl = request.EventImageUrl
         };
         
@@ -62,12 +65,54 @@ public class EventService : IEventService
         return userEvents;
     }
     
-    public async Task<List<UserEvent>> GetAllEvents()
+    public async Task<PagedResponse<UserEvent>> GetAllEvents(EventFilterDto filter)
     {
-        var userEvents = await _context.UserEvents.ToListAsync();
-        return userEvents;
+        var userEventView = _context.UserEvents.AsQueryable();
+        userEventView = ApplyFilters(userEventView, filter);
+        
+        var userEvents = await userEventView
+            .Skip((filter.PageNumber - 1) * filter.PageSize)
+            .Take(filter.PageSize)
+            .ToListAsync();
+        
+        var totalCount = await userEventView.CountAsync();
+        
+        var pagedResponse = new PagedResponse<UserEvent>()
+        {
+            PageNumber = filter.PageNumber,
+            PageSize = filter.PageSize,
+            TotalCount = totalCount,
+            Data = userEvents
+        };
+        
+        return pagedResponse;
     }
     
+    private IQueryable<UserEvent> ApplyFilters(IQueryable<UserEvent> userEvents, EventFilterDto filter)
+    {
+        if (filter.SportId != null)
+        {
+            userEvents = userEvents.Where(x => x.SportId == filter.SportId);
+        }
+        
+        if (filter.SportExperienceId != null)
+        {
+            userEvents = userEvents.Where(x => x.SportExperienceId == filter.SportExperienceId);
+        }
+        
+        if (filter.DateFrom != null)
+        {
+            userEvents = userEvents.Where(x => x.EventDate >= filter.DateFrom);
+        }
+        
+        if (filter.DateTo != null)
+        {
+            userEvents = userEvents.Where(x => x.EventDate <= filter.DateTo);
+        }
+        
+        return userEvents;
+    }
+
     public async Task<List<UserEvent>> GetUserEventsByUserId(string userId)
     {
         var userEvents = await _context.UserEvents.Where(x => x.UserId == userId).ToListAsync();
@@ -91,7 +136,8 @@ public class EventService : IEventService
             Description = userEvent.Description,
             EventDate = userEvent.EventDate,
             EventHour = userEvent.EventHour,
-            Location = userEvent.Location,
+            City = userEvent.City,
+            Country = userEvent.Country,
             EventImageUrl = userEvent.EventImageUrl,
             UserInfo = new UserInfo()
             {

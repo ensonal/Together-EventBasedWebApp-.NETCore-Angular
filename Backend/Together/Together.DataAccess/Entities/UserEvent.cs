@@ -11,8 +11,12 @@ public class UserEvent
     public string Description { get; set; }
     public DateTime EventDate { get; set; }
     public string EventHour { get; set; }
-    public string Location { get; set; }
+    public string City { get; set; }
+    public string Country { get; set; }
     public string? EventImageUrl { get; set; }
     
     public virtual UserInfo UserInfo { get; set; }
+    public virtual Sport Sport { get; set; }
+    public virtual EventStatus EventStatus { get; set; }
+    public virtual SportExperience SportExperience { get; set; }
 }

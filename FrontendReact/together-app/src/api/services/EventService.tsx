@@ -1,5 +1,7 @@
 import { get, post } from "../axios";
+import { EventFilters } from "../models/EventModels/EventFilters";
 import { UserEvent } from "../models/UserEvent";
+import { PaginationModel } from "../models/common/PaginationModel";
 
 export async function addUserEvent(userEvent: UserEvent) {
   const url = "/Event/AddUserEvent";
@@ -25,8 +27,8 @@ export async function deleteUserEvent(userEventId: number) {
   return response;
 }
 
-export async function getAllEvents() {
-  const url = "/Event/GetAllEvents";
+export async function getAllEvents(filters: EventFilters, pagination: PaginationModel) {
+  const url = constructUrlWithFilters("/Event/GetAllEvents", filters, pagination);
   const response = await get(url);
   return response;
 }
@@ -35,4 +37,10 @@ export async function getEventById(eventId: number) {
   const url = `/Event/GetEventById/${eventId}`;
   const response = await get(url);
   return response;
+}
+
+function constructUrlWithFilters(baseUrl: string, filters: any, pagination: any) {
+  const queryParams = new URLSearchParams(filters).toString();
+  const paginationParams = new URLSearchParams(pagination).toString();
+  return `${baseUrl}?${queryParams}&${paginationParams}`;
 }
