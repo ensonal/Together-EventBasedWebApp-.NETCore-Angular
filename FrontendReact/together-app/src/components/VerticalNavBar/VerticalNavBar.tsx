@@ -7,6 +7,7 @@ import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneR
 import AutoModeRoundedIcon from "@mui/icons-material/AutoModeRounded";
 import BookmarkBorderRoundedIcon from "@mui/icons-material/BookmarkBorderRounded";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import "./VerticalNavBar.css";
 
 export function VerticalNavBar(verticalNavFlex: any) {
@@ -24,7 +25,8 @@ export function VerticalNavBar(verticalNavFlex: any) {
     setActiveRoute(route);
   };
 
-  {/*
+  {
+    /*
   useEffect(() => {
     if (verticalNavFlex.verticalNavFlex === 0.1) {
       setOpen(false);
@@ -32,7 +34,8 @@ export function VerticalNavBar(verticalNavFlex: any) {
       setOpen(true);
     }
   }, [verticalNavFlex]);
-  */}
+  */
+  }
 
   return (
     <div className="d-flex flex-column gap-2">
@@ -110,11 +113,15 @@ export function VerticalNavBar(verticalNavFlex: any) {
       </div>
       <div
         className={`d-flex flex-row justify-content-start align-items-center gap-2 nav-item rounded-3 p-2 ${
-          activeRoute === "/bookmarks" ? "active" : ""
+          activeRoute === "/favorite-events" ? "active" : ""
         }`}
-        onClick={() => handleNavigation("/bookmarks")}
+        onClick={() => handleNavigation("/favorite-events")}
       >
-        <BookmarkBorderRoundedIcon style={{ color: "#474D4B" }} />
+        <FavoriteIcon
+          style={{
+            color: activeRoute === "/favorite-events" ? "#FA4A4C" : "#474D4B",
+          }}
+        />
         {open && (
           <Typography
             variant="subtitle1"
@@ -122,7 +129,7 @@ export function VerticalNavBar(verticalNavFlex: any) {
             fontWeight={"bold"}
             style={{ color: "#474D4B" }}
           >
-            Bookmarks
+            Favorite events
           </Typography>
         )}
       </div>

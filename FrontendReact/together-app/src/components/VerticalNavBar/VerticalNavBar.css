@@ -14,6 +14,7 @@
   color: #4f62f4;
 }
 
-.nav-item:hover .MuiSvgIcon-root, .nav-item.active .MuiSvgIcon-root {
+.nav-item:hover .MuiSvgIcon-root,
+.nav-item.active .MuiSvgIcon-root {
   color: #4f62f4;
 }

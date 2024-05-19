@@ -30,6 +30,7 @@ public static class ServiceRegistration
         services.AddScoped<IEventService, EventService>();
         services.AddScoped<IAzureStorageService, AzureStorageService>();
         services.AddScoped<IFilterService, FilterService>();
+        services.AddScoped<IFavoriteService, FavoriteService>();
 
         services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 

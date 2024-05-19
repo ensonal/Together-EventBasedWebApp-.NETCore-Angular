@@ -16,10 +16,12 @@ export interface UserEvent {
     city: string;
     country: string;
     eventImageUrl: string;
+    isFavorite: boolean;
     userInfo: IUserInfo;
+
 }
 
-function convertUserEventToEnum(sportId: number, eventStatusId: number, sportExperienceId: number){
+function convertUserEventToEnum(sportId: number, eventStatusId: number, sportExperienceId: number) {
     return {
         sport: SportType[sportId],
         eventStatus: EventStatus[eventStatusId],
@@ -27,7 +29,7 @@ function convertUserEventToEnum(sportId: number, eventStatusId: number, sportExp
     }
 }
 
-function splitDateToMonthName(date: Date){
+function splitDateToMonthName(date: Date) {
     const monthNames = [
         "January",
         "February",
@@ -41,10 +43,10 @@ function splitDateToMonthName(date: Date){
         "October",
         "November",
         "December",
-      ];
+    ];
     return {
         month: monthNames[date.getMonth()],
     }
 }
 
-export { convertUserEventToEnum, splitDateToMonthName};
+export { convertUserEventToEnum, splitDateToMonthName };

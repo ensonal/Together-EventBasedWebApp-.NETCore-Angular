@@ -1,6 +1,6 @@
-namespace Together.DataAccess.Entities;
+namespace Together.Core.DTO.EventDTOs;
 
-public class UserEvent
+public class UserEventDto
 {
     public int UserEventId { get; set; }
     public string UserId { get; set; }
@@ -14,11 +14,5 @@ public class UserEvent
     public string City { get; set; }
     public string Country { get; set; }
     public string? EventImageUrl { get; set; }
-    
-    public virtual UserInfo UserInfo { get; set; }
-    public virtual Sport Sport { get; set; }
-    public virtual EventStatus EventStatus { get; set; }
-    public virtual SportExperience SportExperience { get; set; }
-    
-    public virtual ICollection<UserFavoriteEvent> UserFavoriteEvents { get; set; }
+    public bool IsFavorite { get; set; }
 }

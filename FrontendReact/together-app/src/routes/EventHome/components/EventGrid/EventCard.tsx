@@ -9,6 +9,12 @@ import {
   convertUserEventToEnum,
 } from "../../../../api/models/UserEvent";
 import { useNavigate } from "react-router-dom";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import {
+  addFavoriteEvent,
+  removeFromFavorites,
+} from "../../../../api/services/FavoriteService";
+import { useState } from "react";
 
 export function EventCard({ userEvent }: { userEvent: UserEvent }) {
   const { sport, eventStatus, sportExperience } = convertUserEventToEnum(
@@ -16,7 +22,7 @@ export function EventCard({ userEvent }: { userEvent: UserEvent }) {
     userEvent.eventStatusId,
     userEvent.sportExperienceId
   );
-
+  const [isFavorite, setIsFavorite] = useState(userEvent.isFavorite);
   const eventDate = new Date(userEvent.eventDate);
   const { month } = splitDateToMonthName(eventDate);
 
@@ -29,7 +35,20 @@ export function EventCard({ userEvent }: { userEvent: UserEvent }) {
       ? "warning"
       : "error";
 
+  const favIconColor = isFavorite ? "#FA4A4C" : "#929292";
+
   const navigate = useNavigate();
+
+  const handleFavClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    if (userEvent.isFavorite) {
+      setIsFavorite(false);
+      removeFromFavorites(userEvent.userEventId);
+    } else {
+      setIsFavorite(true);
+      addFavoriteEvent(userEvent.userEventId);
+    }
+  };
 
   return (
     <Card
@@ -66,9 +85,13 @@ export function EventCard({ userEvent }: { userEvent: UserEvent }) {
                 className="rounded-2"
               />
               <Chip label={sport} size="small" className="rounded-2" />
+              <FavoriteIcon
+                style={{ color: favIconColor, cursor: "pointer" }}
+                onClick={handleFavClick}
+              />
             </div>
           </div>
-          <div className="d-flex flex-column  overflow-hidden">
+          <div className="d-flex flex-column overflow-hidden">
             <div className="d-flex flex-row justify-content-start align-items-center gap-1 mt-1">
               <FmdGoodOutlinedIcon
                 fontSize="inherit"
@@ -85,7 +108,7 @@ export function EventCard({ userEvent }: { userEvent: UserEvent }) {
                   style={{ color: "#929292" }}
                 />
                 <Typography variant="body2" style={{ color: "#929292" }}>
-                  {eventDate.getDay()} {month}
+                  {eventDate.getDate()} {month}
                 </Typography>
               </div>
               <div className="d-flex flex-row justify-content-start align-items-center gap-1 mt-1">
