@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Together.Contracts;
 using Together.Core.DTO.EventDTOs;
+using Together.Core.Models.Common;
 using Together.Core.Models.EventModels;
 using Together.Core.Models.FilterModels;
 using Together.DataAccess;
@@ -64,12 +65,27 @@ public class EventService : IEventService
         return userEvents;
     }
     
-    public async Task<List<UserEvent>> GetAllEvents(EventFilterDto filter)
+    public async Task<PagedResponse<UserEvent>> GetAllEvents(EventFilterDto filter)
     {
-        var userEvents = _context.UserEvents.AsQueryable();
-        userEvents = ApplyFilters(userEvents, filter);
+        var userEventView = _context.UserEvents.AsQueryable();
+        userEventView = ApplyFilters(userEventView, filter);
         
-        return await userEvents.ToListAsync();
+        var userEvents = await userEventView
+            .Skip((filter.PageNumber - 1) * filter.PageSize)
+            .Take(filter.PageSize)
+            .ToListAsync();
+        
+        var totalCount = await userEventView.CountAsync();
+        
+        var pagedResponse = new PagedResponse<UserEvent>()
+        {
+            PageNumber = filter.PageNumber,
+            PageSize = filter.PageSize,
+            TotalCount = totalCount,
+            Data = userEvents
+        };
+        
+        return pagedResponse;
     }
     
     private IQueryable<UserEvent> ApplyFilters(IQueryable<UserEvent> userEvents, EventFilterDto filter)

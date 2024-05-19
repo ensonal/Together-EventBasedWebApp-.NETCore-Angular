@@ -12,8 +12,8 @@ export function EventGrid({ userEvents }: { userEvents: UserEvent[]}) {
         flexWrap="wrap"
         className="w-100"
       >
-        {userEvents.map((userEvent) => (
-          <EventCard key={userEvent.userEventId} userEvent={userEvent} />
+        {userEvents?.map((userEvent) => (
+          <EventCard key={userEvent?.userEventId} userEvent={userEvent} />
         ))}
       </Stack>
     </>

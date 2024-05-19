@@ -1,6 +1,8 @@
+using System.Web;
 using Microsoft.AspNetCore.Mvc;
 using Together.Contracts;
 using Together.Core.DTO.EventDTOs;
+using Together.Core.Models.Common;
 using Together.Core.Models.FilterModels;
 
 namespace Together.Controllers;
