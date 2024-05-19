@@ -15,7 +15,7 @@ export function UserEventsView({ userEvents }: { userEvents?: UserEvent[] }) {
           Show all
         </Typography>
       </div>
-      <div className="d-flex flex-row gap-3 flex-wrap">
+      <div className="d-flex flex-row gap-3 flex-wrap justify-content-center">
         {userEvents
           ? userEvents.map((event) => (
               <EventCard key={event.userEventId} userEvent={event} />

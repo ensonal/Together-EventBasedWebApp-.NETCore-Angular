@@ -32,7 +32,7 @@ export function EventInfoCard({ event }: { event: UserEvent }) {
       : "error";
 
   return (
-    <Box className="d-flex flex-column gap-3 ms-3 h-100" sx={{ flex: 1 }}>
+    <Box className="d-flex flex-column gap-3 h-100" sx={{ flex: 1 }}>
       <Card className="rounded-4 p-3" sx={{ height: 330, boxShadow: 0 }}>
         <div className="d-flex flex-column gap-2">
           <Typography
