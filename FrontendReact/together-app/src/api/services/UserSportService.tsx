@@ -15,6 +15,12 @@ export async function getAllUserSports() {
   return response as UserSport[];
 }
 
+export async function getUserSportsByUserId(userId: string) {
+  const url = `/Sport/GetUserSportsByUserId/${userId}`;
+  const response = await get(url);
+  return response as UserSport[];
+}
+
 export async function deleteUserSport(userSportId: number) {
   const url = `/Sport/DeleteUserSport/${userSportId}`;
   const response = await post(url);

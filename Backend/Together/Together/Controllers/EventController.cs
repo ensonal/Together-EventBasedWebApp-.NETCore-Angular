@@ -42,6 +42,14 @@ public class EventController : ControllerBase
     }
     
     [HttpGet]
+    [Route("GetUserEventsByUserId/{userId}")]
+    public async Task<IActionResult> GetUserEventsByUserId(string userId)
+    {
+        var result = await _eventService.GetUserEventsByUserId(userId);
+        return Ok(result);
+    }
+    
+    [HttpGet]
     [Route("GetAllEvents")]
     public async Task<IActionResult> GetAllEvents()
     {

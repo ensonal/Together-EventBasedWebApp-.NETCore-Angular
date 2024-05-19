@@ -42,6 +42,13 @@ public class EquipmentService : IEquipmentService
         return equipments;
     }
     
+    public async Task<List<UserEquipment>> GetUserEquipmentsByUserId(string userId)
+    {
+        var equipments = await _context.UserEquipments.Where(x => x.UserId == userId).ToListAsync();
+        
+        return equipments;
+    }
+    
     public async Task<bool> DeleteUserEquipment(int userEquipmentId, string token)
     {
         var userId = _jwtService.GetUserIdFromJWT(token);

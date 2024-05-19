@@ -40,6 +40,14 @@ public class SportController : ControllerBase
         return await _sportService.GetAllUserSport(token);
     }
     
+    [HttpGet]
+    [Route("GetUserSportsByUserId/{userId}")]
+    public async Task<UserSportResponseModel[]> GetUserSportsByUserId(string userId)
+    { 
+        var userSports =  await _sportService.GetUserSportsByUserId(userId);
+        return userSports;
+    }
+    
     [HttpPost]
     [Route("DeleteUserSport/{userSportId}")]
     public async Task<bool> DeleteUserSport(int userSportId)

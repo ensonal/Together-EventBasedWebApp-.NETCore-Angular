@@ -5,6 +5,7 @@ using Together.Contracts;
 using Together.Core.DTO;
 using Together.Core.Models;
 using Together.Core.Models.Common;
+using Together.DataAccess.Entities;
 
 
 namespace Together.Controllers;
@@ -112,9 +113,17 @@ public class UserController : ControllerBase
 
     }
     
+    [HttpGet]
+    [Route("GetUserInfo/{userId}")]
+    public async Task<UserInfo> GetUserInfo(string userId)
+    {
+        var userInfo = await _userService.GetUserInfo(userId);
+        return userInfo;
+    }
+    
     [HttpPost]
     [Route("editUserInfo")]
-    public async Task<UserInfoResponseModel> UserInfo(UserInfoDTO userInfoDTO)
+    public async Task<UserInfoResponseModel> EditUserInfo(UserInfoDTO userInfoDTO)
     {
         var token = HttpContext.Request.Headers.Authorization.ToString();
         var userInfo = await _userService.SettingUserInfo(userInfoDTO, token);

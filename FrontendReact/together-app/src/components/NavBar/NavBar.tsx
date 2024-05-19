@@ -4,17 +4,33 @@ import Authenticate from "./Authenticate";
 import { AuthenticatedNav } from "./AuthenticatedNav";
 import { DefaultNav } from "./DefaultNav";
 import newLogo from "../../assets/images/newLogo.png";
+import { useEffect, useState } from "react";
+import { getPadding } from "../../utils/getPaddingByScreenSize";
 
 export const NavBar = () => {
   const navigate = useNavigate();
   const { isAuthenticate, setIsAuthenticate, user } = Authenticate();
+  const [padding, setPadding] = useState(20);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setPadding(getPadding(window.innerWidth));
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <AppBar
       position="static"
       style={{
-        paddingLeft: "20rem",
-        paddingRight: "20rem",
+        paddingLeft: `${padding}rem`,
+        paddingRight: `${padding}rem`,
         backgroundColor: "#F1F2F6",
         marginTop: "0.5rem",
       }}
@@ -29,7 +45,7 @@ export const NavBar = () => {
           <img
             src={newLogo}
             alt="logo"
-            style={{ marginRight: "0.5rem", fontFamily: "cursive"}}
+            style={{ marginRight: "0.5rem", fontFamily: "cursive" }}
             onClick={() => {
               navigate("/");
             }}
@@ -39,14 +55,18 @@ export const NavBar = () => {
           />
           <Typography
             variant="h5"
-            sx={{ flexGrow: 1, color: "#3D52F3", fontWeight: "bolder"}}
+            sx={{ flexGrow: 1, color: "#3D52F3", fontWeight: "bolder" }}
             onClick={() => {
               navigate("/");
             }}
           >
             Together
           </Typography>
-          {isAuthenticate && user ? <AuthenticatedNav user={user} /> : <DefaultNav />}
+          {isAuthenticate && user ? (
+            <AuthenticatedNav user={user} />
+          ) : (
+            <DefaultNav />
+          )}
         </Toolbar>
       </Container>
     </AppBar>

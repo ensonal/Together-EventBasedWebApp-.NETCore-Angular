@@ -9,8 +9,6 @@ export function EventDetailsPage() {
   const [event, setEvent] = useState<UserEvent>();
   const { eventId } = useParams();
 
-  console.log(event);
-
   useEffect(() => {
     if (eventId) {
       const numericEventId = parseInt(eventId, 10);

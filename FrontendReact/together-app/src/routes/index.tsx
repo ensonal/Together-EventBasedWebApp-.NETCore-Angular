@@ -9,27 +9,29 @@ import { VerticalNavBar } from "../components/VerticalNavBar/VerticalNavBar";
 import { useEffect, useState } from "react";
 import { EventsPage } from "./EventHome/EventsPage";
 import { EventDetailsPage } from "./EventDetails/EventDetailsPage";
+import { UserViewPage } from "./UserView/UserViewPage";
+import { getPadding} from "../utils/getPaddingByScreenSize";
 
 export default function Routes() {
   const location = useLocation();
-
   const [verticalNavFlex, setVerticalNavFlex] = useState(1);
+  const [padding, setPadding] = useState(20);
 
   const isRegisterOrLogin =
     location.pathname === "/register" || location.pathname === "/login";
 
-  {
-    /*
   useEffect(() => {
-    location.pathname === "/register" || location.pathname === "/login"
-      ? setVerticalNavFlex(0)
-      : setVerticalNavFlex(1);
-    location.pathname === "/events"
-      ? setVerticalNavFlex(0.1)
-      : setVerticalNavFlex(1);
-  }, [location.pathname]);
-  */
-  }
+    const handleResize = () => {
+      setPadding(getPadding(window.innerWidth));
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <BaseRoutes>
@@ -44,8 +46,8 @@ export default function Routes() {
                 minHeight: "100vh",
                 display: "flex",
                 flexDirection: "column",
-                paddingLeft: !isRegisterOrLogin ? "20rem" : 0,
-                paddingRight: !isRegisterOrLogin ? "20rem" : 0,
+                paddingLeft: !isRegisterOrLogin ? `${padding}rem` : 0,
+                paddingRight: !isRegisterOrLogin ? `${padding}rem` : 0,
               }}
             >
               {isRegisterOrLogin ? (
@@ -78,6 +80,7 @@ export default function Routes() {
         <Route path="create-event" element={<CreateEventPage />} />
         <Route path="events" element={<EventsPage />} />
         <Route path="event/:eventId" element={<EventDetailsPage />} />
+        <Route path="user/:userId" element={<UserViewPage />} />
       </Route>
     </BaseRoutes>
   );

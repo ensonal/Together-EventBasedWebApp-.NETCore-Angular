@@ -11,4 +11,5 @@ public interface IEventService
     Task<List<UserEvent>> GetUserEvents(string token);
     Task<List<UserEvent>> GetAllEvents();
     Task<UserEventResponseModel> GetEventById(int userEventId);
+    Task<List<UserEvent>> GetUserEventsByUserId(string userId);
 }

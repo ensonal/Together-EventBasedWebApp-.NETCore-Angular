@@ -2,10 +2,17 @@ import { Typography } from "@mui/material";
 import { UserEvent } from "../../../api/models/UserEvent";
 import PersonOutlineRoundedIcon from '@mui/icons-material/PersonOutlineRounded';
 import ShareLocationRoundedIcon from '@mui/icons-material/ShareLocationRounded';
+import { useNavigate } from "react-router-dom";
 
 export function EventOwnerInfo({ event }: { event: UserEvent }) {
+  const navigate = useNavigate();
+
+  const handleUserViewClick = () => {
+    navigate(`/user/${event.userInfo.userID}`);
+  }
+
   return (
-    <div className="d-flex flex-row gap-4">
+    <div className="d-flex flex-row gap-3" style={{cursor: 'pointer'}} onClick={() => handleUserViewClick()}>
       <img
         src={event?.userInfo.profileImageUrl}
         alt="profile"

@@ -13,6 +13,12 @@ export async function getUserEvents() {
   return response;
 }
 
+export async function getUserEventsByUserId(userId: string) {
+  const url = `/Event/GetUserEventsByUserId/${userId}`;
+  const response = await get(url);
+  return response;
+}
+
 export async function deleteUserEvent(userEventId: number) {
   const url = `/Event/DeleteUserEvent/${userEventId}`;
   const response = await post(url);
