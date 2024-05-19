@@ -25,8 +25,8 @@ export async function deleteUserEvent(userEventId: number) {
   return response;
 }
 
-export async function getAllEvents() {
-  const url = "/Event/GetAllEvents";
+export async function getAllEvents(filters = {}) {
+  const url = constructUrlWithFilters("/Event/GetAllEvents", filters);
   const response = await get(url);
   return response;
 }
@@ -35,4 +35,9 @@ export async function getEventById(eventId: number) {
   const url = `/Event/GetEventById/${eventId}`;
   const response = await get(url);
   return response;
+}
+
+function constructUrlWithFilters(baseUrl: string, filters: any) {
+  const queryParams = new URLSearchParams(filters).toString();
+  return `${baseUrl}?${queryParams}`;
 }

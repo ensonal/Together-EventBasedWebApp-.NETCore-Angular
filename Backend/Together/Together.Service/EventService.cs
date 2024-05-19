@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Together.Contracts;
 using Together.Core.DTO.EventDTOs;
 using Together.Core.Models.EventModels;
+using Together.Core.Models.FilterModels;
 using Together.DataAccess;
 using Together.DataAccess.Entities;
 
@@ -63,12 +64,39 @@ public class EventService : IEventService
         return userEvents;
     }
     
-    public async Task<List<UserEvent>> GetAllEvents()
+    public async Task<List<UserEvent>> GetAllEvents(EventFilterDto filter)
     {
-        var userEvents = await _context.UserEvents.ToListAsync();
-        return userEvents;
+        var userEvents = _context.UserEvents.AsQueryable();
+        userEvents = ApplyFilters(userEvents, filter);
+        
+        return await userEvents.ToListAsync();
     }
     
+    private IQueryable<UserEvent> ApplyFilters(IQueryable<UserEvent> userEvents, EventFilterDto filter)
+    {
+        if (filter.SportId != null)
+        {
+            userEvents = userEvents.Where(x => x.SportId == filter.SportId);
+        }
+        
+        if (filter.SportExperienceId != null)
+        {
+            userEvents = userEvents.Where(x => x.SportExperienceId == filter.SportExperienceId);
+        }
+        
+        if (filter.DateFrom != null)
+        {
+            userEvents = userEvents.Where(x => x.EventDate >= filter.DateFrom);
+        }
+        
+        if (filter.DateTo != null)
+        {
+            userEvents = userEvents.Where(x => x.EventDate <= filter.DateTo);
+        }
+        
+        return userEvents;
+    }
+
     public async Task<List<UserEvent>> GetUserEventsByUserId(string userId)
     {
         var userEvents = await _context.UserEvents.Where(x => x.UserId == userId).ToListAsync();
