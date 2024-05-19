@@ -17,7 +17,7 @@ export function EventGrid() {
   return (
     <>
       <Stack
-        spacing={{ xs: 1, sm: 2, md: 3 }}
+        spacing={{ xs: 0.5, sm: 1, md: 1.5 }}
         direction="row"
         useFlexGap
         flexWrap="wrap"
