@@ -9,7 +9,7 @@ import { getPadding } from "../../utils/getPaddingByScreenSize";
 
 export const NavBar = () => {
   const navigate = useNavigate();
-  const { isAuthenticate, setIsAuthenticate, user } = Authenticate();
+  const { isAuthenticate, user } = Authenticate();
   const [padding, setPadding] = useState(20);
 
   useEffect(() => {

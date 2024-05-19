@@ -14,7 +14,7 @@ import { getPadding} from "../utils/getPaddingByScreenSize";
 
 export default function Routes() {
   const location = useLocation();
-  const [verticalNavFlex, setVerticalNavFlex] = useState(1);
+  const [verticalNavFlex] = useState(1);
   const [padding, setPadding] = useState(20);
 
   const isRegisterOrLogin =
