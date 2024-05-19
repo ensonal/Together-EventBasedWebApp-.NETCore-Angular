@@ -9,8 +9,8 @@ export function DateFilter() {
     <div className="p-0">
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer components={["DatePicker", "DatePicker"]} sx={{padding: 0}}>
-          <DatePicker label="Date From" name="DateFrom" className="w-100"/>
-          <DatePicker label="Date To" name="DateTo" className="w-100" />
+          <DatePicker label="Date From" name="DateFrom" className="w-100" disableHighlightToday={true} slotProps={{ textField: { size: 'small' } }}/>
+          <DatePicker label="Date To" name="DateTo" className="w-100" disableHighlightToday={true} slotProps={{ textField: { size: 'small' } }}/>
         </DemoContainer>
       </LocalizationProvider>
     </div>

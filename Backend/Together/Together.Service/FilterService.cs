@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Together.Contracts;
 using Together.Core.Models.FilterModels;
 using Together.DataAccess;
 
 namespace Together.Service;
 
-public class FilterService
+public class FilterService : IFilterService
 {
     private readonly TogetherDbContext _context;
     
@@ -20,8 +21,8 @@ public class FilterService
             .Select(
                 x => new SportFilterModel
                 {
-                    Id = x.SportId,
-                    Name = x.Sport.Name
+                    SportId = x.SportId,
+                    Name = x.Sport.Name,
                 })
             .Distinct()
             .ToListAsync();
@@ -35,14 +36,12 @@ public class FilterService
             .Select(
                 x => new SportExperienceFilterModel
                 {
-                    Id = x.SportExperienceId,
-                    Name = x.SportExperience.Level
+                    SportExperienceId = x.SportExperienceId,
+                    Level = x.SportExperience.Level
                 })
             .Distinct()
             .ToListAsync();
         
         return events;
     }
-    
-    
 }

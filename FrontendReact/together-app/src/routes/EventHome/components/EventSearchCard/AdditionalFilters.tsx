@@ -4,13 +4,31 @@ import { DateFilter } from "./DateFilter";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import FilterListRoundedIcon from "@mui/icons-material/FilterListRounded";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { GetSportFilters, GetSportExperienceFilters } from "../../../../api/services/FilterService";
+import { SportExperience } from "../../../../api/models/SportExperience";
+import { Sport } from "../../../../api/models/Sport";
 
 export function AdditionalFilters() {
   const [open, setOpen] = React.useState(false);
+  const [sportFilter, setSportFilter] = useState<Sport[]>([]);
+  const [sportExperienceFilter, setSportExperienceFilter] = useState<SportExperience[]>([]);
+
   const handleClick = () => {
     setOpen(!open);
   };
+
+  useEffect(() => {
+    GetSportFilters().then((res) => {
+      setSportFilter(res);
+    });
+    GetSportExperienceFilters().then((res) => {
+      setSportExperienceFilter(res);
+    });
+  }, []);
+
+
+
 
   return (
     <>
@@ -39,36 +57,16 @@ export function AdditionalFilters() {
           <>
             <TextField
               select
-              label="City"
-              variant="outlined"
-              fullWidth
-              size="small"
-            >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </TextField>
-            <TextField
-              select
-              label="Country"
-              variant="outlined"
-              fullWidth
-              size="small"
-            >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </TextField>
-            <TextField
-              select
               label="Sport type"
               variant="outlined"
               fullWidth
               size="small"
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              {sportFilter.map((sport) => (
+                <MenuItem key={sport.sportId} value={sport.sportId}>
+                  {sport.name}
+                </MenuItem>
+              ))}
             </TextField>
             <TextField
               select
@@ -77,14 +75,17 @@ export function AdditionalFilters() {
               fullWidth
               size="small"
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              {sportExperienceFilter.map((sportExperience) => (
+                <MenuItem key={sportExperience.sportExperienceId} value={sportExperience.sportExperienceId}>
+                  {sportExperience.level}
+                </MenuItem>
+              ))}
             </TextField>
+            <DateFilter />
           </>
         )}
       </div>
-      {open && <DateFilter />}
+
     </>
   );
 }
