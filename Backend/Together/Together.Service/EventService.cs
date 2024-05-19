@@ -90,6 +90,14 @@ public class EventService : IEventService
     
     private IQueryable<UserEvent> ApplyFilters(IQueryable<UserEvent> userEvents, EventFilterDto filter)
     {
+        if (!string.IsNullOrEmpty(filter.SearchQuery))
+        {
+            userEvents = userEvents.Where(x => 
+                x.Title.Contains(filter.SearchQuery) 
+                || x.Description.Contains(filter.SearchQuery)
+                || x.City.Contains(filter.SearchQuery)
+                || x.Country.Contains(filter.SearchQuery));
+        }
         if (filter.SportId != null)
         {
             userEvents = userEvents.Where(x => x.SportId == filter.SportId);
