@@ -114,12 +114,14 @@ public class EventService : IEventService
     {
         if (!string.IsNullOrEmpty(filter.SearchQuery))
         {
+            var searchQueryLower = filter.SearchQuery.ToLower();
             userEvents = userEvents.Where(x => 
-                x.Title.Contains(filter.SearchQuery) 
-                || x.Description.Contains(filter.SearchQuery)
-                || x.City.Contains(filter.SearchQuery)
-                || x.Country.Contains(filter.SearchQuery));
+                x.Title.ToLower().Contains(searchQueryLower) 
+                || x.Description.ToLower().Contains(searchQueryLower)
+                || x.City.ToLower().Contains(searchQueryLower)
+                || x.Country.ToLower().Contains(searchQueryLower));
         }
+        
         if (filter.SportId != null)
         {
             userEvents = userEvents.Where(x => x.SportId == filter.SportId);
