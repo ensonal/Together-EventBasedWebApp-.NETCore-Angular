@@ -4,17 +4,17 @@ import PersonOutlineRoundedIcon from '@mui/icons-material/PersonOutlineRounded';
 import ShareLocationRoundedIcon from '@mui/icons-material/ShareLocationRounded';
 import { useNavigate } from "react-router-dom";
 
-export function EventOwnerInfo({ event }: { event: UserEvent }) {
+export function EventOwnerInfo({ userEvent }: { userEvent: UserEvent }) {
   const navigate = useNavigate();
 
   const handleUserViewClick = () => {
-    navigate(`/user/${event.userInfo.userID}`);
+    navigate(`/user/${userEvent.userInfo.userID}`);
   }
 
   return (
     <div className="d-flex flex-row gap-3" style={{cursor: 'pointer'}} onClick={() => handleUserViewClick()}>
       <img
-        src={event?.userInfo.profileImageUrl}
+        src={userEvent?.userInfo.profileImageUrl}
         alt="profile"
         className="rounded-circle shadow"
         style={{ width: 50, height: 50, objectFit: "cover" }}
@@ -26,14 +26,14 @@ export function EventOwnerInfo({ event }: { event: UserEvent }) {
             variant="body2"
             style={{ color: "#505050", fontSize: 16}}
           >
-            {event?.userInfo.name} {event?.userInfo.surname} (
-            {event?.userInfo.userName})
+            {userEvent?.userInfo.name} {userEvent?.userInfo.surname} (
+            {userEvent?.userInfo.userName})
           </Typography>
         </div>
         <div className="d-flex flex-row gap-2 align-items-center">
         <ShareLocationRoundedIcon style={{ color: "#505050" }} fontSize="small" />
         <Typography variant="body2" style={{ color: "#505050", fontSize: 16 }}>
-          {event?.userInfo.city} - {event?.userInfo.country}
+          {userEvent?.userInfo.city} - {userEvent?.userInfo.country}
         </Typography>
         </div>
       </div>

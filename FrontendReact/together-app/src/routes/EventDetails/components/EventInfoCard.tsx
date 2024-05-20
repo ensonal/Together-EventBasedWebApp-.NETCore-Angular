@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { UserEvent } from "../../../api/models/UserEvent";
 import { Box } from "@mui/system";
 import {
@@ -11,15 +11,20 @@ import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import { Button, Card, Divider, Typography } from "@mui/material";
 import { EventOwnerInfo } from "./EventOwnerInfo";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import {
+  addFavoriteEvent,
+  removeFromFavorites,
+} from "../../../api/services/FavoriteService";
 
-export function EventInfoCard({ event }: { event: UserEvent }) {
+export function EventInfoCard({ userEvent }: { userEvent: UserEvent }) {
   const { sport, eventStatus, sportExperience } = convertUserEventToEnum(
-    event?.sportId,
-    event?.eventStatusId,
-    event?.sportExperienceId
+    userEvent?.sportId,
+    userEvent?.eventStatusId,
+    userEvent?.sportExperienceId
   );
-
-  const eventDate = new Date(event.eventDate);
+  const [isFavorite, setIsFavorite] = useState(userEvent.isFavorite);
+  const eventDate = new Date(userEvent.eventDate);
   const { month } = splitDateToMonthName(eventDate);
 
   const chipColor =
@@ -31,16 +36,35 @@ export function EventInfoCard({ event }: { event: UserEvent }) {
       ? "warning"
       : "error";
 
+  const favIconColor = isFavorite ? "#FA4A4C" : "#929292";
+
+  const handleFavClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    if (userEvent.isFavorite) {
+      setIsFavorite(false);
+      removeFromFavorites(userEvent.userEventId);
+    } else {
+      setIsFavorite(true);
+      addFavoriteEvent(userEvent.userEventId);
+    }
+  };
+
   return (
     <Box className="d-flex flex-column gap-3 h-100" sx={{ flex: 1 }}>
       <Card className="rounded-4 p-3" sx={{ height: 330, boxShadow: 0 }}>
         <div className="d-flex flex-column gap-2">
-          <Typography
-            variant="body1"
-            sx={{ fontWeight: "bold", fontSize: 20, color: "#404040" }}
-          >
-            {event?.title}
-          </Typography>
+          <div className="d-flex flex-row justify-content-between align-items-center">
+            <Typography
+              variant="body1"
+              sx={{ fontWeight: "bold", fontSize: 20, color: "#404040" }}
+            >
+              {userEvent?.title}
+            </Typography>
+            <FavoriteIcon
+              style={{ color: favIconColor, cursor: "pointer" }}
+              onClick={handleFavClick}
+            />
+          </div>
           <div className="d-flex flex-row justify-content-start gap-1 mt-1">
             <Chip
               label={sportExperience}
@@ -57,7 +81,7 @@ export function EventInfoCard({ event }: { event: UserEvent }) {
                 variant="body2"
                 style={{ color: "#505050", fontSize: 16 }}
               >
-                {event.city} / {event.country}
+                {userEvent.city} / {userEvent.country}
               </Typography>
             </div>
             <div className="d-flex flex-row gap-2 align-items-center">
@@ -86,7 +110,7 @@ export function EventInfoCard({ event }: { event: UserEvent }) {
           </div>
         </div>
         <Divider className="mt-3 mb-3" />
-        <EventOwnerInfo event={event} />
+        <EventOwnerInfo userEvent={userEvent} />
         <Divider className="mt-3 mb-3" />
         <Button variant="contained" color="primary" fullWidth>
           Join event

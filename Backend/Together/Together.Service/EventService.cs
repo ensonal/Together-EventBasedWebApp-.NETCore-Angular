@@ -155,6 +155,9 @@ public class EventService : IEventService
             .Include(x => x.UserInfo)
             .FirstOrDefaultAsync(x => x.UserEventId == userEventId);
         
+        var isFavoriteEvent = await _context.UserFavoriteEvents
+            .AnyAsync(x => x.EventId == userEventId);
+        
         var userEventResponseModel = new UserEventResponseModel()
         {
             UserEventId = userEvent!.UserEventId,
@@ -169,6 +172,7 @@ public class EventService : IEventService
             City = userEvent.City,
             Country = userEvent.Country,
             EventImageUrl = userEvent.EventImageUrl,
+            IsFavorite = isFavoriteEvent,
             UserInfo = new UserInfo()
             {
                 UserID = userEvent.UserInfo.UserID,

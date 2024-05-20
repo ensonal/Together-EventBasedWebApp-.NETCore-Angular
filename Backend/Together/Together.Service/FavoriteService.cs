@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Together.Contracts;
+using Together.Core.DTO.EventDTOs;
 using Together.DataAccess;
 using Together.DataAccess.Entities;
 
@@ -47,13 +48,31 @@ public class FavoriteService : IFavoriteService
         return false;
     }
     
-    public async Task<List<UserEvent>> GetUserFavoriteEvents(string token)
+    public async Task<List<UserEventDto>> GetUserFavoriteEvents(string token)
     {
         var userId = _jwtService.GetUserIdFromJWT(token);
-        return await _context.UserFavoriteEvents
+        var userFavoriteEvents = await _context.UserFavoriteEvents
             .Where(ufe => ufe.UserId == userId)
-            .Select(ufe => ufe.UserEvent)
+            .Select(ufe => new UserEventDto
+            {
+                UserEventId = ufe.UserEvent.UserEventId,
+                UserId = ufe.UserEvent.UserId,
+                SportId = ufe.UserEvent.SportId,
+                EventStatusId = ufe.UserEvent.EventStatusId,
+                SportExperienceId = ufe.UserEvent.SportExperienceId,
+                Title = ufe.UserEvent.Title,
+                Description = ufe.UserEvent.Description,
+                EventDate = ufe.UserEvent.EventDate,
+                EventHour = ufe.UserEvent.EventHour,
+                City = ufe.UserEvent.City,
+                Country = ufe.UserEvent.Country,
+                EventImageUrl = ufe.UserEvent.EventImageUrl,
+                IsFavorite = ufe.UserEvent.UserFavoriteEvents.Any()
+
+            })
             .ToListAsync();
+        
+        return userFavoriteEvents;
     }
     
 }

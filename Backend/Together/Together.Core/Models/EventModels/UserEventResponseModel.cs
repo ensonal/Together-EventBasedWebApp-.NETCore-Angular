@@ -16,5 +16,6 @@ public class UserEventResponseModel
     public string City { get; set; }
     public string Country { get; set; }
     public string? EventImageUrl { get; set; }
+    public bool IsFavorite { get; set; }
     public UserInfo UserInfo { get; set; }
 }
