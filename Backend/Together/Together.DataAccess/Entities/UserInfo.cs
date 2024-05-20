@@ -16,5 +16,6 @@ public class UserInfo
     public string? ProfileImageUrl { get; set; }
     
     public virtual ICollection<UserEvent> UserEvents { get; set; }
+    public virtual ICollection<UserFavoriteEvent> UserFavoriteEvents { get; set; }
     
 }

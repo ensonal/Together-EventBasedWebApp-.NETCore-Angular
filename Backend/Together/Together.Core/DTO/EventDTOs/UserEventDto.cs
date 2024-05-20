@@ -1,8 +1,6 @@
-using Together.DataAccess.Entities;
+namespace Together.Core.DTO.EventDTOs;
 
-namespace Together.Core.Models.EventModels;
-
-public class UserEventResponseModel
+public class UserEventDto
 {
     public int UserEventId { get; set; }
     public string UserId { get; set; }
@@ -17,5 +15,4 @@ public class UserEventResponseModel
     public string Country { get; set; }
     public string? EventImageUrl { get; set; }
     public bool IsFavorite { get; set; }
-    public UserInfo UserInfo { get; set; }
 }

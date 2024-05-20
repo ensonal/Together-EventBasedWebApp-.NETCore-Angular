@@ -56,7 +56,8 @@ public class EventController : ControllerBase
     [Route("GetAllEvents")]
     public async Task<IActionResult> GetAllEvents([FromQuery] EventFilterDto filter)
     {
-        var result = await _eventService.GetAllEvents(filter);
+        var token = HttpContext.Request.Headers.Authorization.ToString();
+        var result = await _eventService.GetAllEvents(filter, token);
         return Ok(result);
     }
     

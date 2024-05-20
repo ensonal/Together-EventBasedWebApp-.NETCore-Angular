@@ -10,7 +10,8 @@ import { useEffect, useState } from "react";
 import { EventsPage } from "./EventHome/EventsPage";
 import { EventDetailsPage } from "./EventDetails/EventDetailsPage";
 import { UserViewPage } from "./UserView/UserViewPage";
-import { getPadding} from "../utils/getPaddingByScreenSize";
+import { getPadding } from "../utils/getPaddingByScreenSize";
+import { FavoriteEventsPage } from "../routes/FavoriteEvents/FavoriteEventsPage";
 
 export default function Routes() {
   const location = useLocation();
@@ -81,6 +82,7 @@ export default function Routes() {
         <Route path="events" element={<EventsPage />} />
         <Route path="event/:eventId" element={<EventDetailsPage />} />
         <Route path="user/:userId" element={<UserViewPage />} />
+        <Route path="favorite-events" element={<FavoriteEventsPage />} />
       </Route>
     </BaseRoutes>
   );

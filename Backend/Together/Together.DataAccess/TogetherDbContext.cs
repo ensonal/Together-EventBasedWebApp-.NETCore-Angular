@@ -21,6 +21,7 @@ public class TogetherDbContext : IdentityDbContext<IdentityUser>
     public DbSet<EventStatus> EventStatuses { get; set; }
     public DbSet<UserEventRequest> UserEventRequests { get; set; }
     public DbSet<EventRequestStatus> EventRequestStatuses { get; set; }
+    public DbSet<UserFavoriteEvent> UserFavoriteEvents { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -43,5 +44,16 @@ public class TogetherDbContext : IdentityDbContext<IdentityUser>
             .WithMany(ui => ui.UserEvents)
             .HasForeignKey(ue => ue.UserId)
             .HasPrincipalKey(ui => ui.UserID);
+
+        modelBuilder.Entity<UserFavoriteEvent>()
+            .HasOne(ufe => ufe.UserInfo)
+            .WithMany(ui => ui.UserFavoriteEvents)
+            .HasForeignKey(ui => ui.UserId);
+        
+        modelBuilder.Entity<UserFavoriteEvent>()
+            .HasOne(ufe => ufe.UserEvent)
+            .WithMany(ue => ue.UserFavoriteEvents)
+            .HasForeignKey(ufe => ufe.EventId);
+
     }
 }

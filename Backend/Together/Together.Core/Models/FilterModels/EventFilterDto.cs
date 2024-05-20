@@ -2,6 +2,7 @@ namespace Together.Core.Models.FilterModels;
 
 public class EventFilterDto
 { 
+        public string? SearchQuery { get; set; }
         public int? SportId { get; set; } 
         public int? SportExperienceId { get; set; }
         public DateTime? DateFrom { get; set; }

@@ -65,19 +65,41 @@ public class EventService : IEventService
         return userEvents;
     }
     
-    public async Task<PagedResponse<UserEvent>> GetAllEvents(EventFilterDto filter)
+    public async Task<PagedResponse<UserEventDto>> GetAllEvents(EventFilterDto filter, string token)
     {
+        var userId = _jwtService.GetUserIdFromJWT(token);
         var userEventView = _context.UserEvents.AsQueryable();
         userEventView = ApplyFilters(userEventView, filter);
+        
+        var userFavoriteEventIds = await _context.UserFavoriteEvents
+            .Where(ufe => ufe.UserId == userId)
+            .Select(ufe => ufe.EventId)
+            .ToListAsync();
         
         var userEvents = await userEventView
             .Skip((filter.PageNumber - 1) * filter.PageSize)
             .Take(filter.PageSize)
+            .Select(ue => new UserEventDto
+            {
+                UserEventId = ue.UserEventId,
+                UserId = ue.UserId,
+                SportId = ue.SportId,
+                EventStatusId = ue.EventStatusId,
+                SportExperienceId = ue.SportExperienceId,
+                Title = ue.Title,
+                Description = ue.Description,
+                EventDate = ue.EventDate,
+                EventHour = ue.EventHour,
+                City = ue.City,
+                Country = ue.Country,
+                EventImageUrl = ue.EventImageUrl,
+                IsFavorite = userFavoriteEventIds.Contains(ue.UserEventId)
+            })
             .ToListAsync();
         
         var totalCount = await userEventView.CountAsync();
         
-        var pagedResponse = new PagedResponse<UserEvent>()
+        var pagedResponse = new PagedResponse<UserEventDto>()
         {
             PageNumber = filter.PageNumber,
             PageSize = filter.PageSize,
@@ -90,6 +112,14 @@ public class EventService : IEventService
     
     private IQueryable<UserEvent> ApplyFilters(IQueryable<UserEvent> userEvents, EventFilterDto filter)
     {
+        if (!string.IsNullOrEmpty(filter.SearchQuery))
+        {
+            userEvents = userEvents.Where(x => 
+                x.Title.Contains(filter.SearchQuery) 
+                || x.Description.Contains(filter.SearchQuery)
+                || x.City.Contains(filter.SearchQuery)
+                || x.Country.Contains(filter.SearchQuery));
+        }
         if (filter.SportId != null)
         {
             userEvents = userEvents.Where(x => x.SportId == filter.SportId);
@@ -125,6 +155,9 @@ public class EventService : IEventService
             .Include(x => x.UserInfo)
             .FirstOrDefaultAsync(x => x.UserEventId == userEventId);
         
+        var isFavoriteEvent = await _context.UserFavoriteEvents
+            .AnyAsync(x => x.EventId == userEventId);
+        
         var userEventResponseModel = new UserEventResponseModel()
         {
             UserEventId = userEvent!.UserEventId,
@@ -139,6 +172,7 @@ public class EventService : IEventService
             City = userEvent.City,
             Country = userEvent.Country,
             EventImageUrl = userEvent.EventImageUrl,
+            IsFavorite = isFavoriteEvent,
             UserInfo = new UserInfo()
             {
                 UserID = userEvent.UserInfo.UserID,
