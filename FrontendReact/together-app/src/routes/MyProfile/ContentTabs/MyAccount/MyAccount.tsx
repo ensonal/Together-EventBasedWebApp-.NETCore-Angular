@@ -79,10 +79,6 @@ export function MyAccount() {
     }
   };
 
-  if (!userInfo) {
-    return <div>No user information available</div>;
-  }
-
   return loading ? (
     <MyAccountSkeleton />
   ) : (

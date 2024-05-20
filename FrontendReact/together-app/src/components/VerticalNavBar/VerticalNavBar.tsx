@@ -59,24 +59,6 @@ export function VerticalNavBar(verticalNavFlex: any) {
       </div>
       <div
         className={`d-flex flex-row justify-content-start align-items-center gap-2 nav-item rounded-3 p-2 ${
-          activeRoute === "/notifications" ? "active" : ""
-        }`}
-        onClick={() => handleNavigation("/notifications")}
-      >
-        <NotificationsNoneRoundedIcon style={{ color: "#474D4B" }} />
-        {open && (
-          <Typography
-            variant="subtitle1"
-            component="div"
-            fontWeight={"bold"}
-            style={{ color: "#474D4B" }}
-          >
-            Notifications
-          </Typography>
-        )}
-      </div>
-      <div
-        className={`d-flex flex-row justify-content-start align-items-center gap-2 nav-item rounded-3 p-2 ${
           activeRoute === "/events" ? "active" : ""
         }`}
         onClick={() => handleNavigation("/events")}
@@ -95,6 +77,32 @@ export function VerticalNavBar(verticalNavFlex: any) {
       </div>
       <div
         className={`d-flex flex-row justify-content-start align-items-center gap-2 nav-item rounded-3 p-2 ${
+          activeRoute === "/favorite-events" ? "active" : ""
+        }`}
+        onClick={() => handleNavigation("/favorite-events")}
+      >
+        <FavoriteIcon
+          style={{
+            color: activeRoute === "/favorite-events" ? "#FA4A4C" : "#474D4B",
+            filter:
+              activeRoute === "/favorite-events"
+                ? "drop-shadow(0 4px 8px rgba(250, 74, 76, 0.6))"
+                : "none",
+          }}
+        />
+        {open && (
+          <Typography
+            variant="subtitle1"
+            component="div"
+            fontWeight={"bold"}
+            style={{ color: "#474D4B" }}
+          >
+            Favorite events
+          </Typography>
+        )}
+      </div>
+      <div
+        className={`d-flex flex-row justify-content-start align-items-center gap-2 nav-item rounded-3 p-2 ${
           activeRoute === "/inbox" ? "active" : ""
         }`}
         onClick={() => handleNavigation("/inbox")}
@@ -108,28 +116,6 @@ export function VerticalNavBar(verticalNavFlex: any) {
             style={{ color: "#474D4B" }}
           >
             Inbox
-          </Typography>
-        )}
-      </div>
-      <div
-        className={`d-flex flex-row justify-content-start align-items-center gap-2 nav-item rounded-3 p-2 ${
-          activeRoute === "/favorite-events" ? "active" : ""
-        }`}
-        onClick={() => handleNavigation("/favorite-events")}
-      >
-        <FavoriteIcon
-          style={{
-            color: activeRoute === "/favorite-events" ? "#FA4A4C" : "#474D4B",
-          }}
-        />
-        {open && (
-          <Typography
-            variant="subtitle1"
-            component="div"
-            fontWeight={"bold"}
-            style={{ color: "#474D4B" }}
-          >
-            Favorite events
           </Typography>
         )}
       </div>

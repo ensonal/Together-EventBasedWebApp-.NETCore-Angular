@@ -36,12 +36,13 @@ export function EventCard({ userEvent }: { userEvent: UserEvent }) {
       : "error";
 
   const favIconColor = isFavorite ? "#FA4A4C" : "#929292";
+  const favIconShadow = isFavorite ? "drop-shadow(0 4px 8px rgba(250, 74, 76, 0.6))" : "";
 
   const navigate = useNavigate();
 
   const handleFavClick = (event: React.MouseEvent) => {
     event.stopPropagation();
-    if (userEvent.isFavorite) {
+    if (isFavorite) {
       setIsFavorite(false);
       removeFromFavorites(userEvent.userEventId);
     } else {
@@ -88,6 +89,7 @@ export function EventCard({ userEvent }: { userEvent: UserEvent }) {
               <FavoriteIcon
                 style={{ color: favIconColor, cursor: "pointer" }}
                 onClick={handleFavClick}
+                sx={{ filter: favIconShadow }}
               />
             </div>
           </div>
