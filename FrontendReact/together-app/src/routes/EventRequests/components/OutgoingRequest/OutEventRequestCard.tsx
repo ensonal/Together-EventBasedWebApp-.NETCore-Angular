@@ -72,7 +72,19 @@ export function OutEventRequestCard({ request }: { request: any }) {
           </div>
         </div>
         <div className="d-flex flex-column">
-          
+          {request.eventRequestStatusId === 1 ? (
+            <Typography variant="body2" style={{ color: "#929292" }}>
+              Confirmed
+            </Typography>
+          ) : request.eventRequestStatusId === 2 ? (
+            <Typography variant="body2" style={{ color: "#929292" }}>
+              Pending
+            </Typography>
+          ) : (
+            <Typography variant="body2" style={{ color: "#929292" }}>
+              Rejected
+            </Typography>
+          )}
         </div>
       </div>
     </Card>
