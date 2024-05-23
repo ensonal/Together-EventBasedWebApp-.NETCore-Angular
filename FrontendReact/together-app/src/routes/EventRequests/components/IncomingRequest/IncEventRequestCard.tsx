@@ -8,7 +8,10 @@ import ShareLocationRoundedIcon from "@mui/icons-material/ShareLocationRounded";
 import { splitDateToMonthName } from "../../../../api/models/UserEvent";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
-import { acceptRequestToJoinEvent, rejectRequestToJoinEvent } from "../../../../api/services/RequestManagementService";
+import {
+  acceptRequestToJoinEvent,
+  rejectRequestToJoinEvent,
+} from "../../../../api/services/RequestManagementService";
 
 export function IncEventRequestCard({ request }: { request: any }) {
   const navigate = useNavigate();
@@ -21,22 +24,22 @@ export function IncEventRequestCard({ request }: { request: any }) {
   };
 
   const handleAccept = () => {
-    acceptRequestToJoinEvent(request.eventRequestStatusId).then(() => {
+    acceptRequestToJoinEvent(request.userEventRequestId).then(() => {
       window.location.reload();
     });
-  }
+  };
 
   const handleReject = () => {
-    rejectRequestToJoinEvent(request.eventRequestStatusId).then(() => {
+    rejectRequestToJoinEvent(request.userEventRequestId).then(() => {
       window.location.reload();
     });
-  }
+  };
 
   return (
     <div className="d-flex flex-row gap-2 w-100">
       <Card
         className="rounded-4 p-3 shadow-sm w-100"
-        style={{ height: "auto", cursor: "pointer", flex: 3}}
+        style={{ height: "auto", cursor: "pointer", flex: 3 }}
         onClick={() => navigate(`/event/${request.eventView.userEventId}`)}
       >
         <div className="d-flex flex-row w-100 align-items-center justify-content-between">
@@ -95,7 +98,7 @@ export function IncEventRequestCard({ request }: { request: any }) {
         </div>
       </Card>
       <Card
-        sx={{ boxShadow: 0, flex: 1.5}}
+        sx={{ boxShadow: 0, flex: 1.5 }}
         className="d-flex flex-column w-100 align-self-start rounded-4 p-3 gap-2 shadow-sm h-100 w-100"
       >
         <div
