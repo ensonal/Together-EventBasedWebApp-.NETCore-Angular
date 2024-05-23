@@ -1,4 +1,4 @@
-import { Card, IconButton, Typography } from "@mui/material";
+import { Button, Card, IconButton, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
@@ -102,7 +102,7 @@ export function IncEventRequestCard({ request }: { request: any }) {
         className="d-flex flex-column w-100 align-self-start rounded-4 p-3 gap-2 shadow-sm h-100 w-100"
       >
         <div
-          className="d-flex flex-row gap-3"
+          className="d-flex flex-row gap-3 h-100"
           style={{ cursor: "pointer" }}
           onClick={() => handleUserViewClick()}
         >
@@ -139,13 +139,23 @@ export function IncEventRequestCard({ request }: { request: any }) {
             </div>
           </div>
         </div>
-        <div className="d-flex flex-row w-100 gap-1 justify-content-center align-self-end">
-          <IconButton onClick={() => handleAccept()}>
-            <CheckCircleRoundedIcon color="success" />
-          </IconButton>
-          <IconButton onClick={() => handleReject()}>
-            <CancelRoundedIcon color="warning" />
-          </IconButton>
+        <div className="d-flex flex-row w-100 gap-1 mt-1 justify-content-center align-self-end h-100">
+          <Button
+            variant="contained"
+            startIcon={<CheckCircleRoundedIcon />}
+            size="small"
+            color="success"
+          >
+            Accept
+          </Button>
+          <Button
+            variant="outlined"
+            startIcon={<CancelRoundedIcon />}
+            size="small"
+            color="error"
+          >
+            Reject
+          </Button>
         </div>
       </Card>
     </div>
