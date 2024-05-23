@@ -3,11 +3,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import InboxIcon from "@mui/icons-material/Inbox";
 import { Typography } from "@mui/material";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded";
+import CompareArrowsRoundedIcon from "@mui/icons-material/CompareArrowsRounded";
 import AutoModeRoundedIcon from "@mui/icons-material/AutoModeRounded";
-import BookmarkBorderRoundedIcon from "@mui/icons-material/BookmarkBorderRounded";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import CircleNotificationsRoundedIcon from "@mui/icons-material/CircleNotificationsRounded";
 import "./VerticalNavBar.css";
 
 export function VerticalNavBar(verticalNavFlex: any) {
@@ -45,7 +45,7 @@ export function VerticalNavBar(verticalNavFlex: any) {
         }`}
         onClick={() => handleNavigation("/")}
       >
-        <HomeRoundedIcon style={{ color: "#474D4B" }} />
+        <HomeRoundedIcon />
         {open && (
           <Typography
             variant="subtitle1"
@@ -59,11 +59,29 @@ export function VerticalNavBar(verticalNavFlex: any) {
       </div>
       <div
         className={`d-flex flex-row justify-content-start align-items-center gap-2 nav-item rounded-3 p-2 ${
+          activeRoute === "/notifications" ? "active" : ""
+        }`}
+        onClick={() => handleNavigation("/notifications")}
+      >
+        <CircleNotificationsRoundedIcon />
+        {open && (
+          <Typography
+            variant="subtitle1"
+            component="div"
+            fontWeight={"bold"}
+            style={{ color: "#474D4B" }}
+          >
+            Notifications
+          </Typography>
+        )}
+      </div>
+      <div
+        className={`d-flex flex-row justify-content-start align-items-center gap-2 nav-item rounded-3 p-2 ${
           activeRoute === "/events" ? "active" : ""
         }`}
         onClick={() => handleNavigation("/events")}
       >
-        <AutoModeRoundedIcon style={{ color: "#474D4B" }} />
+        <AutoModeRoundedIcon />
         {open && (
           <Typography
             variant="subtitle1"
@@ -72,6 +90,24 @@ export function VerticalNavBar(verticalNavFlex: any) {
             style={{ color: "#474D4B" }}
           >
             Events
+          </Typography>
+        )}
+      </div>
+      <div
+        className={`d-flex flex-row justify-content-start align-items-center gap-2 nav-item rounded-3 p-2 ${
+          activeRoute === "/event-requests" ? "active" : ""
+        }`}
+        onClick={() => handleNavigation("/event-requests")}
+      >
+        <CompareArrowsRoundedIcon />
+        {open && (
+          <Typography
+            variant="subtitle1"
+            component="div"
+            fontWeight={"bold"}
+            style={{ color: "#474D4B" }}
+          >
+            Event requests
           </Typography>
         )}
       </div>
@@ -107,7 +143,7 @@ export function VerticalNavBar(verticalNavFlex: any) {
         }`}
         onClick={() => handleNavigation("/inbox")}
       >
-        <InboxIcon style={{ color: "#474D4B" }} />
+        <InboxIcon />
         {open && (
           <Typography
             variant="subtitle1"
@@ -125,7 +161,7 @@ export function VerticalNavBar(verticalNavFlex: any) {
         }`}
         onClick={() => handleNavigation("/my-profile")}
       >
-        <AccountCircleRoundedIcon style={{ color: "#474D4B" }} />
+        <AccountCircleRoundedIcon />
         {open && (
           <Typography
             variant="subtitle1"
