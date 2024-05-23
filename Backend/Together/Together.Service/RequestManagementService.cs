@@ -124,20 +124,30 @@ public class RequestManagementService : IRequestManagementService
         return requests;
     }
 
-    public async Task<List<UserEventRequest>> GetOutgoingRequest(string token)
+    public async Task<List<OutgoingRequestResponseModel>> GetOutgoingRequest(string token)
     {
         var userId = _jwtService.GetUserIdFromJWT(token);
         
         var requests = await _context.UserEventRequests
             .Where(x => x.GuestUserId == userId)
-            .Select(x => new UserEventRequest()
+            .Select(x => new OutgoingRequestResponseModel()
             {
                 UserEventRequestId = x.UserEventRequestId,
                 UserEventId = x.UserEventId,
                 OwnerUserId = x.OwnerUserId,
                 GuestUserId = x.GuestUserId,
                 EventRequestStatusId = x.EventRequestStatusId,
-                RequestDate = x.RequestDate
+                RequestDate = x.RequestDate,
+                EventView = new EventViewModel()
+                {
+                    UserEventId = x.UserEvent.UserEventId,
+                    Title = x.UserEvent.Title,
+                    EventDate = x.UserEvent.EventDate,
+                    EventHour = x.UserEvent.EventHour,
+                    City = x.UserEvent.City,
+                    Country = x.UserEvent.Country,
+                    EventImageUrl = x.UserEvent.EventImageUrl
+                }
             })
             .ToListAsync();
         

@@ -11,7 +11,6 @@ export function IncomingRequestCard() {
     });
   }, []);
 
-  console.log("Incoming Request: ", request);
 
   return (
     <Stack
