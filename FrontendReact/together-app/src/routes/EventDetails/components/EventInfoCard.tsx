@@ -16,6 +16,7 @@ import {
   addFavoriteEvent,
   removeFromFavorites,
 } from "../../../api/services/FavoriteService";
+import { sendRequestToJoinEvent } from "../../../api/services/RequestManagementService";
 
 export function EventInfoCard({ userEvent }: { userEvent: UserEvent }) {
   const { sport, eventStatus, sportExperience } = convertUserEventToEnum(
@@ -37,10 +38,13 @@ export function EventInfoCard({ userEvent }: { userEvent: UserEvent }) {
       : "error";
 
   const favIconColor = isFavorite ? "#FA4A4C" : "#929292";
+  const favIconShadow = isFavorite
+    ? "drop-shadow(0 4px 8px rgba(250, 74, 76, 0.6))"
+    : "";
 
   const handleFavClick = (event: React.MouseEvent) => {
     event.stopPropagation();
-    if (userEvent.isFavorite) {
+    if (isFavorite) {
       setIsFavorite(false);
       removeFromFavorites(userEvent.userEventId);
     } else {
@@ -48,6 +52,14 @@ export function EventInfoCard({ userEvent }: { userEvent: UserEvent }) {
       addFavoriteEvent(userEvent.userEventId);
     }
   };
+
+  const handleEditClick = () => {
+    console.log("Edit event");
+  }
+
+  const handleJoinClick = () => {
+    sendRequestToJoinEvent(userEvent.userId, userEvent.userEventId);
+  }
 
   return (
     <Box className="d-flex flex-column gap-3 h-100" sx={{ flex: 1 }}>
@@ -63,6 +75,7 @@ export function EventInfoCard({ userEvent }: { userEvent: UserEvent }) {
             <FavoriteIcon
               style={{ color: favIconColor, cursor: "pointer" }}
               onClick={handleFavClick}
+              sx={{ filter: favIconShadow }}
             />
           </div>
           <div className="d-flex flex-row justify-content-start gap-1 mt-1">
@@ -111,10 +124,16 @@ export function EventInfoCard({ userEvent }: { userEvent: UserEvent }) {
         </div>
         <Divider className="mt-3 mb-3" />
         <EventOwnerInfo userEvent={userEvent} />
-        <Divider className="mt-3 mb-3" />
-        <Button variant="contained" color="primary" fullWidth>
-          Join event
-        </Button>
+        <Divider className="mt-2 mb-3" />
+        {localStorage.getItem("id") === userEvent.userId ? (
+          <Button variant="contained" color="primary" fullWidth onClick={handleEditClick}>
+            Edit event
+          </Button>
+        ) : (
+          <Button variant="contained" color="primary" fullWidth onClick={handleJoinClick}>
+            Join event
+          </Button>
+        )}
       </Card>
     </Box>
   );

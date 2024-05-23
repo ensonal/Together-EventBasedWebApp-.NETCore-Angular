@@ -17,5 +17,5 @@ public class UserInfo
     
     public virtual ICollection<UserEvent> UserEvents { get; set; }
     public virtual ICollection<UserFavoriteEvent> UserFavoriteEvents { get; set; }
-    
+    public virtual ICollection<UserEventRequest> UserEventRequests { get; set; }
 }

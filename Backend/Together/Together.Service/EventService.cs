@@ -109,39 +109,6 @@ public class EventService : IEventService
         
         return pagedResponse;
     }
-    
-    private IQueryable<UserEvent> ApplyFilters(IQueryable<UserEvent> userEvents, EventFilterDto filter)
-    {
-        if (!string.IsNullOrEmpty(filter.SearchQuery))
-        {
-            userEvents = userEvents.Where(x => 
-                x.Title.Contains(filter.SearchQuery) 
-                || x.Description.Contains(filter.SearchQuery)
-                || x.City.Contains(filter.SearchQuery)
-                || x.Country.Contains(filter.SearchQuery));
-        }
-        if (filter.SportId != null)
-        {
-            userEvents = userEvents.Where(x => x.SportId == filter.SportId);
-        }
-        
-        if (filter.SportExperienceId != null)
-        {
-            userEvents = userEvents.Where(x => x.SportExperienceId == filter.SportExperienceId);
-        }
-        
-        if (filter.DateFrom != null)
-        {
-            userEvents = userEvents.Where(x => x.EventDate >= filter.DateFrom);
-        }
-        
-        if (filter.DateTo != null)
-        {
-            userEvents = userEvents.Where(x => x.EventDate <= filter.DateTo);
-        }
-        
-        return userEvents;
-    }
 
     public async Task<List<UserEvent>> GetUserEventsByUserId(string userId)
     {
@@ -186,6 +153,41 @@ public class EventService : IEventService
         };
         
         return userEventResponseModel;
+    }
+    
+    private IQueryable<UserEvent> ApplyFilters(IQueryable<UserEvent> userEvents, EventFilterDto filter)
+    {
+        if (!string.IsNullOrEmpty(filter.SearchQuery))
+        {
+            var searchQueryLower = filter.SearchQuery.ToLower();
+            userEvents = userEvents.Where(x => 
+                x.Title.ToLower().Contains(searchQueryLower) 
+                || x.Description.ToLower().Contains(searchQueryLower)
+                || x.City.ToLower().Contains(searchQueryLower)
+                || x.Country.ToLower().Contains(searchQueryLower));
+        }
+        
+        if (filter.SportId != null)
+        {
+            userEvents = userEvents.Where(x => x.SportId == filter.SportId);
+        }
+        
+        if (filter.SportExperienceId != null)
+        {
+            userEvents = userEvents.Where(x => x.SportExperienceId == filter.SportExperienceId);
+        }
+        
+        if (filter.DateFrom != null)
+        {
+            userEvents = userEvents.Where(x => x.EventDate >= filter.DateFrom);
+        }
+        
+        if (filter.DateTo != null)
+        {
+            userEvents = userEvents.Where(x => x.EventDate <= filter.DateTo);
+        }
+        
+        return userEvents;
     }
     
 }

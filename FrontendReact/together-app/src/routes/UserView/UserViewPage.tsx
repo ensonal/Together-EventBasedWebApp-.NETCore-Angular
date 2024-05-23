@@ -46,7 +46,7 @@ export function UserViewPage() {
         <UserInfoView user={user} />
         <UserImageView user={user} />
       </div>
-      <div className="d-flex flex-row h-100 gap-3">
+      <div className="d-flex flex-column w-100 gap-3">
         <UserEventsView userEvents={userEvents} />
         <UserEquipmentsView userEquipments={userEquipments} />
       </div>

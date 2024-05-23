@@ -1,69 +1,29 @@
-import { Card, Typography } from "@mui/material";
+import Card from "@mui/material/Card";
+import Typography from "@mui/material/Typography";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
 import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
-import Chip from "@mui/material/Chip";
-import {
-  UserEvent,
-  splitDateToMonthName,
-  convertUserEventToEnum,
-} from "../../../../api/models/UserEvent";
 import { useNavigate } from "react-router-dom";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import {
-  addFavoriteEvent,
-  removeFromFavorites,
-} from "../../../../api/services/FavoriteService";
-import { useState } from "react";
+import { splitDateToMonthName } from "../../../../api/models/UserEvent";
 
-export function EventCard({ userEvent }: { userEvent: UserEvent }) {
-  const { sport, eventStatus, sportExperience } = convertUserEventToEnum(
-    userEvent.sportId,
-    userEvent.eventStatusId,
-    userEvent.sportExperienceId
-  );
-  const [isFavorite, setIsFavorite] = useState(userEvent.isFavorite);
-  const eventDate = new Date(userEvent.eventDate);
-  const { month } = splitDateToMonthName(eventDate);
-
-  const chipColor =
-    sportExperience === "Beginner"
-      ? "success"
-      : sportExperience === "Intermediate"
-      ? "info"
-      : sportExperience === "Advanced"
-      ? "warning"
-      : "error";
-
-  const favIconColor = isFavorite ? "#FA4A4C" : "#929292";
-  const favIconShadow = isFavorite ? "drop-shadow(0 4px 8px rgba(250, 74, 76, 0.6))" : "";
-
+export function OutEventRequestCard({ request }: { request: any }) {
   const navigate = useNavigate();
 
-  const handleFavClick = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    if (isFavorite) {
-      setIsFavorite(false);
-      removeFromFavorites(userEvent.userEventId);
-    } else {
-      setIsFavorite(true);
-      addFavoriteEvent(userEvent.userEventId);
-    }
-  };
+  const eventDate = new Date(request.eventView.eventDate);
+  const { month } = splitDateToMonthName(eventDate);
 
   return (
     <Card
-      sx={{ boxShadow: 0 }}
       className="rounded-4 p-3 shadow-sm w-100"
-      style={{ height: "auto", cursor: "pointer" }}
-      onClick={() => navigate(`/event/${userEvent.userEventId}`)}
+      style={{ height: "auto", cursor: "pointer", flex: 3 }}
+      onClick={() => navigate(`/event/${request.eventView.userEventId}`)}
     >
-      <div className="d-flex flex-row w-100 align-items-center">
+      <div className="d-flex flex-row w-100 align-items-center justify-content-between">
         <div className="d-flex flex-column">
           <img
             src={
-              userEvent.eventImageUrl
-                ? userEvent.eventImageUrl
+              request.eventView.eventImageUrl
+                ? request.eventView.eventImageUrl
                 : "https://eagleexaminer.com/wp-content/uploads/2018/04/boston-marathon-900x600.jpg"
             }
             alt="Event"
@@ -76,22 +36,8 @@ export function EventCard({ userEvent }: { userEvent: UserEvent }) {
         <div className="d-flex flex-column ms-3 w-100 gap-3 align-self-start">
           <div className="d-flex flex-row justify-content-between align-items-center w-100">
             <Typography variant="subtitle1" fontWeight="bold" noWrap>
-              {userEvent.title}
+              {request.eventView.title}
             </Typography>
-            <div className="d-flex flex-row gap-1 flex-wrap">
-              <Chip
-                label={sportExperience}
-                size="small"
-                color={chipColor}
-                className="rounded-2"
-              />
-              <Chip label={sport} size="small" className="rounded-2" />
-              <FavoriteIcon
-                style={{ color: favIconColor, cursor: "pointer" }}
-                onClick={handleFavClick}
-                sx={{ filter: favIconShadow }}
-              />
-            </div>
           </div>
           <div className="d-flex flex-column overflow-hidden">
             <div className="d-flex flex-row justify-content-start align-items-center gap-1 mt-1">
@@ -100,7 +46,7 @@ export function EventCard({ userEvent }: { userEvent: UserEvent }) {
                 style={{ color: "#929292" }}
               />
               <Typography variant="body2" style={{ color: "#929292" }}>
-                {userEvent.city} / {userEvent.country}
+                {request.eventView.city} / {request.eventView.country}
               </Typography>
             </div>
             <div className="d-flex flex-row gap-2 align-items-center">
@@ -124,6 +70,21 @@ export function EventCard({ userEvent }: { userEvent: UserEvent }) {
               </div>
             </div>
           </div>
+        </div>
+        <div className="d-flex flex-column">
+          {request.eventRequestStatusId === 1 ? (
+            <Typography variant="body2" style={{ color: "#929292" }}>
+              Confirmed
+            </Typography>
+          ) : request.eventRequestStatusId === 2 ? (
+            <Typography variant="body2" style={{ color: "#929292" }}>
+              Pending
+            </Typography>
+          ) : (
+            <Typography variant="body2" style={{ color: "#929292" }}>
+              Rejected
+            </Typography>
+          )}
         </div>
       </div>
     </Card>

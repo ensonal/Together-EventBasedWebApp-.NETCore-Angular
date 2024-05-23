@@ -5,7 +5,7 @@ import Skeleton from "@mui/material/Skeleton";
 import { uploadImage } from "../../../../../api/services/AzureStorageService";
 import { changeProfileImageUrl } from "../../../../../api/services/UserService";
 
-export function UploadProfileImage({ profileImageUrl }: { profileImageUrl: string }) {
+export function UploadProfileImage({ profileImageUrl }: { profileImageUrl?: string }) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
