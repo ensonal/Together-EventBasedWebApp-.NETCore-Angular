@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { EventFilters } from './models/EventModels/EventFilters';
-import { PaginationModel } from './models/common/PaginationModel';
 
 const axiosInstance = axios.create({
   baseURL: 'https://localhost:7241/'

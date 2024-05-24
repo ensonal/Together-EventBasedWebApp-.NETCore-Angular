@@ -22,6 +22,7 @@
             public DbSet<UserEventRequest> UserEventRequests { get; set; }
             public DbSet<EventRequestStatus> EventRequestStatuses { get; set; }
             public DbSet<UserFavoriteEvent> UserFavoriteEvents { get; set; }
+            public DbSet<Notification> Notifications { get; set; }
 
             protected override void OnModelCreating(ModelBuilder modelBuilder)
             {
@@ -68,6 +69,17 @@
                           .WithMany(ui => ui.UserEventRequests)
                           .HasForeignKey(ue => ue.GuestUserId)
                           .HasPrincipalKey(ui => ui.UserID);
+                });
+                
+                modelBuilder.Entity<Notification>(entity =>
+                {
+                    entity.HasKey(c => c.NotificationId);
+                    entity.ToTable(name: "Notifications");
+                    
+                    entity.HasOne( n => n.UserEvent)
+                          .WithMany(ue => ue.Notifications)
+                          .HasForeignKey(n => n.UserEventId)
+                          .HasPrincipalKey(ue => ue.UserEventId);
                 });
    
             }

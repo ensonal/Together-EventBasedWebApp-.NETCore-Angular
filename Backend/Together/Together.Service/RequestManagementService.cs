@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Together.Contracts;
 using Together.Core.Models.RequestManagementModels;
 using Together.DataAccess;
@@ -10,22 +12,26 @@ public class RequestManagementService : IRequestManagementService
 {
     private readonly IJwtService _jwtService;
     private readonly TogetherDbContext _context;
-    
-    public RequestManagementService(IJwtService jwtService, TogetherDbContext context)
+    private readonly IHubContext<NotificationHub> _notificationHub;
+    private readonly ILogger<RequestManagementService> _logger;
+
+    public RequestManagementService(IJwtService jwtService, TogetherDbContext context, IHubContext<NotificationHub> notificationHub, ILogger<RequestManagementService> logger)
     {
         _jwtService = jwtService;
         _context = context;
+        _notificationHub = notificationHub;
+        _logger = logger;
     }
 
     public async Task<bool> SendRequestToJoinEvent(JoinEventRequestModel request, string token)
     {
         var guestUserId = _jwtService.GetUserIdFromJWT(token);
-        
-        if(guestUserId == request.UserId)
+
+        if (guestUserId == request.UserId)
         {
             return false;
         }
-        
+
         var joinRequest = new UserEventRequest()
         {
             UserEventId = request.EventId,
@@ -33,11 +39,15 @@ public class RequestManagementService : IRequestManagementService
             GuestUserId = guestUserId,
             EventRequestStatusId = 2,
             RequestDate = DateTime.Now
-        };  
-        
+        };
+
         await _context.UserEventRequests.AddAsync(joinRequest);
         await _context.SaveChangesAsync();
-        
+
+        _logger.LogInformation($"Sending notification to user {request.UserId} for new join request");
+
+        await _notificationHub.Clients.User(request.UserId).SendAsync("ReceiveNotification", "You have a new request to join the event.", request.EventId);
+
         return true;
     }
     
@@ -45,21 +55,25 @@ public class RequestManagementService : IRequestManagementService
     {
         var request = await _context.UserEventRequests.FirstOrDefaultAsync(x => x.UserEventRequestId == requestId);
         var ownerUserId = _jwtService.GetUserIdFromJWT(token);
-        
+
         if (request == null)
         {
             return false;
         }
-        
+
         if (request.OwnerUserId != ownerUserId)
         {
             return false;
         }
-        
+
         request.EventRequestStatusId = 1;
-        
+
         await _context.SaveChangesAsync();
-        
+
+        _logger.LogInformation($"Sending notification to user {request.GuestUserId} for accepted join request");
+
+        await _notificationHub.Clients.User(request.GuestUserId).SendAsync("ReceiveNotification", "Your request to join the event has been accepted.", request.UserEventId);
+
         return true;
     }
     
@@ -81,6 +95,8 @@ public class RequestManagementService : IRequestManagementService
         request.EventRequestStatusId = 3;
         
         await _context.SaveChangesAsync();
+        
+        await _notificationHub.Clients.User(request.GuestUserId).SendAsync("ReceiveNotification", "Your request to join the event has been rejected.");
         
         return true;
     }

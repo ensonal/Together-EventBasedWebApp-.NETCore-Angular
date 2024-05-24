@@ -13,6 +13,7 @@ import { UserViewPage } from "./UserView/UserViewPage";
 import { getPadding } from "../utils/getPaddingByScreenSize";
 import { FavoriteEventsPage } from "../routes/FavoriteEvents/FavoriteEventsPage";
 import { EventRequestPage } from "./EventRequests/EventRequestPage";
+import NotificationPage from "./Notifications/NotificationsPage";
 
 export default function Routes() {
   const location = useLocation();
@@ -85,6 +86,7 @@ export default function Routes() {
         <Route path="user/:userId" element={<UserViewPage />} />
         <Route path="favorite-events" element={<FavoriteEventsPage />} />
         <Route path="event-requests" element={<EventRequestPage />} />
+        <Route path="notifications" element={<NotificationPage />} />
       </Route>
     </BaseRoutes>
   );

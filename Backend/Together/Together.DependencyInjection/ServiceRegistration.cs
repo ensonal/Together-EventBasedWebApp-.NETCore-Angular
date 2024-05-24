@@ -32,7 +32,7 @@ public static class ServiceRegistration
         services.AddScoped<IFilterService, FilterService>();
         services.AddScoped<IFavoriteService, FavoriteService>();
         services.AddScoped<IRequestManagementService, RequestManagementService>();
-
+        
         services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 
         services.AddAuthentication(options =>

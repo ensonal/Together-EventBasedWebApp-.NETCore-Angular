@@ -145,6 +145,7 @@ export function IncEventRequestCard({ request }: { request: any }) {
             startIcon={<CheckCircleRoundedIcon />}
             size="small"
             color="success"
+            onClick={handleAccept}
           >
             Accept
           </Button>
@@ -153,6 +154,7 @@ export function IncEventRequestCard({ request }: { request: any }) {
             startIcon={<CancelRoundedIcon />}
             size="small"
             color="error"
+            onClick={handleReject}
           >
             Reject
           </Button>
