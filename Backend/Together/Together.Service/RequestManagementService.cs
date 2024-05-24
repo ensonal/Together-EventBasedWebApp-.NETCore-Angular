@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Together.Contracts;
 using Together.Core.Models.RequestManagementModels;
@@ -10,11 +11,13 @@ public class RequestManagementService : IRequestManagementService
 {
     private readonly IJwtService _jwtService;
     private readonly TogetherDbContext _context;
+    private readonly IHubContext<NotificationHub> _hubContext;
     
-    public RequestManagementService(IJwtService jwtService, TogetherDbContext context)
+    public RequestManagementService(IJwtService jwtService, TogetherDbContext context, IHubContext<NotificationHub> hubContext)
     {
         _jwtService = jwtService;
         _context = context;
+        _hubContext = hubContext;
     }
 
     public async Task<bool> SendRequestToJoinEvent(JoinEventRequestModel request, string token)
@@ -38,6 +41,7 @@ public class RequestManagementService : IRequestManagementService
         await _context.UserEventRequests.AddAsync(joinRequest);
         await _context.SaveChangesAsync();
         
+        await _hubContext.Clients.Group($"user_{request.UserId}").SendAsync("ReceiveNotification", "Hello World");
         return true;
     }
     

@@ -34,6 +34,8 @@ public static class ServiceRegistration
         services.AddScoped<IRequestManagementService, RequestManagementService>();
 
         services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
+        
+        services.AddSignalR();
 
         services.AddAuthentication(options =>
             {

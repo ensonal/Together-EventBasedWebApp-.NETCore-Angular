@@ -2,6 +2,7 @@ import { createTheme, Theme, ThemeProvider } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./routes";
 import "./App.css";
+import { NotificationProvider } from "./providers/NotificationProvider";
 
 const theme: Theme = createTheme({
   palette: {
@@ -22,7 +23,9 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
+        <NotificationProvider>
           <Routes />
+        </NotificationProvider>
       </BrowserRouter>
     </ThemeProvider>
   );
