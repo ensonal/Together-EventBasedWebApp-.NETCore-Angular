@@ -169,6 +169,23 @@ public class EventService : IEventService
             
             userEventResponseModel.UserEventRequestView = userEventRequestView;
         }
+        
+        var joinedUsers = await _context.UserEventRequests
+            .Where(x => x.UserEventId == userEventId && x.EventRequestStatusId == 1)
+            .Select(x => new GuestsView
+            {
+                UserID = x.GuestUserId,
+                UserName = x.GuestUserInfo.UserName,
+                Name = x.GuestUserInfo.Name,
+                Surname = x.GuestUserInfo.Surname,
+                ProfileImageUrl = x.GuestUserInfo.ProfileImageUrl
+            })
+            .ToListAsync();
+
+        if (joinedUsers.Count > 0)
+        {
+            userEventResponseModel.Guests = joinedUsers;
+        }
 
         return userEventResponseModel;
     }

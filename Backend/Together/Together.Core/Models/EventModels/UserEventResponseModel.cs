@@ -19,4 +19,5 @@ public class UserEventResponseModel
     public bool IsFavorite { get; set; }
     public UserEventRequestView UserEventRequestView { get; set; }
     public UserInfo UserInfo { get; set; }
+    public List<GuestsView> Guests { get; set; }
 }
