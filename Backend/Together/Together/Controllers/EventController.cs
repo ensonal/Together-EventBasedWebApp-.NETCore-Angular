@@ -65,7 +65,8 @@ public class EventController : ControllerBase
     [Route("GetEventById/{userEventId}")]
     public async Task<IActionResult> GetEventById(int userEventId)
     {
-        var result = await _eventService.GetEventById(userEventId);
+        var token = HttpContext.Request.Headers.Authorization.ToString();
+        var result = await _eventService.GetEventById(userEventId, token);
         return Ok(result);
     }
 }

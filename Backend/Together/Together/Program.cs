@@ -1,6 +1,6 @@
-using Together.Contracts;
 using Together.DependencyInjection;
 using Together.Service;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,16 +14,33 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors(p => p.AddPolicy("devCorsPolicy", 
     builder => {
-    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
-}
-    ));
+        builder.WithOrigins("http://localhost:3000")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials();
+    }));
+
+builder.Services.AddSignalR(); 
 
 var app = builder.Build();
 
-app.UseCors("devCorsPolicy");
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+
 app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseCors("devCorsPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
-app.MapControllers();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapHub<NotificationHub>("/NotificationHub");
+});
 
 app.Run();

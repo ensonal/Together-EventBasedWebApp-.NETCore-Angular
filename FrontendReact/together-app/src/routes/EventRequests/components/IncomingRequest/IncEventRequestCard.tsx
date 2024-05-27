@@ -1,4 +1,4 @@
-import { Card, IconButton, Typography } from "@mui/material";
+import { Button, Card, IconButton, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
@@ -8,7 +8,10 @@ import ShareLocationRoundedIcon from "@mui/icons-material/ShareLocationRounded";
 import { splitDateToMonthName } from "../../../../api/models/UserEvent";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
-import { acceptRequestToJoinEvent, rejectRequestToJoinEvent } from "../../../../api/services/RequestManagementService";
+import {
+  acceptRequestToJoinEvent,
+  rejectRequestToJoinEvent,
+} from "../../../../api/services/RequestManagementService";
 
 export function IncEventRequestCard({ request }: { request: any }) {
   const navigate = useNavigate();
@@ -21,22 +24,22 @@ export function IncEventRequestCard({ request }: { request: any }) {
   };
 
   const handleAccept = () => {
-    acceptRequestToJoinEvent(request.eventRequestStatusId).then(() => {
+    acceptRequestToJoinEvent(request.userEventRequestId).then(() => {
       window.location.reload();
     });
-  }
+  };
 
   const handleReject = () => {
-    rejectRequestToJoinEvent(request.eventRequestStatusId).then(() => {
+    rejectRequestToJoinEvent(request.userEventRequestId).then(() => {
       window.location.reload();
     });
-  }
+  };
 
   return (
     <div className="d-flex flex-row gap-2 w-100">
       <Card
         className="rounded-4 p-3 shadow-sm w-100"
-        style={{ height: "auto", cursor: "pointer", flex: 3}}
+        style={{ height: "auto", cursor: "pointer", flex: 3 }}
         onClick={() => navigate(`/event/${request.eventView.userEventId}`)}
       >
         <div className="d-flex flex-row w-100 align-items-center justify-content-between">
@@ -95,11 +98,11 @@ export function IncEventRequestCard({ request }: { request: any }) {
         </div>
       </Card>
       <Card
-        sx={{ boxShadow: 0, flex: 1.5}}
+        sx={{ boxShadow: 0, flex: 1.5 }}
         className="d-flex flex-column w-100 align-self-start rounded-4 p-3 gap-2 shadow-sm h-100 w-100"
       >
         <div
-          className="d-flex flex-row gap-3"
+          className="d-flex flex-row gap-3 h-100"
           style={{ cursor: "pointer" }}
           onClick={() => handleUserViewClick()}
         >
@@ -136,13 +139,25 @@ export function IncEventRequestCard({ request }: { request: any }) {
             </div>
           </div>
         </div>
-        <div className="d-flex flex-row w-100 gap-1 justify-content-center align-self-end">
-          <IconButton onClick={() => handleAccept()}>
-            <CheckCircleRoundedIcon color="success" />
-          </IconButton>
-          <IconButton onClick={() => handleReject()}>
-            <CancelRoundedIcon color="warning" />
-          </IconButton>
+        <div className="d-flex flex-row w-100 gap-1 mt-1 justify-content-center align-self-end h-100">
+          <Button
+            variant="contained"
+            startIcon={<CheckCircleRoundedIcon />}
+            size="small"
+            color="success"
+            onClick={handleAccept}
+          >
+            Accept
+          </Button>
+          <Button
+            variant="outlined"
+            startIcon={<CancelRoundedIcon />}
+            size="small"
+            color="error"
+            onClick={handleReject}
+          >
+            Reject
+          </Button>
         </div>
       </Card>
     </div>

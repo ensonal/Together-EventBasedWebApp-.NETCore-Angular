@@ -19,8 +19,6 @@ public class UserEvent
     public virtual Sport Sport { get; set; }
     public virtual EventStatus EventStatus { get; set; }
     public virtual SportExperience SportExperience { get; set; }
-    
     public virtual ICollection<UserFavoriteEvent> UserFavoriteEvents { get; set; }
     public virtual ICollection<UserEventRequest> UserEventRequest { get; set; }
-
 }

@@ -15,7 +15,7 @@ export function OutgoingRequestCard() {
   return (
     <Stack
       spacing={{ xs: 0.5, sm: 1, md: 1.5 }}
-      direction="row"
+      direction="column"
       useFlexGap
       flexWrap="wrap"
       className="w-100"

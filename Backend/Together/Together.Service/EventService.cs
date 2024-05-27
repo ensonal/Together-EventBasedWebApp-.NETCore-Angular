@@ -116,10 +116,13 @@ public class EventService : IEventService
         return userEvents;
     }
     
-    public async Task<UserEventResponseModel> GetEventById(int userEventId)
+    public async Task<UserEventResponseModel> GetEventById(int userEventId, string token)
     {
+        var clientUserId = _jwtService.GetUserIdFromJWT(token);
+        
         var userEvent = await _context.UserEvents
             .Include(x => x.UserInfo)
+            .Include(userEvent => userEvent.UserEventRequest)
             .FirstOrDefaultAsync(x => x.UserEventId == userEventId);
         
         var isFavoriteEvent = await _context.UserFavoriteEvents
@@ -149,9 +152,24 @@ public class EventService : IEventService
                 ProfileImageUrl = userEvent.UserInfo.ProfileImageUrl,
                 Country = userEvent.UserInfo.Country,
                 City = userEvent.UserInfo.City,
-            }
+            },
         };
-        
+
+        var userEventRequest = await _context.UserEventRequests
+            .Where(x => x.UserEventId == userEventId && x.GuestUserId == clientUserId)
+            .FirstOrDefaultAsync();
+
+        if (userEventRequest != null)
+        {
+            var userEventRequestView = new UserEventRequestView
+            {
+                IsJoined = true,
+                StatusId = userEventRequest.EventRequestStatusId
+            };
+            
+            userEventResponseModel.UserEventRequestView = userEventRequestView;
+        }
+
         return userEventResponseModel;
     }
     
