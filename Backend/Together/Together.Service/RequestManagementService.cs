@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Together.Contracts;
+using Together.Core.Models.NotificationModels;
 using Together.Core.Models.RequestManagementModels;
 using Together.DataAccess;
 using Together.DataAccess.Entities;
@@ -41,13 +42,22 @@ public class RequestManagementService : IRequestManagementService
         await _context.UserEventRequests.AddAsync(joinRequest);
         await _context.SaveChangesAsync();
         
-        await _hubContext.Clients.Group($"user_{request.UserId}").SendAsync("ReceiveNotification", "Hello World");
+        var userEvent = await _context.UserEvents.FirstOrDefaultAsync(x => x.UserEventId == request.EventId);
+        var userInfo = await _context.UserInfo.FirstOrDefaultAsync(x => x.UserID == request.UserId);
+        
+        var message = "You have a new request to join your event named" 
+                      + userEvent.Title  +" from " + userInfo.Name + " " + userInfo.Surname + "!";
+        
+        
+        await _hubContext.Clients.Group($"user_{request.UserId}").SendAsync("ReceiveNotification", message);
         return true;
     }
     
     public async Task<bool> AcceptRequestToJoinEvent(int requestId, string token)
     {
-        var request = await _context.UserEventRequests.FirstOrDefaultAsync(x => x.UserEventRequestId == requestId);
+        var request = await _context.UserEventRequests
+            .Include(userEventRequest => userEventRequest.UserEvent)
+            .FirstOrDefaultAsync(x => x.UserEventRequestId == requestId);
         var ownerUserId = _jwtService.GetUserIdFromJWT(token);
         
         if (request == null)
@@ -64,12 +74,18 @@ public class RequestManagementService : IRequestManagementService
         
         await _context.SaveChangesAsync();
         
+        var message = "Your request to join the event named " + request.UserEvent.Title + " has been accepted!";
+        
+        await _hubContext.Clients.Group($"user_{request.GuestUserId}").SendAsync("ReceiveNotification", message);
+        
         return true;
     }
     
     public async Task<bool> RejectRequestToJoinEvent(int requestId, string token)
     {
-        var request = await _context.UserEventRequests.FirstOrDefaultAsync(x => x.UserEventRequestId == requestId);
+        var request = await _context.UserEventRequests
+            .Include(userEventRequest => userEventRequest.UserEvent)
+            .FirstOrDefaultAsync(x => x.UserEventRequestId == requestId);
         var ownerUserId = _jwtService.GetUserIdFromJWT(token);
         
         if (request == null)
@@ -85,6 +101,10 @@ public class RequestManagementService : IRequestManagementService
         request.EventRequestStatusId = 3;
         
         await _context.SaveChangesAsync();
+        
+        var message = "Your request to join the event named " + request.UserEvent.Title + " has been rejected!";
+        
+        await _hubContext.Clients.Group($"user_{request.GuestUserId}").SendAsync("ReceiveNotification", message);
         
         return true;
     }
