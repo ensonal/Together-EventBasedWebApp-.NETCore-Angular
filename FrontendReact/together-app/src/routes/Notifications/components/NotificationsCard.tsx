@@ -9,7 +9,7 @@ export function NotificationsCard({ notification }: { notification: any }) {
     if (!notification.isRead) {
       await markNotificationAsRead(notification.notificationId);
     }
-    navigate(`/event/${notification.event.userEventId}`);
+    navigate(`/event/${notification.userEventId}`);
   }
 
   return (

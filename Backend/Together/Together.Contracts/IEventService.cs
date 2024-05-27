@@ -12,6 +12,6 @@ public interface IEventService
     Task<bool> DeleteUserEvent(int userEventId);
     Task<List<UserEvent>> GetUserEvents(string token);
     Task<PagedResponse<UserEventDto>> GetAllEvents(EventFilterDto filter, string token);
-    Task<UserEventResponseModel> GetEventById(int userEventId);
+    Task<UserEventResponseModel> GetEventById(int userEventId, string token);
     Task<List<UserEvent>> GetUserEventsByUserId(string userId);
 }

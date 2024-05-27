@@ -42,7 +42,7 @@ public class RequestManagementService : IRequestManagementService
         await _context.SaveChangesAsync();
         
         var userEvent = await _context.UserEvents.FirstOrDefaultAsync(x => x.UserEventId == request.EventId);
-        var userInfo = await _context.UserInfo.FirstOrDefaultAsync(x => x.UserID == request.UserId);
+        var userInfo = await _context.UserInfo.FirstOrDefaultAsync(x => x.UserID == guestUserId);
         
         var message = "You have a new request to join your event named " 
                       + userEvent.Title  +" from " + userInfo.Name + " " + userInfo.Surname + "!";
