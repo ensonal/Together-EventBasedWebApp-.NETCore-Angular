@@ -4,6 +4,7 @@ import { EventImageCard } from "./components/EventImageCard";
 import { Card } from "@mui/material";
 
 export function EventDetailsContainer({ event }: { event: UserEvent }) {
+  console.log(event);
   return (
     <div className="d-flex flex-column gap-3 mb-2">
       <div className="d-flex flex-row h-100 gap-3" style={{ width: "100%" }}>

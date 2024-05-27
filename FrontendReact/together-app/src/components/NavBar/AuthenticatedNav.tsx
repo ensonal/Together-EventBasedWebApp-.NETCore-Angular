@@ -2,11 +2,16 @@ import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import IUserInfo from "../../api/models/UserInfo";
 import { IconButton } from "@mui/material";
-import ExpandCircleDownRoundedIcon from "@mui/icons-material/ExpandCircleDownRounded";
 import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export function AuthenticatedNav({ user }: { user: IUserInfo }) {
   const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    localStorage.clear();
+    navigate("/login");
+  }
 
   return (
     <Box
@@ -44,8 +49,8 @@ export function AuthenticatedNav({ user }: { user: IUserInfo }) {
             {user.name}
           </Typography>
         </div>
-        <IconButton onClick={() => console.log("Clicked")}>
-          <ExpandCircleDownRoundedIcon color="primary" />
+        <IconButton onClick={handleLogoutClick}>
+          <LogoutIcon color="primary" />
         </IconButton>
       </div>
     </Box>

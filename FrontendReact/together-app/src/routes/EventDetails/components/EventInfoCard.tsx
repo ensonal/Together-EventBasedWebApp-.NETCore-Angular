@@ -55,11 +55,20 @@ export function EventInfoCard({ userEvent }: { userEvent: UserEvent }) {
 
   const handleEditClick = () => {
     console.log("Edit event");
-  }
+  };
 
   const handleJoinClick = () => {
     sendRequestToJoinEvent(userEvent.userId, userEvent.userEventId);
-  }
+  };
+
+  const chipLabel =
+    userEvent.userEventRequestView?.statusId === 1
+      ? "Confirmed"
+      : userEvent.userEventRequestView?.statusId === 2
+      ? "Pending"
+      : userEvent.userEventRequestView?.statusId === 3
+      ? "Rejected"
+      : "Canceled";
 
   return (
     <Box className="d-flex flex-column gap-3 h-100" sx={{ flex: 1 }}>
@@ -126,11 +135,23 @@ export function EventInfoCard({ userEvent }: { userEvent: UserEvent }) {
         <EventOwnerInfo userEvent={userEvent} />
         <Divider className="mt-2 mb-3" />
         {localStorage.getItem("id") === userEvent.userId ? (
-          <Button variant="contained" color="primary" fullWidth onClick={handleEditClick}>
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={handleEditClick}
+          >
             Edit event
           </Button>
+        ) : userEvent.userEventRequestView?.isJoined === true ? (
+          <Chip label={chipLabel} color="primary" className="rounded-2 w-100" />
         ) : (
-          <Button variant="contained" color="primary" fullWidth onClick={handleJoinClick}>
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={handleJoinClick}
+          >
             Join event
           </Button>
         )}
