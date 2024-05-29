@@ -8,8 +8,12 @@ import dayjs, { Dayjs } from 'dayjs';
 import { Dispatch, SetStateAction } from "react";
 import { UserEvent } from "../../../api/models/UserEvent";
 
-export function EventDatePicker({ setUserEvent }: { setUserEvent: Dispatch<SetStateAction<UserEvent>> }) {
+export function EventDatePicker({ setUserEvent, event }: { setUserEvent: Dispatch<SetStateAction<any>>, event?: any }) {
   const [selectedDate, setSelectedDate] = React.useState<Dayjs | null>(dayjs('2022-04-17T15:30'));
+
+  React.useEffect(() => {
+    setSelectedDate(dayjs(event?.eventDate));
+  }, [event?.eventDate]);
 
   const handleDateChange = (newDate: Dayjs | null) => {
     setSelectedDate(newDate);

@@ -17,6 +17,7 @@ import {
   removeFromFavorites,
 } from "../../../api/services/FavoriteService";
 import { sendRequestToJoinEvent } from "../../../api/services/RequestManagementService";
+import { useNavigate } from "react-router-dom";
 
 export function EventInfoCard({ userEvent }: { userEvent: UserEvent }) {
   const { sport, eventStatus, sportExperience } = convertUserEventToEnum(
@@ -27,6 +28,7 @@ export function EventInfoCard({ userEvent }: { userEvent: UserEvent }) {
   const [isFavorite, setIsFavorite] = useState(userEvent.isFavorite);
   const eventDate = new Date(userEvent.eventDate);
   const { month } = splitDateToMonthName(eventDate);
+  const navigate = useNavigate();
 
   const chipColor =
     sportExperience === "Beginner"
@@ -54,7 +56,7 @@ export function EventInfoCard({ userEvent }: { userEvent: UserEvent }) {
   };
 
   const handleEditClick = () => {
-    console.log("Edit event");
+    navigate(`/edit-event/${userEvent.userEventId}`);
   };
 
   const handleJoinClick = () => {

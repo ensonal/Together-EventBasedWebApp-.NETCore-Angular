@@ -50,8 +50,14 @@ public class EventService : IEventService
         if (userEvent == null)
         {
             return false;
-        }
+        } 
         
+        _context.UserEventRequests.RemoveRange(_context.UserEventRequests.Where(x => x.UserEventId == userEventId));
+        _context.UserFavoriteEvents.RemoveRange(_context.UserFavoriteEvents.Where(x => x.EventId == userEventId));
+        _context.Notifications.RemoveRange(_context.Notifications.Where(x => x.UserEventId == userEventId));
+
+        await _context.SaveChangesAsync();
+                
         _context.UserEvents.Remove(userEvent);
         await _context.SaveChangesAsync();
         
