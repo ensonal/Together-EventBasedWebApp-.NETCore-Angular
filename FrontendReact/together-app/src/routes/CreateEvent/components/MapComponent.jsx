@@ -1,8 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { GoogleMap, LoadScript, Marker, Autocomplete } from '@react-google-maps/api';
+import { GoogleMap, Marker, Autocomplete } from '@react-google-maps/api';
 
-
-const libraries = ['places'];
 const mapContainerStyle = {
   height: '400px',
   width: '800px',
@@ -42,7 +40,6 @@ const MapComponent = ({ onLocationSelect, onAddressSelect }) => {
           lat: place.geometry.location.lat(),
           lng: place.geometry.location.lng(),
         };
-        console.log("dasdas");
         setMarker(location);
         onLocationSelect(location);
         setCenter(location);
@@ -68,41 +65,38 @@ const MapComponent = ({ onLocationSelect, onAddressSelect }) => {
       }
     });
   };
-  
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyDPdMM-l-_4b5wAVNvMkiFcntGELSqvyGA" libraries={libraries}>
-      <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        center={center}
-        zoom={10}
-        onLoad={onMapLoad}
-        onClick={onMapClick}
-      >
-        {marker && <Marker position={marker} />}
-        <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged} className='mt-3'>
-          <input
-            type="text"
-            placeholder="Search for a place"
-            style={{
-              boxSizing: `border-box`,
-              border: `1px solid transparent`,
-              width: `240px`,
-              height: `32px`,
-              padding: `0 12px`,
-              borderRadius: `3px`,
-              boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-              fontSize: `14px`,
-              outline: `none`,
-              textOverflow: `ellipses`,
-              position: "absolute",
-              left: "50%",
-              marginLeft: "-120px"
-            }}
-          />
-        </Autocomplete>
-      </GoogleMap>
-    </LoadScript>
+    <GoogleMap
+      mapContainerStyle={mapContainerStyle}
+      center={center}
+      zoom={10}
+      onLoad={onMapLoad}
+      onClick={onMapClick}
+    >
+      {marker && <Marker position={marker} />}
+      <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged} className='mt-3'>
+        <input
+          type="text"
+          placeholder="Search for a place"
+          style={{
+            boxSizing: `border-box`,
+            border: `1px solid transparent`,
+            width: `240px`,
+            height: `32px`,
+            padding: `0 12px`,
+            borderRadius: `3px`,
+            boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+            fontSize: `14px`,
+            outline: `none`,
+            textOverflow: `ellipses`,
+            position: "absolute",
+            left: "50%",
+            marginLeft: "-120px"
+          }}
+        />
+      </Autocomplete>
+    </GoogleMap>
   );
 };
 

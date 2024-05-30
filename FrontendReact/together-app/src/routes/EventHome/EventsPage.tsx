@@ -6,6 +6,7 @@ import { getAllEvents } from "../../api/services/EventService";
 import { useEffect, useState } from "react";
 import { EventFilters } from "../../api/models/EventModels/EventFilters";
 import { PaginationModel } from "../../api/models/common/PaginationModel";
+import { EmptyState } from "../../components/EmptyState/EmptyState";
 
 export function EventsPage() {
   const [userEvents, setUserEvents] = useState<UserEvent[]>([]);
@@ -46,18 +47,24 @@ export function EventsPage() {
   return (
     <div className="d-flex flex-column gap-3 align-self-start align-items-center">
       <EventSearchCard filters={filters} setFilters={setFilters} />
-      <EventGrid userEvents={userEvents} />
-      <div className="d-flex justify-content-center mb-3">
-        <Pagination
-          count={pageCount}
-          variant="outlined"
-          shape="rounded"
-          page={pagination?.pageNumber ? pagination.pageNumber : 1}
-          onChange={(event, value) => {
-            handlePaginationChange(value);
-          }}
-        />
-      </div>
+      {userEvents?.length === 0 || !userEvents || userEvents === undefined ? (
+        <EmptyState type="events" />
+      ) : (
+        <>
+          <EventGrid userEvents={userEvents} />
+          <div className="d-flex justify-content-center mb-3">
+            <Pagination
+              count={pageCount}
+              variant="outlined"
+              shape="rounded"
+              page={pagination?.pageNumber ? pagination.pageNumber : 1}
+              onChange={(event, value) => {
+                handlePaginationChange(value);
+              }}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 }

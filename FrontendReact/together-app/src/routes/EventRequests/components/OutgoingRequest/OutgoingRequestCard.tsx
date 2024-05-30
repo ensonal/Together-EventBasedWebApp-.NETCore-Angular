@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getOutgoingRequest } from "../../../../api/services/RequestManagementService";
 import { OutEventRequestCard } from "./OutEventRequestCard";
 import { Stack } from "@mui/material";
+import { EmptyState } from "../../../../components/EmptyState/EmptyState";
 
 export function OutgoingRequestCard() {
   const [request, setRequest] = useState<any>();
@@ -20,12 +21,16 @@ export function OutgoingRequestCard() {
       flexWrap="wrap"
       className="w-100"
     >
-      {request?.map((request: any) => (
-        <OutEventRequestCard
-          key={request?.eventRequestStatusId}
-          request={request}
-        />
-      ))}
+      {request?.length === 0 || !request || request === undefined ? (
+        <EmptyState type="outgoing requests" />
+      ) : (
+        request?.map((request: any) => (
+          <OutEventRequestCard
+            key={request?.eventRequestStatusId}
+            request={request}
+          />
+        ))
+      )}
     </Stack>
   );
 }

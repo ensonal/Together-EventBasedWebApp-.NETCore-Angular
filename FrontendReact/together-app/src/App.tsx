@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import Routes from "./routes";
 import "./App.css";
 import { NotificationProvider } from "./providers/NotificationProvider";
+import GoogleMapsLoader from "./providers/GoogleMapsLoader";
 
 const theme: Theme = createTheme({
   palette: {
@@ -24,7 +25,9 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <NotificationProvider>
+        <GoogleMapsLoader>
           <Routes />
+        </GoogleMapsLoader>
         </NotificationProvider>
       </BrowserRouter>
     </ThemeProvider>

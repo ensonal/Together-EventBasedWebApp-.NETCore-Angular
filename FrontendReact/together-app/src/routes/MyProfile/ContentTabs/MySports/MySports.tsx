@@ -6,6 +6,7 @@ import { SportCard } from "./components/SportCard/SportCard";
 import { getAllUserSports } from "../../../../api/services/UserSportService";
 import { useEffect } from "react";
 import { AddUserSportModal } from "./components/AddUserSportModal";
+import { EmptyState } from "../../../../components/EmptyState/EmptyState";
 
 export function MySports() {
   const [sports, setSports] = useState([] as UserSport[]);
@@ -37,7 +38,7 @@ export function MySports() {
               <SportCard key={sport.userSportId} {...sport} />
             ))
           ) : (
-            <div className="text-center w-100">No sports found</div>
+            <EmptyState type="sports" />
           )}
           <div className="text-center mt-2 w-100">
             <Button

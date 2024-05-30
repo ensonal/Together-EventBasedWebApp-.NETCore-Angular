@@ -2,6 +2,7 @@ import { getIncomingRequest } from "../../../../api/services/RequestManagementSe
 import { useEffect, useState } from "react";
 import { Stack } from "@mui/material";
 import { IncEventRequestCard } from "./IncEventRequestCard";
+import { EmptyState } from "../../../../components/EmptyState/EmptyState";
 
 export function IncomingRequestCard() {
   const [request, setRequest] = useState<any>([]);
@@ -11,7 +12,6 @@ export function IncomingRequestCard() {
     });
   }, []);
 
-
   return (
     <Stack
       spacing={{ xs: 0.5, sm: 1, md: 1.5 }}
@@ -20,12 +20,16 @@ export function IncomingRequestCard() {
       flexWrap="wrap"
       className="w-100"
     >
-      {request?.map((request: any) => (
-        <IncEventRequestCard
-          key={request?.eventRequestStatusId}
-          request={request}
-        />
-      ))}
+      {request.length === 0 || !request || request === undefined ? (
+        <EmptyState type="incoming requests" />
+      ) : (
+        request?.map((request: any) => (
+          <IncEventRequestCard
+            key={request?.eventRequestStatusId}
+            request={request}
+          />
+        ))
+      )}
     </Stack>
   );
 }

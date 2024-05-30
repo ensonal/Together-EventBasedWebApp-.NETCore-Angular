@@ -40,7 +40,7 @@ export function UploadProfileImage({ profileImageUrl }: { profileImageUrl?: stri
       ) : (
         <img
           className="rounded-circle shadow-lg"
-          src={profileImageUrl}
+          src={profileImageUrl ? profileImageUrl : "https://togetherwebapp.blob.core.windows.net/userprofileimages/people.png"}
           width="100"
           height="100"
           alt="Profile"
