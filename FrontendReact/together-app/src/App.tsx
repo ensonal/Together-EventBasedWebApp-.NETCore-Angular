@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import Routes from "./routes";
 import "./App.css";
 import { NotificationProvider } from "./providers/NotificationProvider";
-import GoogleMapsLoader from "../src/routes/CreateEvent/components/GoogleMapsLoader";
+import GoogleMapsLoader from "./providers/GoogleMapsLoader";
 
 const theme: Theme = createTheme({
   palette: {

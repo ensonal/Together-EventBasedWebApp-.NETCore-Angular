@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import { addUserEvent } from "../../../api/services/EventService";
 import MapComponent from "./MapComponent";
-import GoogleMapsLoader from "./GoogleMapsLoader";
+import GoogleMapsLoader from "../../../providers/GoogleMapsLoader";
 
 export function CreateEventCard() {
   const [userEvent, setUserEvent] = useState<any>({});
