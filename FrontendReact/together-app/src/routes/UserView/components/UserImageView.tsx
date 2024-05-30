@@ -9,7 +9,7 @@ export function UserImageView({ user }: { user?: IUserInfo }) {
       style={{ height: "auto", overflow: "hidden" }}
     >
       <img
-        src={user?.profileImageUrl}
+        src={user?.profileImageUrl ? user.profileImageUrl : "https://togetherwebapp.blob.core.windows.net/userprofileimages/people.png"}
         alt="Event"
         className="rounded-circle shadow"
         style={{ objectFit: "cover" }}
