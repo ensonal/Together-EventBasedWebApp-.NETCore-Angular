@@ -57,6 +57,7 @@ public class EventService : IEventService
         _context.UserEventRequests.RemoveRange(_context.UserEventRequests.Where(x => x.UserEventId == userEventId));
         _context.UserFavoriteEvents.RemoveRange(_context.UserFavoriteEvents.Where(x => x.EventId == userEventId));
         _context.Notifications.RemoveRange(_context.Notifications.Where(x => x.UserEventId == userEventId));
+        _context.UserEventLocations.RemoveRange(_context.UserEventLocations.Where(x => x.UserEventId == userEventId));
 
         await _context.SaveChangesAsync();
                 

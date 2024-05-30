@@ -5,6 +5,7 @@ import { EquipmentCard } from "./components/EquipmentCard/EquipmentCard";
 import { UserEquipment } from "../../../../api/models/UserEquipment";
 import { Button } from "@mui/material";
 import { AddEquipmentModal } from "./components/AddEquipmentModal";
+import { EmptyState } from "../../../../components/EmptyState/EmptyState";
 
 export function MyEquipments() {
   const [equipments, setEquipments] = useState([] as UserEquipment[]);
@@ -36,12 +37,12 @@ export function MyEquipments() {
               <EquipmentCard key={equipment.userEquipmentId} {...equipment} />
             ))
           ) : (
-            <div className="text-center w-100">No equipments found</div>
+            <EmptyState type="equipments" />
           )}
-          <div className="text-center mt-2 w-100">
+          <div className="text-center w-100">
             <Button
               variant="contained"
-              className="mt-2"
+              className="mt-1"
               onClick={() => openAddEquipmentModal()}
             >
               Add new equipment
