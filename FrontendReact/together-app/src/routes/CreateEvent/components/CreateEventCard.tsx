@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import { addUserEvent } from "../../../api/services/EventService";
 import MapComponent from "./MapComponent";
+import GoogleMapsLoader from "./GoogleMapsLoader";
 
 export function CreateEventCard() {
   const [userEvent, setUserEvent] = useState<any>({});
@@ -28,8 +29,8 @@ export function CreateEventCard() {
   const handleAddressSelect = (cityFromGeo: string, countryFromGeo: string) => {
     setUserEvent((prevUserEvent: any) => ({
       ...prevUserEvent,
-      city : cityFromGeo,
-      country : countryFromGeo
+      city: cityFromGeo,
+      country: countryFromGeo,
     }));
   };
 
@@ -62,10 +63,10 @@ export function CreateEventCard() {
         <SportSelectForm setUserEvent={setUserEvent} />
         <EventDatePicker setUserEvent={setUserEvent} />
         <p className="fs-5 m-0 mt-2 mb-2">Location </p>
-        <MapComponent
-          onLocationSelect={handleLocationSelect}
-          onAddressSelect={handleAddressSelect}
-        />
+          <MapComponent
+            onLocationSelect={handleLocationSelect}
+            onAddressSelect={handleAddressSelect}
+          />
         <div className="d-flex flex-row w-100 gap-3">
           <div className="d-flex flex-column w-100">
             <p className="fs-5 m-0 mt-2">City</p>
