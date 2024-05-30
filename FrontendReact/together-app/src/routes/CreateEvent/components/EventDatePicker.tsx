@@ -9,7 +9,7 @@ import { Dispatch, SetStateAction } from "react";
 import { UserEvent } from "../../../api/models/UserEvent";
 
 export function EventDatePicker({ setUserEvent, event }: { setUserEvent: Dispatch<SetStateAction<any>>, event?: any }) {
-  const [selectedDate, setSelectedDate] = React.useState<Dayjs | null>(dayjs('2022-04-17T15:30'));
+  const [selectedDate, setSelectedDate] = React.useState<Dayjs | null>(dayjs());
 
   React.useEffect(() => {
     setSelectedDate(dayjs(event?.eventDate));

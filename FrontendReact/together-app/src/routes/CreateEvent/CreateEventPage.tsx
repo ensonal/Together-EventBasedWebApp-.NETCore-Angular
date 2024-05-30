@@ -1,6 +1,7 @@
 import IconButton from "@mui/material/IconButton";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { CreateEventCard } from "./components/CreateEventCard";
+import { Typography } from "@mui/material";
 
 export function CreateEventPage() {
   return (
@@ -9,7 +10,9 @@ export function CreateEventPage() {
         <IconButton className="p-0" aria-label="back">
           <ArrowBackIcon className="p-0 text-dark" />
         </IconButton>
-        <p className="fs-3 m-0 fw-normal">Create Event</p>
+        <Typography variant="h6" sx={{ color: "#303030" }}>
+          Create Event
+        </Typography>
       </div>
       <CreateEventCard />
     </>

@@ -6,6 +6,7 @@ import { EventDetailsCard } from "./components/EventDetailsCard";
 import { EventMapViewCard } from "./components/EventMapViewCard";
 
 export function EventDetailsContainer({ event }: { event: UserEvent }) {
+  console.log(event);
   
   return (
     <div className="d-flex flex-column gap-3 mb-2">
@@ -17,7 +18,7 @@ export function EventDetailsContainer({ event }: { event: UserEvent }) {
         <GuestListCard guests={event.guests} />
         <EventDetailsCard detail={event.description} />
       </div>
-      <EventMapViewCard />
+      <EventMapViewCard event={event}/>
     </div>
   );
 }

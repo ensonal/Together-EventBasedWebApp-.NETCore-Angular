@@ -1,9 +1,8 @@
 import { get, post } from "../axios";
 import { EventFilters } from "../models/EventModels/EventFilters";
-import { UserEvent } from "../models/UserEvent";
 import { PaginationModel } from "../models/common/PaginationModel";
 
-export async function addUserEvent(userEvent: UserEvent) {
+export async function addUserEvent(userEvent: any) {
   const url = "/Event/AddUserEvent";
   const response = await post(url, userEvent);
   return response;

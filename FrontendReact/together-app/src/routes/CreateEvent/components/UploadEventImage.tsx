@@ -44,7 +44,7 @@ export function UploadEventImage({
       <img
         className="rounded-3 border"
         src={
-          event.eventImageUrl ||
+          event?.eventImageUrl ||
           eventImageUrl ||
           "https://archive.org/download/placeholder-image/placeholder-image.jpg"
         }

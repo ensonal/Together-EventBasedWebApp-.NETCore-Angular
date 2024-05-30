@@ -1,14 +1,10 @@
 import { Card, Typography } from "@mui/material";
 
-export function EventMapViewCard() {
-  const lat = 40.73061; // Enlem
-  const lon = -73.935242; // Boylam
-  const zoom = 12; // Yakınlaştırma seviyesi
-  const width = 600; // Harita genişliği
-  const height = 300; // Harita yüksekliği
-
-  // OpenStreetMap URL'si oluşturma
-  const mapUrl = `https://static-maps.yandex.ru/1.x/?ll=${lon},${lat}&z=${zoom}&size=${width},${height}&l=map`;
+export function EventMapViewCard({event}: {event: any}) {
+  console.log(event);
+  const location = event?.location
+  const mapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${location?.latitude},${location?.longitude}&zoom=14&size=600x300&maptype=roadmap
+  &markers=color:red%7C${location?.latitude},${location?.longitude}&key=AIzaSyDPdMM-l-_4b5wAVNvMkiFcntGELSqvyGA`;
 
   return (
     <Card
@@ -19,7 +15,7 @@ export function EventMapViewCard() {
       <Typography variant="h6" className="mb-1">
         Location
       </Typography>
-        <img src={mapUrl} alt="map" className="w-100 rounded-3" />
+      <img src={mapUrl} alt="Event Location" className="w-100 rounded-3" />
     </Card>
   );
 }
