@@ -37,7 +37,13 @@ export function LoginImageContainer() {
           width={150}
           height={150}
         />
-        <div className="together-text">Together</div>
+        <div
+          className="together-text"
+          onClick={() => localStorage.clear()}
+          style={{ cursor: "pointer" }}
+        >
+          Together
+        </div>
       </div>
       <div
         style={{

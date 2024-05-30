@@ -38,8 +38,10 @@ public class EventService : IEventService
             EventImageUrl = request.EventImageUrl
         };
         
-        await _context.UserEvents.AddAsync(userEvent);
+        var userEventFromDb = await _context.UserEvents.AddAsync(userEvent);
         await _context.SaveChangesAsync();
+        
+        await SaveEventLocation(request.Latitude, request.Longitude, userEventFromDb.Entity.UserEventId );
         
         return true;
     }
@@ -50,8 +52,14 @@ public class EventService : IEventService
         if (userEvent == null)
         {
             return false;
-        }
+        } 
         
+        _context.UserEventRequests.RemoveRange(_context.UserEventRequests.Where(x => x.UserEventId == userEventId));
+        _context.UserFavoriteEvents.RemoveRange(_context.UserFavoriteEvents.Where(x => x.EventId == userEventId));
+        _context.Notifications.RemoveRange(_context.Notifications.Where(x => x.UserEventId == userEventId));
+
+        await _context.SaveChangesAsync();
+                
         _context.UserEvents.Remove(userEvent);
         await _context.SaveChangesAsync();
         
@@ -169,6 +177,35 @@ public class EventService : IEventService
             
             userEventResponseModel.UserEventRequestView = userEventRequestView;
         }
+        
+        var joinedUsers = await _context.UserEventRequests
+            .Where(x => x.UserEventId == userEventId && x.EventRequestStatusId == 1)
+            .Select(x => new GuestsView
+            {
+                UserID = x.GuestUserId,
+                UserName = x.GuestUserInfo.UserName,
+                Name = x.GuestUserInfo.Name,
+                Surname = x.GuestUserInfo.Surname,
+                ProfileImageUrl = x.GuestUserInfo.ProfileImageUrl
+            })
+            .ToListAsync();
+
+        if (joinedUsers.Count > 0)
+        {
+            userEventResponseModel.Guests = joinedUsers;
+        }
+        
+        var userEventLocation = await _context.UserEventLocations
+            .FirstOrDefaultAsync(x => x.UserEventId == userEventId);
+
+        if (userEventLocation != null)
+        {
+            userEventResponseModel.Location = new Location()
+            {
+                Latitude = userEventLocation.Latitude,
+                Longitude = userEventLocation.Longitude
+            };
+        }
 
         return userEventResponseModel;
     }
@@ -207,5 +244,17 @@ public class EventService : IEventService
         
         return userEvents;
     }
-    
+
+    private async Task SaveEventLocation(double latitude, double longitude, int eventId)
+    {
+        var userEventLocation = new UserEventLocation()
+        {
+            UserEventId = eventId,
+            Latitude = latitude,
+            Longitude = longitude
+        };
+
+        _context.UserEventLocations.Add(userEventLocation);
+        await _context.SaveChangesAsync();
+    }
 }

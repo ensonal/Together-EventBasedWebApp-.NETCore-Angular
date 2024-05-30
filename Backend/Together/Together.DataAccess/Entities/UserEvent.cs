@@ -21,4 +21,5 @@ public class UserEvent
     public virtual SportExperience SportExperience { get; set; }
     public virtual ICollection<UserFavoriteEvent> UserFavoriteEvents { get; set; }
     public virtual ICollection<UserEventRequest> UserEventRequest { get; set; }
+    public virtual ICollection<UserEventLocation> UserEventLocations { get; set; }
 }

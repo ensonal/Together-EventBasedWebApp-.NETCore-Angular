@@ -20,9 +20,9 @@
             public DbSet<UserEvent> UserEvents { get; set; }
             public DbSet<EventStatus> EventStatuses { get; set; }
             public DbSet<UserEventRequest> UserEventRequests { get; set; }
-            public DbSet<EventRequestStatus> EventRequestStatuses { get; set; }
             public DbSet<UserFavoriteEvent> UserFavoriteEvents { get; set; }
             public DbSet<Notification> Notifications { get; set; }
+            public DbSet<UserEventLocation> UserEventLocations { get; set; }
 
             protected override void OnModelCreating(ModelBuilder modelBuilder)
             {
@@ -75,6 +75,16 @@
                 {
                     entity.HasKey(c => c.NotificationId);
                     entity.ToTable(name: "Notifications");
+                });
+                
+                modelBuilder.Entity<UserEventLocation>(entity =>
+                {
+                    entity.HasKey(c => c.UserEventLocationId);
+                    entity.ToTable(name: "UserEventLocations");
+                    
+                    entity.HasOne(uel => uel.UserEvent)
+                          .WithMany(ue => ue.UserEventLocations)
+                          .HasForeignKey(uel => uel.UserEventId);
                 });
             }
         }

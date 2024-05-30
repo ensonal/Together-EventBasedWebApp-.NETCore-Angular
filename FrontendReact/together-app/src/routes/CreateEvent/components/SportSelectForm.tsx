@@ -8,7 +8,13 @@ import { getAllSportExperience } from "../../../api/services/UserSportService";
 import { UserEvent } from "../../../api/models/UserEvent";
 import { Dispatch, SetStateAction } from "react";
 
-export function SportSelectForm({ setUserEvent }: { setUserEvent: Dispatch<SetStateAction<UserEvent>> }) {
+export function SportSelectForm({
+  setUserEvent,
+  event,
+}: {
+  setUserEvent: React.Dispatch<any>;
+  event?: any;
+}) {
   const [sportList, setSportList] = useState<Sport[]>([]);
   const [experienceList, setExperienceList] = useState<SportExperience[]>([]);
 
@@ -40,6 +46,7 @@ export function SportSelectForm({ setUserEvent }: { setUserEvent: Dispatch<SetSt
       <div className="d-flex flex-column gap-2 w-100">
         <p className="fs-5 m-0 mt-2">Sport</p>
         <Select
+          value={event?.sportId}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           fullWidth
@@ -61,6 +68,7 @@ export function SportSelectForm({ setUserEvent }: { setUserEvent: Dispatch<SetSt
       <div className="d-flex flex-column gap-2 w-100">
         <p className="fs-5 m-0 mt-2">Difficulty</p>
         <Select
+          value={event?.sportExperienceId}
           labelId="demo-simple-select-autowidth-label"
           id="demo-simple-select-autowidth"
           fullWidth

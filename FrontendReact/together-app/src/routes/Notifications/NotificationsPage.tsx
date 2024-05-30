@@ -10,7 +10,6 @@ export function NotificationsPage() {
     async function fetchNotifications() {
       const response = await getUserNotifications();
       setNotifications(response);
-      console.log(response);
     }
     fetchNotifications();
   }, []);

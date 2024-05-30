@@ -20,6 +20,7 @@ export interface UserEvent {
     isFavorite: boolean;
     userInfo: IUserInfo;
     userEventRequestView : UserEventRequestView
+    guests: any[];
 }
 
 function convertUserEventToEnum(sportId: number, eventStatusId: number, sportExperienceId: number) {
