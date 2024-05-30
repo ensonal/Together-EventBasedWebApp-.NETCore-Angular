@@ -32,7 +32,7 @@ export const NavBar = () => {
         paddingLeft: `${padding}rem`,
         paddingRight: `${padding}rem`,
         backgroundColor: "#F1F2F6",
-        marginTop: "0.5rem",
+        paddingTop: "0.5rem",
       }}
     >
       <Container
