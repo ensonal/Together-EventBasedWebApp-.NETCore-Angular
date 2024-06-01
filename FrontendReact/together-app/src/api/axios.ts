@@ -1,10 +1,9 @@
 import axios from 'axios';
-import { EventFilters } from './models/EventModels/EventFilters';
-import { PaginationModel } from './models/common/PaginationModel';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://localhost:7241/'
+  baseURL: 'https://together-app.azurewebsites.net/'
 });
+
 
 function getHeaders() {
   var myToken = 'Bearer ' + localStorage.getItem('jwToken');

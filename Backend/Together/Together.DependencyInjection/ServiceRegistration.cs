@@ -19,7 +19,7 @@ public static class ServiceRegistration
     public static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<TogetherDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(configuration.GetConnectionString("Server=tcp:together-app.database.windows.net,1433;Initial Catalog=TogetherDb;Persist Security Info=False;User ID=togetheradmin;Password={151Sq+++};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;")));
         services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<TogetherDbContext>()
             .AddDefaultTokenProviders();
 

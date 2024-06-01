@@ -2,7 +2,7 @@ import SportType from "../enums/SportType";
 import EventStatus from "../enums/EventStatus";
 import SportExperience from "../enums/SportExperience";
 import IUserInfo from "./UserInfo";
-import { UserEventRequestView } from "./EventModels/UserEventRequestView";
+import { UserEventRequestView } from "../models/EventModels/UserEventRequestView";
 
 export interface UserEvent {
     userEventId: number;
