@@ -7,6 +7,7 @@ import { changeProfileImageUrl } from "../../../../../api/services/UserService";
 
 export function UploadProfileImage({ profileImageUrl }: { profileImageUrl?: string }) {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  console.log("profileImageUrl", profileImageUrl);
 
   const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -35,7 +36,7 @@ export function UploadProfileImage({ profileImageUrl }: { profileImageUrl?: stri
 
   return (
     <div className="d-flex flex-column justify-content-center align-items-center pb-3">
-      {profileImageUrl === null ? (
+      {profileImageUrl === undefined ? (
         <Skeleton variant="circular" width={100} height={100} />
       ) : (
         <img
