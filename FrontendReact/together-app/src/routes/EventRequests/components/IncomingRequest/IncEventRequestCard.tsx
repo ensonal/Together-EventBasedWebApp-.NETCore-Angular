@@ -107,7 +107,7 @@ export function IncEventRequestCard({ request }: { request: any }) {
           onClick={() => handleUserViewClick()}
         >
           <img
-            src={request?.userInfoView.profileImageUrl}
+            src={request?.userInfoView.profileImageUrl ? request?.userInfoView.profileImageUrl : "https://togetherwebapp.blob.core.windows.net/userprofileimages/people.png"}
             alt="profile"
             className="rounded-circle shadow"
             style={{ width: 50, height: 50, objectFit: "cover" }}
