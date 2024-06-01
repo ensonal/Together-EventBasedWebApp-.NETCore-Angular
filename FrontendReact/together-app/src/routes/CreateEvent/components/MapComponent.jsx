@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { GoogleMap, Marker, Autocomplete } from '@react-google-maps/api';
+import location from '../../../assets/images/location.png';
 
 const mapContainerStyle = {
   height: '400px',
@@ -35,10 +36,10 @@ const MapComponent = ({ onLocationSelect, onAddressSelect }) => {
   const onPlaceChanged = async () => {
     if (autocompleteRef.current !== null) {
       const place = autocompleteRef.current.getPlace();
-      if (place.geometry) {
+      if (place?.geometry) {
         const location = {
-          lat: place.geometry.location.lat(),
-          lng: place.geometry.location.lng(),
+          lat: place?.geometry.location.lat(),
+          lng: place?.geometry.location.lng(),
         };
         setMarker(location);
         onLocationSelect(location);
@@ -74,7 +75,7 @@ const MapComponent = ({ onLocationSelect, onAddressSelect }) => {
       onLoad={onMapLoad}
       onClick={onMapClick}
     >
-      {marker && <Marker position={marker} />}
+      {marker && <Marker position={marker} icon={{ url: location, scaledSize: new window.google.maps.Size(50, 50)}}/>}
       <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged} className='mt-3'>
         <input
           type="text"

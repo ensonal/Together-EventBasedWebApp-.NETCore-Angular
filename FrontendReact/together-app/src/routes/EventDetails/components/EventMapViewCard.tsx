@@ -1,21 +1,26 @@
 import { Card, Typography } from "@mui/material";
 
-export function EventMapViewCard({event}: {event: any}) {
-  console.log(event);
-  const location = event?.location
-  const mapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${location?.latitude},${location?.longitude}&zoom=14&size=600x300&maptype=roadmap
-  &markers=color:red%7C${location?.latitude},${location?.longitude}&key=AIzaSyDPdMM-l-_4b5wAVNvMkiFcntGELSqvyGA`;
+export function EventMapViewCard({ event }: { event: any }) {
+  const location = event?.location;
+  const mapUrl = `https://www.google.com/maps/embed/v1/place?key=AIzaSyDPdMM-l-_4b5wAVNvMkiFcntGELSqvyGA&q=${location?.latitude},${location?.longitude}&zoom=14`;
 
   return (
     <Card
       sx={{ boxShadow: 0, flex: 1.5 }}
       className="rounded-4 p-3"
-      style={{ height: 280, overflow: "hidden" }}
+      style={{ height: 500, overflow: "hidden" }}
     >
       <Typography variant="h6" className="mb-1">
         Location
       </Typography>
-      <img src={mapUrl} alt="Event Location" className="w-100 rounded-3" />
+      <iframe
+      title="map"
+        width="100%"
+        height="500"
+        style={{ border: 0 }}
+        src={mapUrl}
+        allowFullScreen
+      ></iframe>
     </Card>
   );
 }

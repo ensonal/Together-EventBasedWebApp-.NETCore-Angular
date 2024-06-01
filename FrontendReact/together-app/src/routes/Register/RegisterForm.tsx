@@ -18,13 +18,7 @@ const validationSchema: yup.Schema<RegisterValues> = yup.object({
   Surname: yup.string().required(),
   Username: yup.string().required(),
   Password: yup.string().required().min(8),
-  PhoneNumber: yup
-    .string()
-    .required()
-    .matches(
-      /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/,
-      "Phone number is not valid"
-    ),
+  PhoneNumber: yup.string().required(),
   Country: yup.string().required(),
   City: yup.string().required(),
   Birthday: yup.date().required(),
