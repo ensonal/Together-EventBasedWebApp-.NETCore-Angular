@@ -20,7 +20,7 @@ export function GuestListCard({ guests }: { guests: any[] }) {
         ) : (
           <>
             {guests?.map((guest, index) => (
-              <div key={index} className="d-flex flex-column gap-2 mt-2" onClick={() => handleClick(guest.userID)}>
+              <div key={index} className="d-flex flex-column gap-2 mt-2" style={{ cursor: "pointer"}} onClick={() => handleClick(guest.userID)}>
                 <Box className="d-flex flex-row gap-3 p-0">
                   <img
                     src={guest.profileImageUrl}

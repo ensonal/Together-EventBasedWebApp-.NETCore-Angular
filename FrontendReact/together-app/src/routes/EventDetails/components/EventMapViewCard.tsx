@@ -17,7 +17,8 @@ export function EventMapViewCard({ event }: { event: any }) {
       title="map"
         width="100%"
         height="500"
-        style={{ border: 0 }}
+        className="rounded-3 shadow-sm"
+        style={{ border: 0}}
         src={mapUrl}
         allowFullScreen
       ></iframe>
