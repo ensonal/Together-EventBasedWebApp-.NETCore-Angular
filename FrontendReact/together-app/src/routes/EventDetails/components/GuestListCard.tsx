@@ -1,6 +1,12 @@
 import { Box, Card, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export function GuestListCard({ guests }: { guests: any[] }) {
+  const navigate = useNavigate();
+
+  const handleClick = (userId: number) => {
+    navigate(`/user/${userId}`);
+  };
   return (
     <Box className="d-flex flex-column gap-3 h-100" sx={{ flex: 1 }}>
       <Card className="rounded-4 p-3 h-100" sx={{ boxShadow: 0 }}>
@@ -14,7 +20,7 @@ export function GuestListCard({ guests }: { guests: any[] }) {
         ) : (
           <>
             {guests?.map((guest, index) => (
-              <div key={index} className="d-flex flex-column gap-2 mt-2">
+              <div key={index} className="d-flex flex-column gap-2 mt-2" onClick={() => handleClick(guest.userId)}>
                 <Box className="d-flex flex-row gap-3 p-0">
                   <img
                     src={guest.profileImageUrl}
