@@ -33,7 +33,7 @@ export function AuthenticatedNav({ user }: { user: IUserInfo }) {
       </Button>
       <div className="d-flex flex-row align-items-center gap-3">
         <img
-          src={user.profileImageUrl}
+          src={user.profileImageUrl ? user.profileImageUrl : "https://togetherwebapp.blob.core.windows.net/userprofileimages/people.png"}
           alt="profile"
           width={50}
           height={50}
