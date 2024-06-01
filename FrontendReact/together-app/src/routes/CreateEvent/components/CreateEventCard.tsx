@@ -36,8 +36,11 @@ export function CreateEventCard() {
 
   console.log(userEvent);
 
-  const createEvent = () => {
-    addUserEvent(userEvent);
+  const createEvent = async () => {
+    const response = await addUserEvent(userEvent);
+    if (response) {
+      window.location.href = "/events";
+    }
   };
 
   return (
@@ -63,10 +66,10 @@ export function CreateEventCard() {
         <SportSelectForm setUserEvent={setUserEvent} />
         <EventDatePicker setUserEvent={setUserEvent} />
         <p className="fs-5 m-0 mt-2 mb-2">Location </p>
-          <MapComponent
-            onLocationSelect={handleLocationSelect}
-            onAddressSelect={handleAddressSelect}
-          />
+        <MapComponent
+          onLocationSelect={handleLocationSelect}
+          onAddressSelect={handleAddressSelect}
+        />
         <div className="d-flex flex-row w-100 gap-3">
           <div className="d-flex flex-column w-100">
             <p className="fs-5 m-0 mt-2">City</p>
