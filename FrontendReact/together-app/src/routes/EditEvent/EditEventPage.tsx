@@ -20,9 +20,11 @@ export function EditEventPage() {
     }
   }, [eventId]);
 
-  const deleteEvent = () => {
-    deleteUserEvent(event.userEventId);
-    window.location.href = "/events";
+  const deleteEvent = async () => {
+    const response = await deleteUserEvent(event.userEventId);
+    if (response) {
+      window.location.href = "/events";
+    }
   };
   return (
     <>
