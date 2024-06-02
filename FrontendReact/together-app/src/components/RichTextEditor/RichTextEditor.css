@@ -1,0 +1,13 @@
+.quill-editor-container .ql-toolbar {
+  border-radius: 10px 10px 0 0;
+}
+
+.quill-editor-container .ql-container {
+  border-radius: 0 0 10px 10px;
+}
+
+.quill-editor-container .ql-container{
+    height: 100%;
+    overflow-y: auto;
+  }
+  

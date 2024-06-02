@@ -31,7 +31,6 @@ export function EventDatePicker({ setUserEvent, event }: { setUserEvent: Dispatc
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer components={["DateTimePicker", "DateTimePicker"]}>
           <DateTimePicker
-            label="With Time Clock"
             viewRenderers={{
               hours: renderTimeViewClock,
               minutes: renderTimeViewClock,
@@ -39,6 +38,7 @@ export function EventDatePicker({ setUserEvent, event }: { setUserEvent: Dispatc
             }}
             value={selectedDate}
             onChange={handleDateChange}
+            disablePast={true}
           />
         </DemoContainer>
       </LocalizationProvider>

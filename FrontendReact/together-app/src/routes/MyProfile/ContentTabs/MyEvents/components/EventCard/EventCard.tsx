@@ -26,6 +26,8 @@ export function EventCard({ userEvent }: { userEvent: UserEvent }) {
       ? "info"
       : sportExperience === "Advanced"
       ? "warning"
+      : sportExperience === "AllLevels"
+      ? "primary"
       : "error";
 
   return (

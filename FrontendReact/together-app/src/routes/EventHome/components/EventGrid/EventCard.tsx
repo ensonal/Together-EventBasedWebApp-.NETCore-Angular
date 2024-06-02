@@ -33,6 +33,8 @@ export function EventCard({ userEvent }: { userEvent: UserEvent }) {
       ? "info"
       : sportExperience === "Advanced"
       ? "warning"
+      : sportExperience === "AllLevels"
+      ? "primary"
       : "error";
 
   const favIconColor = isFavorite ? "#FA4A4C" : "#929292";

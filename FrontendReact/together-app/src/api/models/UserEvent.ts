@@ -39,7 +39,7 @@ function splitDateToMonthName(date: Date) {
         "April",
         "May",
         "June",
-        "Julu",
+        "July",
         "August",
         "September",
         "October",

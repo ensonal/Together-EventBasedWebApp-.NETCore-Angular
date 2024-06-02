@@ -3,11 +3,10 @@ import * as yup from "yup";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Card, CardActions, CardContent, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { RegisterValues } from "../../api/models/RegisterValues";
 import newLogo from "../../assets/images/newLogo.png";
 import { useNavigate } from "react-router-dom";
@@ -18,11 +17,12 @@ const validationSchema: yup.Schema<RegisterValues> = yup.object({
   Surname: yup.string().required(),
   Username: yup.string().required(),
   Password: yup.string().required().min(8),
-  PhoneNumber: yup.string().required(),
+  PhoneNumber: yup.string().matches(/^[0-9]+$/, "Phone number must be only digits").required(),
   Country: yup.string().required(),
   City: yup.string().required(),
   Birthday: yup.date().required(),
 });
+
 
 interface RegisterProps {
   onSubmit: (values: RegisterValues) => void;

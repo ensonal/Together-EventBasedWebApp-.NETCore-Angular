@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import { addUserEvent } from "../../../api/services/EventService";
 import MapComponent from "./MapComponent";
-import GoogleMapsLoader from "../../../providers/GoogleMapsLoader";
+import RichTextEditor from "../../../components/RichTextEditor/RichTextEditor";
 
 export function CreateEventCard() {
   const [userEvent, setUserEvent] = useState<any>({});
@@ -57,10 +57,9 @@ export function CreateEventCard() {
               onChange={(e) => handleChange("title", e.target.value)}
             />
             <p className="fs-5 m-0 mt-2">Description</p>
-            <textarea
-              className="form-control w-100 h-100"
-              onChange={(e) => handleChange("description", e.target.value)}
-            ></textarea>
+            <RichTextEditor
+              onTextChange={(content: string) => handleChange("description", content)}
+            />
           </div>
         </div>
         <SportSelectForm setUserEvent={setUserEvent} />

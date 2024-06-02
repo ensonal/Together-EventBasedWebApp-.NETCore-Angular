@@ -73,6 +73,8 @@ export function NotificationProvider({
         message={notification}
         key={vertical + horizontal}
         autoHideDuration={7000}
+        onClick={() => window.location.href = "/notifications"}
+        style={{ cursor: "pointer" }}
       >
         <Alert
           onClose={handleClose}
