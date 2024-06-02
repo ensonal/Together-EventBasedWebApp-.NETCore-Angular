@@ -39,6 +39,7 @@ export function EventDatePicker({ setUserEvent, event }: { setUserEvent: Dispatc
             }}
             value={selectedDate}
             onChange={handleDateChange}
+            disablePast={true}
           />
         </DemoContainer>
       </LocalizationProvider>
