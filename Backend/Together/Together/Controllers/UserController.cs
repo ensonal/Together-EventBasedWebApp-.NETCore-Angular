@@ -65,19 +65,35 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<LoginResponseModel> Login(AuthenticationRequest request)
+    public async Task<ActionResult<LoginResponseModel>> Login(AuthenticationRequest request)
     {
-        var user = await _userService.Login(request, GenerateIpAddress());
-        
-        var response = new LoginResponseModel(user)
+        try
         {
-            StatusCode = 200,
-            Message = "Logged in",
-            Succeeded = true
-        };
+            var user = await _userService.Login(request, GenerateIpAddress());
         
-        return response;
+            var response = new LoginResponseModel(user)
+            {
+                StatusCode = 200,
+                Message = "Logged in",
+                Succeeded = true
+            };
+        
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            var response = new LoginResponseModel(null!)
+            {
+                StatusCode = (int)HttpStatusCode.BadRequest,
+                Message = "Login failed",
+                Succeeded = false,
+                Error = ex.Message
+            };
+        
+            return BadRequest(response);
+        }
     }
+
     
     [HttpGet("isLoginSuccessful")]
     public async Task<BaseResponseModel> IsLoginSuccessful() {
