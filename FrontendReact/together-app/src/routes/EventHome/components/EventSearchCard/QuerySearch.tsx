@@ -4,13 +4,28 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import FilterListRoundedIcon from "@mui/icons-material/FilterListRounded";
 import { IconButton } from "@mui/material";
 import { EventFilters } from "../../../../api/models/EventModels/EventFilters";
+import { useState, useEffect } from "react";
 
-export function QuerySearch({ setFilters, setOpen, open }: { setFilters: any, setOpen: (open: boolean) => void, open: boolean }) {
+export function QuerySearch({ setFilters, setOpen, open, clearFilters }: { setFilters: any, setOpen: (open: boolean) => void, open: boolean, clearFilters: boolean }) {
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  useEffect(() => {
+    if (clearFilters) {
+      setSearchQuery("");
+    }
+  }, [clearFilters]);
+
   const handleFilterChange = (name: string, value: any) => {
     setFilters((prevFilters: EventFilters) => ({
       ...prevFilters,
       [name]: value,
     }));
+  };
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setSearchQuery(value);
+    handleFilterChange("searchQuery", value);
   };
 
   return (
@@ -28,7 +43,8 @@ export function QuerySearch({ setFilters, setOpen, open }: { setFilters: any, se
         variant="outlined"
         fullWidth
         size="small"
-        onChange={(e) => handleFilterChange("searchQuery", e.target.value)}
+        value={searchQuery}
+        onChange={handleSearchChange}
       />
       <IconButton
         className="rounded-2"

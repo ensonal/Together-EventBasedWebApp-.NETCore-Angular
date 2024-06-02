@@ -4,14 +4,31 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { EventFilters } from "../../../../api/models/EventModels/EventFilters";
+import { Dayjs } from "dayjs";
 
 export function DateFilter({
   filters,
   setFilters,
+  clearDates,
 }: {
   filters: EventFilters;
   setFilters: any;
+  clearDates: boolean;
 }) {
+  const [selectedDateFrom, setSelectedDateFrom] = React.useState<Dayjs | null>(
+    null
+  );
+  const [selectedDateTo, setSelectedDateTo] = React.useState<Dayjs | null>(
+    null
+  );
+
+  React.useEffect(() => {
+    if (clearDates) {
+      setSelectedDateFrom(null);
+      setSelectedDateTo(null);
+    }
+  }, [clearDates]);
+
   const handleDateChange = (name: string, value: any) => {
     setFilters((prevFilters: EventFilters) => ({
       ...prevFilters,
@@ -32,7 +49,11 @@ export function DateFilter({
             className="w-100"
             disableHighlightToday={true}
             slotProps={{ textField: { size: "small" } }}
-            onChange={(date) => handleDateChange("dateFrom", date)}
+            value={selectedDateFrom}
+            onChange={(date) => {
+              setSelectedDateFrom(date);
+              handleDateChange("dateFrom", date);
+            }}
           />
           <DatePicker
             label="Date To"
@@ -40,7 +61,11 @@ export function DateFilter({
             className="w-100"
             disableHighlightToday={true}
             slotProps={{ textField: { size: "small" } }}
-            onChange={(date) => handleDateChange("dateTo", date)}
+            value={selectedDateTo}
+            onChange={(date) => {
+              setSelectedDateTo(date);
+              handleDateChange("dateTo", date);
+            }}
           />
         </DemoContainer>
       </LocalizationProvider>
