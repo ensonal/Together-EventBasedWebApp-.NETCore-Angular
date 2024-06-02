@@ -10,7 +10,7 @@ export function EventDetailsCard({ detail }: { detail: string }) {
       <Typography variant="h6" className="mb-1">
         Event Details
       </Typography>
-      <Typography variant="body1" className="mt-2">{detail}</Typography>
+      <div dangerouslySetInnerHTML={{ __html: detail }} />
     </Card>
   );
 }
