@@ -21,7 +21,7 @@ export function Login() {
         localStorage.setItem("jwToken", data.user.jwToken);
         localStorage.setItem("id", data.user.id);
         localStorage.setItem("userRole", data.user.roles[0]);
-
+        
         navigate("/");
       } else {
         setSnackbarMessage(data.error);
