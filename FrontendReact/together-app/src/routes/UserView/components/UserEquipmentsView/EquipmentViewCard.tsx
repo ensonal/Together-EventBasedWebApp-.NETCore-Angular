@@ -36,7 +36,7 @@ export function EquipmentViewCard({
                 alt="Event"
                 className="rounded-3 shadow"
                 width={"100%"}
-                height={150}
+                height={100}
                 style={{ objectFit: "cover" }}
               />
               <Typography

@@ -36,10 +36,7 @@ export function AllUserSportsModal({
       aria-describedby="modal-modal-description"
     >
       <Box sx={style} className="p-4">
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          All User Sports
-        </Typography>
-        <div className="d-flex flex-row flex-wrap justify-content-start gap-2 w-100">
+        <div className="d-flex flex-row flex-wrap justify-content-center gap-2 w-100">
           {sports.map((sport) => (
             <div
               key={sport.sportId}

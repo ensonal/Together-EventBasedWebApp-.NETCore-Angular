@@ -17,7 +17,7 @@ export function UserEquipmentsView({
       style={{ height: "auto", overflow: "hidden", width: "100%", flex: 1 }}
       sx={{ boxShadow: 0 }}
     >
-      <div className="d-flex flex-row justify-content-between">
+      <div className="d-flex flex-row justify-content-between align-items-center">
         <Typography variant="h6">Equipments</Typography>
         {userEquipments.length > 4 && (
           <Typography
