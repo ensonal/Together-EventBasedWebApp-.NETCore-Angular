@@ -34,8 +34,6 @@ export function CreateEventCard() {
     }));
   };
 
-  console.log(userEvent);
-
   const createEvent = async () => {
     const response = await addUserEvent(userEvent);
     if (response) {

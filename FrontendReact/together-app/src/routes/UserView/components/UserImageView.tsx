@@ -5,7 +5,7 @@ export function UserImageView({ user }: { user?: IUserInfo }) {
   return (
     <Card
       sx={{ boxShadow: 0 }}
-      className="rounded-4 p-3"
+      className="rounded-4 p-3 d-flex flex-column justify-content-center align-items-center"
       style={{ height: "auto", overflow: "hidden" }}
     >
       <img

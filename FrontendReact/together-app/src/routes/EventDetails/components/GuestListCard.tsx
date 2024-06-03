@@ -1,5 +1,6 @@
 import { Box, Card, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { EmptyState } from "../../../components/EmptyState/EmptyState";
 
 export function GuestListCard({ guests }: { guests: any[] }) {
   const navigate = useNavigate();
@@ -14,16 +15,25 @@ export function GuestListCard({ guests }: { guests: any[] }) {
           Guest List
         </Typography>
         {guests === null ? (
-          <Typography variant="body1" className="mt-2">
-            No guests yet
-          </Typography>
+          <div className="mt-2">
+            <EmptyState type="guests" height={50} />
+          </div>
         ) : (
           <>
             {guests?.map((guest, index) => (
-              <div key={index} className="d-flex flex-column gap-2 mt-2" style={{ cursor: "pointer"}} onClick={() => handleClick(guest.userID)}>
+              <div
+                key={index}
+                className="d-flex flex-column gap-2 mt-2"
+                style={{ cursor: "pointer" }}
+                onClick={() => handleClick(guest.userID)}
+              >
                 <Box className="d-flex flex-row gap-3 p-0">
                   <img
-                    src={guest.profileImageUrl ? guest.profileImageUrl : "https://togetherwebapp.blob.core.windows.net/userprofileimages/people.png"}
+                    src={
+                      guest.profileImageUrl
+                        ? guest.profileImageUrl
+                        : "https://togetherwebapp.blob.core.windows.net/userprofileimages/people.png"
+                    }
                     alt="guest"
                     className="rounded-circle"
                     style={{ width: 50, height: 50, objectFit: "cover" }}

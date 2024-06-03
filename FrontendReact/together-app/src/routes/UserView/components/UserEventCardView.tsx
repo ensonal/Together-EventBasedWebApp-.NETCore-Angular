@@ -8,13 +8,15 @@ export function UserEventCardView({ userEvent }: { userEvent: UserEvent }) {
   const handleEventClick = () => {
     navigate(`/event/${userEvent.userEventId}`);
   };
+
   return (
     <Card
       className="rounded-4 p-3 shadow"
       style={{
         height: "auto",
         overflow: "hidden",
-        flex: 1,
+        flex: "1 1 calc(25% - 1rem)", 
+        maxWidth: "calc(25% - 1rem)",   
         cursor: "pointer",
         border: "1px solid #e0e0e0",
       }}
@@ -30,7 +32,7 @@ export function UserEventCardView({ userEvent }: { userEvent: UserEvent }) {
           }
           alt="Event"
           className="rounded-3 shadow"
-          width={"auto"}
+          width={"100%"}
           height={95}
           style={{ objectFit: "cover" }}
         />

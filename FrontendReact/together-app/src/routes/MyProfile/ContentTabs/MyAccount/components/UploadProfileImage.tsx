@@ -7,7 +7,6 @@ import { changeProfileImageUrl } from "../../../../../api/services/UserService";
 
 export function UploadProfileImage({ profileImageUrl }: { profileImageUrl?: string }) {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  console.log("profileImageUrl", profileImageUrl);
 
   const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {

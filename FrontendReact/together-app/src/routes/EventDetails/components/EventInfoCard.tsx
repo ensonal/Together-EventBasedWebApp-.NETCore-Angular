@@ -74,6 +74,15 @@ export function EventInfoCard({ userEvent }: { userEvent: UserEvent }) {
       ? "Rejected"
       : "Canceled";
 
+  const requestChipColor =
+    chipLabel === "Confirmed"
+      ? "success"
+      : chipLabel === "Pending"
+      ? "info"
+      : chipLabel === "Rejected"
+      ? "error"
+      : "warning";
+
   return (
     <Box className="d-flex flex-column gap-3 h-100" sx={{ flex: 1 }}>
       <Card className="rounded-4 p-3" sx={{ height: 330, boxShadow: 0 }}>
@@ -148,7 +157,11 @@ export function EventInfoCard({ userEvent }: { userEvent: UserEvent }) {
             Edit event
           </Button>
         ) : userEvent.userEventRequestView?.isJoined === true ? (
-          <Chip label={chipLabel} color="primary" className="rounded-2 w-100" />
+          <Chip
+            label={chipLabel}
+            color={requestChipColor}
+            className="rounded-2 w-100"
+          />
         ) : (
           <Button
             variant="contained"
