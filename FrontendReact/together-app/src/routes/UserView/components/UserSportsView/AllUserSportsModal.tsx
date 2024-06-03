@@ -16,6 +16,8 @@ const style = {
   overflowY: "auto",
   maxHeight: "70vh",
   borderRadius: 2,
+  outline: "none",
+  border: "none",
 };
 
 export function AllUserSportsModal({
