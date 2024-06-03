@@ -7,6 +7,10 @@ export function UserEquipmentsView({
 }: {
   userEquipments: UserEquipment[];
 }) {
+  const handleClick = () => {
+    console.log("View all equipments");
+  };
+
   return (
     <Card
       className="rounded-4 p-3"
@@ -15,7 +19,17 @@ export function UserEquipmentsView({
     >
       <div className="d-flex flex-row justify-content-between">
         <Typography variant="h6">Equipments</Typography>
-        <Typography variant="body1">Show all</Typography>
+        {userEquipments.length > 4 && (
+          <Typography
+            variant="body2"
+            fontWeight="medium"
+            sx={{ color: "#3D52F3" }}
+            style={{ cursor: "pointer" }}
+            onClick={handleClick}
+          >
+            View all
+          </Typography>
+        )}
       </div>
       <EquipmentViewCard userEquipments={userEquipments} />
     </Card>

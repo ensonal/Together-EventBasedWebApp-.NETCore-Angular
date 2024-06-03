@@ -42,18 +42,24 @@ export function UserSportsView() {
         >
           Sports
         </Typography>
-        <Typography
-          variant="body2"
-          fontWeight="medium"
-          sx={{ color: "#3D52F3" }}
-          style={{ cursor: "pointer" }}
-          onClick={handleClick}
-        >
-          View all
-        </Typography>
+        {sports.length > 4 && (
+          <Typography
+            variant="body2"
+            fontWeight="medium"
+            sx={{ color: "#3D52F3" }}
+            style={{ cursor: "pointer" }}
+            onClick={handleClick}
+          >
+            View all
+          </Typography>
+        )}
       </div>
       <UserSportsViewCard sports={sportsToShow} />
-      <AllUserSportsModal sports={sports} open={modalOpen} handleClose={handleClose} />
+      <AllUserSportsModal
+        sports={sports}
+        open={modalOpen}
+        handleClose={handleClose}
+      />
     </div>
   );
 }
