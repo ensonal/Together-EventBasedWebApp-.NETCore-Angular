@@ -1,14 +1,22 @@
 import { Card, Typography } from "@mui/material";
 import { UserEquipment } from "../../../../api/models/UserEquipment";
 import { EquipmentViewCard } from "./EquipmentViewCard";
+import { AllUserEquipmentsModal } from "./AllUserEquipmentsModal";
+import { useState } from "react";
 
 export function UserEquipmentsView({
   userEquipments,
 }: {
   userEquipments: UserEquipment[];
 }) {
+  const [modalOpen, setModalOpen] = useState(false);
+
   const handleClick = () => {
-    console.log("View all equipments");
+    setModalOpen(true);
+  };
+
+  const handleClose = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -31,7 +39,12 @@ export function UserEquipmentsView({
           </Typography>
         )}
       </div>
-      <EquipmentViewCard userEquipments={userEquipments} />
+      <EquipmentViewCard userEquipments={userEquipments.slice(0, 4)} />
+      <AllUserEquipmentsModal
+        equipments={userEquipments}
+        open={modalOpen}
+        handleClose={handleClose}
+      />
     </Card>
   );
 }

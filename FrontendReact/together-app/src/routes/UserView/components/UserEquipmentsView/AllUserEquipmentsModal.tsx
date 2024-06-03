@@ -1,7 +1,8 @@
-import { UserSport } from "../../../../api/models/UserSport";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { UserEquipment } from "../../../../api/models/UserEquipment";
+import SportType from "../../../../api/enums/SportType";
 
 const style = {
   position: "absolute" as "absolute",
@@ -16,14 +17,16 @@ const style = {
   overflowY: "auto",
   maxHeight: "70vh",
   borderRadius: 2,
+  outline: "none",
+  border: "none",
 };
 
-export function AllUserSportsModal({
-  sports,
+export function AllUserEquipmentsModal({
+  equipments,
   open,
   handleClose,
 }: {
-  sports: UserSport[];
+  equipments: UserEquipment[];
   open: boolean;
   handleClose: () => void;
 }) {
@@ -36,18 +39,18 @@ export function AllUserSportsModal({
     >
       <Box sx={style} className="p-4">
         <div className="d-flex flex-row flex-wrap justify-content-center gap-2 w-100">
-          {sports.map((sport) => (
+          {equipments.map((equipment) => (
             <div
-              key={sport.sportId}
+              key={equipment.userEquipmentId}
               className="d-flex flex-column gap-2 border rounded-3 mt-2"
               style={{ width: 150 }}
             >
               <div className="text-center mt-3">
                 <img
                   className="rounded-1 shadow-sm"
-                  src={sport.imageUrl}
-                  width="80"
-                  height="80"
+                  src={equipment.imageUrl || "https://placehold.co/125x125"}
+                  width="100"
+                  height="100"
                   alt="equipment"
                   style={{ objectFit: "cover" }}
                 />
@@ -58,14 +61,14 @@ export function AllUserSportsModal({
                 sx={{ color: "#303030" }}
                 className="text-center"
               >
-                {sport.sportName}
+                {equipment.equipmentName}
               </Typography>
               <Typography
                 variant="body2"
                 sx={{ color: "#303030" }}
                 className="text-center mb-3"
               >
-                {sport.level}
+                {SportType[equipment.sportId]}
               </Typography>
             </div>
           ))}
