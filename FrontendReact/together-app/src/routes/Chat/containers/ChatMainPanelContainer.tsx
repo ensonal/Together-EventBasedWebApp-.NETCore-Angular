@@ -6,10 +6,10 @@ export function ChatMainPanelContainer() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={0} height={600} width="100%">
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <RoomPanelContainer />
         </Grid>
-        <Grid item xs={8} className="w-100">
+        <Grid item xs={9} className="w-100">
           <MessagePanelContainer />
         </Grid>
       </Grid>

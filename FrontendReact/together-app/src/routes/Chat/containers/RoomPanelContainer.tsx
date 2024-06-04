@@ -12,7 +12,11 @@ export function RoomPanelContainer() {
           <RoomGroupCard />
         </div>
       </div>
-      <Divider orientation="vertical" className="h-100" />
+      <Divider
+        orientation="vertical"
+        className="h-100"
+        style={{ color: "#DEE2E6" }}
+      />
     </div>
   );
 }

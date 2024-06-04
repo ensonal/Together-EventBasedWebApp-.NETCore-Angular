@@ -17,7 +17,7 @@ export function ChatPage() {
           Back to the home page
         </Typography>
       </div>
-      <div className="w-100 h-100 bg-white rounded-3 border border-primary">
+      <div className="w-100 h-100 bg-white rounded-3 border">
         <ChatMainPanelContainer />
       </div>
     </div>

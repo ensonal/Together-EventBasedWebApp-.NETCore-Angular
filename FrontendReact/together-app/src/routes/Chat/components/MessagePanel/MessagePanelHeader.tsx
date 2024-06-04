@@ -11,9 +11,9 @@ export function MessagePanelHeader() {
           </Typography>
           <Typography variant="body2">23 members, 10 online</Typography>
         </div>
-        <InfoOutlinedIcon />
+        <InfoOutlinedIcon style={{color:'#606060'}}/>
       </div>
-      <Divider />
+      <Divider style={{color:'#DEE2E6'}}/>
     </div>
   );
 }
