@@ -7,11 +7,11 @@ export function OutgoingMessageCard() {
       <div className="d-flex flex-column align-items-end">
         <div className="d-flex flex-row align-items-start">
           <div className="d-flex flex-column me-2 align-items-end text-end">
-            <div className="d-flex flex-row gap-1 justify-content-end">
+            <div className="d-flex flex-column justify-content-end gap-0 mt-1">
               <Typography variant="body1" fontWeight="medium">
                 John Doe
               </Typography>
-              <Typography variant="caption" className="mt-1">
+              <Typography variant="caption">
                 10:30 AM
               </Typography>
             </div>
@@ -23,10 +23,10 @@ export function OutgoingMessageCard() {
             </div>
           </div>
           <img
-            src="https://randomuser.me/api/portraits/women/73.jpg"
+            src="https://randomuser.me/api/portraits/men/22.jpg"
             alt="User"
-            width={32}
-            height={32}
+            width={40}
+            height={40}
             className="rounded-3 mt-1"
           />
         </div>
