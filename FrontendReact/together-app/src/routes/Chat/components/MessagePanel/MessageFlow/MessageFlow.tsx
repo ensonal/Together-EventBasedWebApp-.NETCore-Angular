@@ -1,5 +1,5 @@
 import { IncomingMessageCard } from "../IncomingMessageCard/IncomingMessageCard";
-import { OutgoingMessageCard } from "../OutgoingMessageCard/OutgoingMessageCard";
+import { OutgoingMessageCard } from "../OutcomingMessageCard/OutgoingMessageCard";
 import "./MessageFlow.css";
 
 export function MessageFlow() {
