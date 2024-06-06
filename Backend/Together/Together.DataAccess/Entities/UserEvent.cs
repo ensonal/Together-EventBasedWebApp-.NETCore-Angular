@@ -22,4 +22,7 @@ public class UserEvent
     public virtual ICollection<UserFavoriteEvent> UserFavoriteEvents { get; set; }
     public virtual ICollection<UserEventRequest> UserEventRequest { get; set; }
     public virtual ICollection<UserEventLocation> UserEventLocations { get; set; }
+    public virtual ICollection<ChatRoom> ChatRooms { get; set; }
+    public virtual ICollection<Notification> Notifications { get; set; }
+    
 }
