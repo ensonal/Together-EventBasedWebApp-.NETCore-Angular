@@ -1,7 +1,17 @@
-import { Divider } from "@mui/material";
-import SendRoundedIcon from '@mui/icons-material/SendRounded';
+import { Divider, IconButton } from "@mui/material";
+import SendRoundedIcon from "@mui/icons-material/SendRounded";
+import { SendMessageToGroup } from "../../../../api/services/ChatService";
+import { useState } from "react";
 
-export function SendMessage() {
+export function SendMessage({ roomId }: any) {
+  const [content, setContent] = useState("");
+
+  const sendMessage = async () => {
+    if (content.trim() === "") return;
+    await SendMessageToGroup(roomId, content);
+    setContent("");
+  };
+
   return (
     <div className="d-flex flex-column justify-content-start gap-1">
       <Divider />
@@ -10,8 +20,12 @@ export function SendMessage() {
           type="text"
           placeholder="Write a message"
           className="form-control"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
         />
-        <SendRoundedIcon style={{ cursor: "pointer" }} htmlColor="#707070"/>
+        <IconButton onClick={sendMessage}>
+          <SendRoundedIcon style={{ cursor: "pointer" }} htmlColor="#707070" />
+        </IconButton>
       </div>
     </div>
   );

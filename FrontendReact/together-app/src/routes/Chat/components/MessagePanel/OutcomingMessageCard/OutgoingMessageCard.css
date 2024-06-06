@@ -1,4 +1,8 @@
 .outgoing-message-background {
   background-color: #5f73f83b;
   max-width: 60%;
+  padding: 12px;
+  border-radius: 8px; 
+  box-sizing: border-box;
+  overflow-wrap: break-word;
 }
