@@ -13,11 +13,13 @@ public class EventService : IEventService
 {
     private readonly TogetherDbContext _context;
     private readonly IJwtService _jwtService;
+    private readonly IChatService _chatService;
     
-    public EventService(TogetherDbContext context, IJwtService jwtService)
+    public EventService(TogetherDbContext context, IJwtService jwtService, IChatService chatService)
     {
         _context = context;
         _jwtService = jwtService;
+        _chatService = chatService;
     }
     
     public async Task<bool> AddUserEvent(AddUserEventDto request, string token)
@@ -42,6 +44,9 @@ public class EventService : IEventService
         await _context.SaveChangesAsync();
         
         await SaveEventLocation(request.Latitude, request.Longitude, userEventFromDb.Entity.UserEventId );
+        
+        var chatRoom = await _chatService.CreateRoom(userEventFromDb.Entity.UserEventId, request.Title);
+        await _chatService.AddUserToRoom(chatRoom.ChatRoomId, userId);
         
         return true;
     }
