@@ -33,6 +33,7 @@ public static class ServiceRegistration
         services.AddScoped<IFavoriteService, FavoriteService>();
         services.AddScoped<IRequestManagementService, RequestManagementService>();
         services.AddScoped<INotificationService, NotificationService>();
+        services.AddScoped<IChatService, ChatService>();
 
         services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
         

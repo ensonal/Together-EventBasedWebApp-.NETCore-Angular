@@ -41,6 +41,7 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
     endpoints.MapHub<NotificationHub>("/NotificationHub");
+    endpoints.MapHub<ChatHub>("/ChatHub");
 });
 
 app.Run();
