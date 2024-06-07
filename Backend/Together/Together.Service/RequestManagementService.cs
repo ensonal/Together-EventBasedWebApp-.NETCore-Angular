@@ -12,12 +12,14 @@ public class RequestManagementService : IRequestManagementService
     private readonly IJwtService _jwtService;
     private readonly TogetherDbContext _context;
     private readonly IHubContext<NotificationHub> _hubContext;
+    private readonly IChatService _chatService;
     
-    public RequestManagementService(IJwtService jwtService, TogetherDbContext context, IHubContext<NotificationHub> hubContext)
+    public RequestManagementService(IJwtService jwtService, TogetherDbContext context, IHubContext<NotificationHub> hubContext, IChatService chatService)
     {
         _jwtService = jwtService;
         _context = context;
         _hubContext = hubContext;
+        _chatService = chatService;
     }
 
     public async Task<bool> SendRequestToJoinEvent(JoinEventRequestModel request, string token)
@@ -100,6 +102,11 @@ public class RequestManagementService : IRequestManagementService
         
         await _context.Notifications.AddAsync(notification);
         await _context.SaveChangesAsync();
+        
+        var chatRoom = await _context.ChatRooms
+            .FirstOrDefaultAsync(x => x.UserEventId == request.UserEventId);
+        
+        await _chatService.AddUserToRoom(chatRoom!.ChatRoomId, request.GuestUserId);
         
         await _hubContext.Clients.Group($"user_{request.GuestUserId}").SendAsync("ReceiveNotification", message);
         

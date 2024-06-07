@@ -15,6 +15,7 @@ import { FavoriteEventsPage } from "../routes/FavoriteEvents/FavoriteEventsPage"
 import { EventRequestPage } from "./EventRequests/EventRequestPage";
 import { NotificationsPage } from "./Notifications/NotificationsPage";
 import { EditEventPage } from "./EditEvent/EditEventPage";
+import { ChatPage } from "./Chat/ChatPage";
 
 export default function Routes() {
   const location = useLocation();
@@ -23,6 +24,7 @@ export default function Routes() {
 
   const isRegisterOrLogin =
     location.pathname === "/register" || location.pathname === "/login";
+  const isChat = location.pathname === "/chat";
 
   useEffect(() => {
     const handleResize = () => {
@@ -54,7 +56,7 @@ export default function Routes() {
                 paddingRight: !isRegisterOrLogin ? `${padding}rem` : 0,
               }}
             >
-              {isRegisterOrLogin ? (
+              {isRegisterOrLogin || isChat ? (
                 <Outlet />
               ) : (
                 <div style={{ flexDirection: "row", display: "flex" }}>
@@ -89,6 +91,7 @@ export default function Routes() {
         <Route path="event-requests" element={<EventRequestPage />} />
         <Route path="notifications" element={<NotificationsPage />} />
         <Route path="edit-event/:eventId" element={<EditEventPage />} />
+        <Route path="chat" element={<ChatPage />} />
       </Route>
     </BaseRoutes>
   );
