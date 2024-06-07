@@ -1,0 +1,12 @@
+.d-flex.flex-column.w-100 {
+  flex-grow: 1;
+}
+
+.message-background {
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  padding: 12px;
+  background-color: rgba(128, 128, 128, 0.1);
+  max-width: 100%;
+  border-radius: 8px;
+}

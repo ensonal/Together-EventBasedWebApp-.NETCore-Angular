@@ -28,8 +28,9 @@ export function AuthenticatedNav({ user }: { user: IUserInfo }) {
         className="rounded-5"
         startIcon={<AddCircleOutlineRoundedIcon />}
         onClick={() => navigate("/create-event")}
+        size="small"
       >
-        Create
+        Create new event
       </Button>
       <div className="d-flex flex-row align-items-center gap-3">
         <img

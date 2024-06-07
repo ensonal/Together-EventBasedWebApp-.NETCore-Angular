@@ -23,6 +23,10 @@
             public DbSet<UserFavoriteEvent> UserFavoriteEvents { get; set; }
             public DbSet<Notification> Notifications { get; set; }
             public DbSet<UserEventLocation> UserEventLocations { get; set; }
+            public DbSet<ChatMessage> ChatMessages { get; set; }
+            public DbSet<ChatRoom> ChatRooms { get; set; }
+            public DbSet<ChatRoomUser> ChatRoomUsers { get; set; }
+
 
             protected override void OnModelCreating(ModelBuilder modelBuilder)
             {
@@ -75,6 +79,14 @@
                 {
                     entity.HasKey(c => c.NotificationId);
                     entity.ToTable(name: "Notifications");
+                    
+                    entity.HasOne(n => n.UserEvent)
+                          .WithMany(ue => ue.Notifications)
+                          .HasForeignKey(n => n.UserEventId);
+
+                    entity.HasOne(n => n.UserInfo)
+                        .WithMany(ui => ui.Notifications)
+                        .HasForeignKey(n => n.UserId);
                 });
                 
                 modelBuilder.Entity<UserEventLocation>(entity =>
@@ -86,6 +98,55 @@
                           .WithMany(ue => ue.UserEventLocations)
                           .HasForeignKey(uel => uel.UserEventId);
                 });
+                
+                modelBuilder.Entity<ChatMessage>(entity =>
+                {
+                    entity.HasKey(c => c.ChatMessageId);
+                    entity.ToTable(name: "ChatMessages");
+                    
+                    entity.HasOne(cm => cm.ChatRoom)
+                          .WithMany(cr => cr.ChatMessages)
+                          .HasForeignKey(cm => cm.ChatRoomId);
+                    
+                    entity.HasOne(cm => cm.Sender)
+                          .WithMany(ui => ui.ChatMessages)
+                          .HasForeignKey(cm => cm.SenderId)
+                          .HasPrincipalKey(ui => ui.UserID);
+                });
+                
+                modelBuilder.Entity<ChatRoom>(entity =>
+                {
+                    entity.HasKey(c => c.ChatRoomId);
+                    entity.ToTable(name: "ChatRooms");
+                    
+                    entity.HasMany(cr => cr.ChatMessages)
+                          .WithOne(cm => cm.ChatRoom)
+                          .HasForeignKey(cm => cm.ChatRoomId);
+                    
+                    entity.HasMany(cr => cr.ChatRoomUsers)
+                          .WithOne(cru => cru.ChatRoom)
+                          .HasForeignKey(cru => cru.ChatRoomId);
+                    
+                    entity.HasOne(cr => cr.UserEvent)
+                          .WithMany(ue => ue.ChatRooms)
+                          .HasForeignKey(cr => cr.UserEventId);
+                });
+                
+                modelBuilder.Entity<ChatRoomUser>(entity =>
+                {
+                    entity.HasKey(c => c.ChatRoomUserId);
+                    entity.ToTable(name: "ChatRoomUsers");
+                    
+                    entity.HasOne(cru => cru.ChatRoom)
+                          .WithMany(cr => cr.ChatRoomUsers)
+                          .HasForeignKey(cru => cru.ChatRoomId);
+                    
+                    entity.HasOne(cru => cru.UserInfo)
+                          .WithMany(ui => ui.ChatRoomUsers)
+                          .HasForeignKey(cru => cru.UserId)
+                          .HasPrincipalKey(ui => ui.UserID);
+                });
+
             }
         }
     }
