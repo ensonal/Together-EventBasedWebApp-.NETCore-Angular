@@ -8,7 +8,7 @@ export function EventMapViewCard({ event }: { event: any }) {
     <Card
       sx={{ boxShadow: 0, flex: 1.5 }}
       className="rounded-4 p-3"
-      style={{ height: 500, overflow: "hidden" }}
+      style={{ height: 470, overflow: "hidden" }}
     >
       <Typography variant="h6" className="mb-1">
         Location
@@ -16,7 +16,7 @@ export function EventMapViewCard({ event }: { event: any }) {
       <iframe
       title="map"
         width="100%"
-        height="500"
+        height="400"
         className="rounded-3 shadow-sm"
         style={{ border: 0}}
         src={mapUrl}

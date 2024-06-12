@@ -45,7 +45,6 @@ export function CreateEventCard() {
     <Card className="p-4 rounded-3 gap-2">
       <div className="d-flex flex-column gap-2">
         <div className="d-flex flex-row gap-5">
-          <UploadEventImage setUserEvent={setUserEvent} />
           <div className="d-flex flex-column gap-2 w-100">
             <p className="fs-5 m-0">Event title</p>
             <TextField
@@ -56,11 +55,18 @@ export function CreateEventCard() {
             />
             <p className="fs-5 m-0 mt-2">Description</p>
             <RichTextEditor
-              onTextChange={(content: string) => handleChange("description", content)}
+              onTextChange={(content: string) =>
+                handleChange("description", content)
+              }
             />
           </div>
         </div>
-        <SportSelectForm setUserEvent={setUserEvent} />
+        <div className="d-flex flex-row gap-5">
+          <UploadEventImage setUserEvent={setUserEvent} />
+          <div className="d-flex flex-column gap-2 w-100 mt-5">
+            <SportSelectForm setUserEvent={setUserEvent} />
+          </div>
+        </div>
         <EventDatePicker setUserEvent={setUserEvent} />
         <p className="fs-5 m-0 mt-2 mb-2">Location </p>
         <MapComponent
@@ -69,7 +75,9 @@ export function CreateEventCard() {
         />
         <div className="d-flex flex-row w-100 gap-3">
           <div className="d-flex flex-column w-100">
-            <p className="fs-5 m-0 mt-2">City</p>
+            <p className="fs-5 m-0 mt-2" style={{ color: "#808080" }}>
+              City
+            </p>
             <TextField
               value={userEvent?.city}
               disabled
@@ -79,7 +87,9 @@ export function CreateEventCard() {
             />
           </div>
           <div className="d-flex flex-column w-100">
-            <p className="fs-5 m-0 mt-2">Country</p>
+            <p className="fs-5 m-0 mt-2" style={{ color: "#808080" }}>
+              Country
+            </p>
             <TextField
               value={userEvent?.country}
               disabled
