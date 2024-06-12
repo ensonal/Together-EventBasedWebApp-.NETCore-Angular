@@ -22,7 +22,7 @@ export function Login() {
         localStorage.setItem("id", data.user.id);
         localStorage.setItem("userRole", data.user.roles[0]);
         
-        navigate("/");
+        navigate("/events");
       } else {
         setSnackbarMessage(data.error);
         setSnackbarOpen(true);

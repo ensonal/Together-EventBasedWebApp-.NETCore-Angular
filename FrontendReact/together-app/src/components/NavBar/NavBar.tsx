@@ -45,9 +45,9 @@ export const NavBar = () => {
           <img
             src={newLogo}
             alt="logo"
-            style={{ marginRight: "0.5rem", fontFamily: "cursive" }}
+            style={{ marginRight: "0.5rem", fontFamily: "cursive", cursor: "pointer"}}
             onClick={() => {
-              navigate("/");
+              navigate("/events");
             }}
             width={50}
             height={50}
@@ -56,8 +56,9 @@ export const NavBar = () => {
           <Typography
             variant="h5"
             sx={{ flexGrow: 1, color: "#3D52F3", fontWeight: "bolder" }}
+            style={{ cursor: "pointer" }}
             onClick={() => {
-              navigate("/");
+              navigate("/events");
             }}
           >
             Together

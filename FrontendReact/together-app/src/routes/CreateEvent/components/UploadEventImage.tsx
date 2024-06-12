@@ -40,7 +40,7 @@ export function UploadEventImage({
 
   return (
     <div className="d-flex flex-column gap-2 mt-5">
-      <p className="fs-5">Event image</p>
+      <p className="fs-5 m-0">Event image</p>
       <img
         className="rounded-3 border m-0"
         src={

@@ -1,7 +1,7 @@
 import { HubConnectionBuilder } from '@microsoft/signalr';
 
 const connection = new HubConnectionBuilder()
-  .withUrl('https://localhost:7241/chatHub')
+  .withUrl('https://together-app.azurewebsites.net/chatHub')
   .withAutomaticReconnect()
   .build();
 
