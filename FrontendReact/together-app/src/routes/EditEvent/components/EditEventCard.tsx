@@ -57,7 +57,7 @@ export function EditEventCard({ event }: { event: any }) {
             />
           </div>
         </div>
-        <div className="d-flex flex-row gap-5 w-100">
+        <div className="d-flex flex-row gap-4 w-100">
           <UploadEventImage setUserEvent={setUserEvent} event={userEvent} />
           <div className="d-flex flex-column w-100 mt-5">
             <SportSelectForm setUserEvent={setUserEvent} event={userEvent} />

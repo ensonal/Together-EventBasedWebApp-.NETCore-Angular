@@ -87,6 +87,7 @@ const MapComponent = ({ onLocationSelect, onAddressSelect, preData }) => {
       const lat = parseFloat(preData.latitude);
       const lng = parseFloat(preData.longitude);
       if (!isNaN(lat) && !isNaN(lng)) {
+        console.log('preData', preData);
         const preLocation = { lat, lng };
         setMarker(preLocation);
         setCenter(preLocation);
