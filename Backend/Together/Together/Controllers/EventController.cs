@@ -78,6 +78,14 @@ public class EventController : ControllerBase
         var result = await _eventService.UpdateUserEvent(request);
         return Ok(result);
     }
+    
+    [HttpGet]
+    [Route("GetEventsForMap")]
+    public async Task<IActionResult> GetEventsForMap()
+    {
+        var result = await _eventService.GetEventsForMap();
+        return Ok(result);
+    }
 }
     
     

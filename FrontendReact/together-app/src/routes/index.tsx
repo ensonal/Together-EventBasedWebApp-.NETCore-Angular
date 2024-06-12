@@ -16,6 +16,7 @@ import { EventRequestPage } from "./EventRequests/EventRequestPage";
 import { NotificationsPage } from "./Notifications/NotificationsPage";
 import { EditEventPage } from "./EditEvent/EditEventPage";
 import { ChatPage } from "./Chat/ChatPage";
+import { EventsMapPage } from "./EventsMap/EventsMapPage";
 
 export default function Routes() {
   const location = useLocation();
@@ -92,6 +93,7 @@ export default function Routes() {
         <Route path="notifications" element={<NotificationsPage />} />
         <Route path="edit-event/:eventId" element={<EditEventPage />} />
         <Route path="chat" element={<ChatPage />} />
+        <Route path="events-map" element={<EventsMapPage />} />
       </Route>
     </BaseRoutes>
   );

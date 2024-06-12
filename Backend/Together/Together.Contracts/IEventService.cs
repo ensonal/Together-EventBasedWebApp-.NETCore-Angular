@@ -15,4 +15,5 @@ public interface IEventService
     Task<UserEventResponseModel> GetEventById(int userEventId, string token);
     Task<List<UserEvent>> GetUserEventsByUserId(string userId);
     Task<bool> UpdateUserEvent(UpdateUserEventDto request);
+    Task<List<GetEventsForMapModel>> GetEventsForMap();
 }

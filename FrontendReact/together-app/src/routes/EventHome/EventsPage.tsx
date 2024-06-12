@@ -46,7 +46,9 @@ export function EventsPage() {
 
   return (
     <div className="d-flex flex-column gap-3 align-self-start align-items-center">
-      <EventSearchCard filters={filters} setFilters={setFilters} />
+      <div className="d-flex flex-row gap-2 justify-content-start align-items-center w-100">
+        <EventSearchCard filters={filters} setFilters={setFilters} />
+      </div>
       {userEvents?.length === 0 || !userEvents || userEvents === undefined ? (
         <EmptyState type="events" />
       ) : (

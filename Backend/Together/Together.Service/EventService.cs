@@ -253,6 +253,23 @@ public class EventService : IEventService
         return userEventResponseModel;
     }
     
+    public async Task<List<GetEventsForMapModel>> GetEventsForMap()
+    {
+        var userEvents = await _context.UserEvents
+            .Include(x => x.UserEventLocations)
+            .Select(x => new GetEventsForMapModel
+            {
+                UserEventId = x.UserEventId,
+                Title = x.Title,
+                EventImageUrl = x.EventImageUrl,
+                Latitude = x.UserEventLocations.FirstOrDefault().Latitude,
+                Longitude = x.UserEventLocations.FirstOrDefault().Longitude
+            })
+            .ToListAsync();
+        
+        return userEvents;
+    }
+    
     private IQueryable<UserEvent> ApplyFilters(IQueryable<UserEvent> userEvents, EventFilterDto filter)
     {
         if (!string.IsNullOrEmpty(filter.SearchQuery))
