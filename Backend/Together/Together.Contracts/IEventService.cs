@@ -14,4 +14,5 @@ public interface IEventService
     Task<PagedResponse<UserEventDto>> GetAllEvents(EventFilterDto filter, string token);
     Task<UserEventResponseModel> GetEventById(int userEventId, string token);
     Task<List<UserEvent>> GetUserEventsByUserId(string userId);
+    Task<bool> UpdateUserEvent(UpdateUserEventDto request);
 }

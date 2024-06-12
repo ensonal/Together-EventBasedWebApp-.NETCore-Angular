@@ -5,6 +5,7 @@ import { EventDatePicker } from "../../CreateEvent/components/EventDatePicker";
 import { UploadEventImage } from "../../CreateEvent/components/UploadEventImage";
 import RichTextEditor from "../../../components/RichTextEditor/RichTextEditor";
 import MapComponent from "./EditMapComponent";
+import { updateEvent } from "../../../api/services/EventService";
 
 export function EditEventCard({ event }: { event: any }) {
   const [userEvent, setUserEvent] = useState(event);
@@ -31,8 +32,27 @@ export function EditEventCard({ event }: { event: any }) {
     }));
   };
 
+  console.log(userEvent);
   const editEvent = () => {
-    console.log(userEvent);
+    const editRequestModel = {
+      userEventId: userEvent.userEventId,
+      title: userEvent.title,
+      description: userEvent.description,
+      city: userEvent.city,
+      country: userEvent.country,
+      sportId: userEvent.sportId,
+      sportExperienceId: userEvent.sportExperienceId,
+      eventImageUrl: userEvent.eventImageUrl,
+      eventDate: userEvent.eventDate,
+      eventHour: userEvent.eventHour,
+      latitude: userEvent.location.lat,
+      longitude: userEvent.location.lng,
+    };
+    updateEvent(editRequestModel).then((response) => {
+      if (response.status === 200) {
+        console.log("Event updated successfully");
+      }
+    });
   };
 
   return (
@@ -63,9 +83,7 @@ export function EditEventCard({ event }: { event: any }) {
             <SportSelectForm setUserEvent={setUserEvent} event={userEvent} />
           </div>
         </div>
-        <p className="fs-5 m-0 mt-2">
-          Location
-        </p>
+        <p className="fs-5 m-0 mt-2">Location</p>
         <MapComponent
           onLocationSelect={handleLocationSelect}
           onAddressSelect={handleAddressSelect}
