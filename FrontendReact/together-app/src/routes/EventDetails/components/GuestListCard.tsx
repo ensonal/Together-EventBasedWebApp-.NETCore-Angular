@@ -10,8 +10,11 @@ export function GuestListCard({ guests }: { guests: any[] }) {
     navigate(`/user/${userID}`);
   };
   return (
-    <Box className="guest-box d-flex flex-column gap-3 h-100" sx={{ flex: 1 }}>
-      <Card className="rounded-4 p-3 h-100" sx={{ boxShadow: 0 }}>
+    <Box className="guest-box d-flex flex-column gap-3" sx={{ flex: 1 }}>
+      <Card
+        className="rounded-4 p-3 h-100"
+        sx={{ boxShadow: 0 }}
+      >
         <Typography variant="h6" className="mb-0">
           Guest List
         </Typography>

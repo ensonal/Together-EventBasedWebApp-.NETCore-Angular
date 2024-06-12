@@ -28,6 +28,8 @@ export function MyEvents() {
             direction="row"
             useFlexGap
             flexWrap="wrap"
+            justifyContent={{ xs: "center" }}
+            alignContent={{ xs: "center" }}
           >
             {userEvents?.map((userEvent) => (
               <EventCard key={userEvent.userEventId} userEvent={userEvent} />
