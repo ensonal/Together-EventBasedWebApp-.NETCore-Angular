@@ -1,6 +1,9 @@
 using Together.DependencyInjection;
 using Together.Service;
-
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,10 +20,11 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSpecificOrigin",
         builder => builder.WithOrigins("https://icy-moss-03cc2520f.5.azurestaticapps.net")
             .AllowAnyHeader()
-            .AllowAnyMethod());
+            .AllowAnyMethod()
+            .AllowCredentials());
 });
 
-builder.Services.AddSignalR(); 
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -34,14 +38,15 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseCors("AllowSpecificOrigin");
+
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
-    endpoints.MapHub<NotificationHub>("/NotificationHub");
-    endpoints.MapHub<ChatHub>("/ChatHub");
+    endpoints.MapHub<NotificationHub>("/NotificationHub").RequireCors("AllowSpecificOrigin");
+    endpoints.MapHub<ChatHub>("/ChatHub").RequireCors("AllowSpecificOrigin");
 });
 
 app.Run();
