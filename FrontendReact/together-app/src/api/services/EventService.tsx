@@ -38,6 +38,18 @@ export async function getEventById(eventId: number) {
   return response;
 }
 
+export async function updateEvent(event: any) {
+  const url = "/Event/UpdateUserEvent";
+  const response = await post(url, event);
+  return response;
+}
+
+export async function getEventsForMap() {
+  const url = "/Event/GetEventsForMap";
+  const response = await get(url);
+  return response;
+}
+
 function constructUrlWithFilters(baseUrl: string, filters: any, pagination: any) {
   const queryParams = new URLSearchParams(filters).toString();
   const paginationParams = new URLSearchParams(pagination).toString();

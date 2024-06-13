@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Together.Contracts;
 using Together.Core.DTO.EventDTOs;
 using Together.Core.Models.Common;
+using Together.Core.Models.EventModels;
 using Together.Core.Models.FilterModels;
 
 namespace Together.Controllers;
@@ -67,6 +68,22 @@ public class EventController : ControllerBase
     {
         var token = HttpContext.Request.Headers.Authorization.ToString();
         var result = await _eventService.GetEventById(userEventId, token);
+        return Ok(result);
+    }
+    
+    [HttpPost]
+    [Route("UpdateUserEvent")]
+    public async Task<IActionResult> UpdateUserEvent(UpdateUserEventDto request)
+    {
+        var result = await _eventService.UpdateUserEvent(request);
+        return Ok(result);
+    }
+    
+    [HttpGet]
+    [Route("GetEventsForMap")]
+    public async Task<IActionResult> GetEventsForMap()
+    {
+        var result = await _eventService.GetEventsForMap();
         return Ok(result);
     }
 }

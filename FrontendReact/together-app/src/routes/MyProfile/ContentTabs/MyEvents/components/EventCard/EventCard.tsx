@@ -34,7 +34,10 @@ export function EventCard({ userEvent }: { userEvent: UserEvent }) {
     <Card
       sx={{ boxShadow: 0 }}
       className="rounded-4 p-3 shadow"
-      style={{ width: 315, height: 290 }}
+      style={{ width: 315, height: 290, cursor: "pointer" }}
+      onClick={() => {
+        window.location.href = `/event/${userEvent.userEventId}`;
+      }}
     >
       <div className="d-flex flex-column align-items-center">
         <img

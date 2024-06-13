@@ -6,6 +6,7 @@ import { getEventById } from "../../api/services/EventService";
 import { EditEventCard } from "./components/EditEventCard";
 import { Button } from "@mui/material";
 import { deleteUserEvent } from "../../api/services/EventService";
+import { Typography } from "@mui/material";
 
 export function EditEventPage() {
   const [event, setEvent] = useState<any>();
@@ -26,14 +27,21 @@ export function EditEventPage() {
       window.location.href = "/events";
     }
   };
+
+  const navigate = useNavigate();
+  const navigateBack = () => {
+    navigate(-1);
+  };
   return (
     <>
       <div className="d-flex flex-row justify-content-between align-items-center gap-2 mb-2">
         <div className="d-flex flex-row align-items-center gap-2">
-          <IconButton className="p-0" aria-label="back">
+          <IconButton className="p-0" aria-label="back" onClick={navigateBack}>
             <ArrowBackIcon className="p-0 text-dark" />
           </IconButton>
-          <p className="fs-3 m-0 fw-normal">Edit Event</p>
+          <Typography variant="h6" sx={{ color: "#303030" }}>
+        Edit Event
+      </Typography>
         </div>
         <Button variant="outlined" color="error" onClick={deleteEvent}>
           Delete event

@@ -42,7 +42,7 @@ export function SportSelectForm({
   }, []);
 
   return (
-    <div className="d-flex flex-row gap-3">
+    <div className="d-flex flex-column gap-3 w-100">
       <div className="d-flex flex-column gap-2 w-100">
         <p className="fs-5 m-0 mt-2">Sport</p>
         <Select

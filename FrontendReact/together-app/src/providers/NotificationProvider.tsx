@@ -44,7 +44,7 @@ export function NotificationProvider({
     if (!userId) return;
 
     const connection = new HubConnectionBuilder()
-      .withUrl(`https://localhost:7241/notificationhub?userId=${userId}`)
+      .withUrl(`https://together-app.azurewebsites.net/notificationhub?userId=${userId}`)
       .withAutomaticReconnect()
       .build();
 

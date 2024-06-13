@@ -10,13 +10,12 @@ public class ChatHub : Hub
     {
         _chatService = chatService;
     }
-/*
+
     public async Task SendMessage(int chatRoomId, string userId, string message)
     {
-        var chatMessage = await _chatService.SaveMessage(chatRoomId, userId, message);
-        await Clients.Group(chatRoomId.ToString()).SendAsync("ReceiveMessage", chatMessage);
+        await Clients.Group(chatRoomId.ToString()).SendAsync("ReceiveMessage", userId, message);
     }
-*/
+
     public async Task JoinRoom(int chatRoomId, string userId)
     {
         await Groups.AddToGroupAsync(Context.ConnectionId, chatRoomId.ToString());

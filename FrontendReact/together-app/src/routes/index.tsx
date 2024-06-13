@@ -16,6 +16,8 @@ import { EventRequestPage } from "./EventRequests/EventRequestPage";
 import { NotificationsPage } from "./Notifications/NotificationsPage";
 import { EditEventPage } from "./EditEvent/EditEventPage";
 import { ChatPage } from "./Chat/ChatPage";
+import { EventsMapPage } from "./EventsMap/EventsMapPage";
+import { LandingPage } from "./LandingPage/LandingPage";
 
 export default function Routes() {
   const location = useLocation();
@@ -25,6 +27,7 @@ export default function Routes() {
   const isRegisterOrLogin =
     location.pathname === "/register" || location.pathname === "/login";
   const isChat = location.pathname === "/chat";
+  const isLandingPage = location.pathname === "/" ? true : false;
 
   useEffect(() => {
     const handleResize = () => {
@@ -45,7 +48,7 @@ export default function Routes() {
         path="/"
         element={
           <div className="d-flex flex-column">
-            {!isRegisterOrLogin && <NavBar />}
+            {!isRegisterOrLogin && <NavBar isLandingPage={isLandingPage} />}
             <div
               style={{
                 backgroundColor: isRegisterOrLogin ? "white" : "#F1F2F6",
@@ -56,7 +59,7 @@ export default function Routes() {
                 paddingRight: !isRegisterOrLogin ? `${padding}rem` : 0,
               }}
             >
-              {isRegisterOrLogin || isChat ? (
+              {isRegisterOrLogin || isChat || isLandingPage ? (
                 <Outlet />
               ) : (
                 <div style={{ flexDirection: "row", display: "flex" }}>
@@ -78,7 +81,7 @@ export default function Routes() {
           </div>
         }
       >
-        <Route path="/" element={<div>Home</div>} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="*" element={<div>Not Found</div>} />
         <Route path="register" element={<RegisterPage />} />
         <Route path="login" element={<LoginPage />} />
@@ -92,6 +95,7 @@ export default function Routes() {
         <Route path="notifications" element={<NotificationsPage />} />
         <Route path="edit-event/:eventId" element={<EditEventPage />} />
         <Route path="chat" element={<ChatPage />} />
+        <Route path="events-map" element={<EventsMapPage />} />
       </Route>
     </BaseRoutes>
   );

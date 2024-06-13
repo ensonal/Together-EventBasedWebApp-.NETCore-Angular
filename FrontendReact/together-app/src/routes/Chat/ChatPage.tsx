@@ -8,7 +8,7 @@ export function ChatPage() {
       <div className="d-flex flex-row gap-2 justify-content-start align-items-center">
         <Box
           className="p-0 rounded-3"
-          onClick={() => (window.location.href = "/")}
+          onClick={() => (window.location.href = "/events")}
           style={{ cursor: "pointer" }}
         >
           <KeyboardReturnRoundedIcon className="text-center" />

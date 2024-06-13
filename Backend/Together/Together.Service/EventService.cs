@@ -51,6 +51,43 @@ public class EventService : IEventService
         return true;
     }
     
+    public async Task<bool> UpdateUserEvent(UpdateUserEventDto request)
+    {
+        var userEvent = await _context.UserEvents.FindAsync(request.UserEventId);
+        if (userEvent == null)
+        {
+            return false;
+        }
+        
+        userEvent.SportId = request.SportId;
+        userEvent.SportExperienceId = request.SportExperienceId;
+        userEvent.Title = request.Title;
+        userEvent.Description = request.Description;
+        userEvent.EventDate = request.EventDate;
+        userEvent.EventHour = request.EventHour;
+        userEvent.City = request.City;
+        userEvent.Country = request.Country;
+        userEvent.EventImageUrl = request.EventImageUrl;
+        
+        await _context.SaveChangesAsync();
+        
+        var userEventLocation = await _context.UserEventLocations
+            .FirstOrDefaultAsync(x => x.UserEventId == request.UserEventId);
+        
+        if (userEventLocation != null)
+        {
+            userEventLocation.Latitude = request.Latitude;
+            userEventLocation.Longitude = request.Longitude;
+            await _context.SaveChangesAsync();
+        }
+        else
+        {
+            await SaveEventLocation(request.Latitude, request.Longitude, request.UserEventId);
+        }
+        
+        return true;
+    }
+    
     public async Task<bool> DeleteUserEvent(int userEventId)
     {
         var userEvent = await _context.UserEvents.FindAsync(userEventId);
@@ -214,6 +251,23 @@ public class EventService : IEventService
         }
 
         return userEventResponseModel;
+    }
+    
+    public async Task<List<GetEventsForMapModel>> GetEventsForMap()
+    {
+        var userEvents = await _context.UserEvents
+            .Include(x => x.UserEventLocations)
+            .Select(x => new GetEventsForMapModel
+            {
+                UserEventId = x.UserEventId,
+                Title = x.Title,
+                EventImageUrl = x.EventImageUrl,
+                Latitude = x.UserEventLocations.FirstOrDefault().Latitude,
+                Longitude = x.UserEventLocations.FirstOrDefault().Longitude
+            })
+            .ToListAsync();
+        
+        return userEvents;
     }
     
     private IQueryable<UserEvent> ApplyFilters(IQueryable<UserEvent> userEvents, EventFilterDto filter)

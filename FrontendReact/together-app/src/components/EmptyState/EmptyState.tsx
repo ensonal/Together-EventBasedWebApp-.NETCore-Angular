@@ -10,7 +10,7 @@ export function EmptyState({ type, height }: { type: string, height? : number}) 
         background:
           "linear-gradient(white, white) padding-box, linear-gradient(90deg, #3D52F3 0%, #3DCBF3 100%) border-box",
       }}
-      className="rounded-4 p-5 shadow-sm w-100 d-flex flex-column align-items-center gap-3"
+      className="rounded-4 p-5 shadow-sm w-100 h-100 d-flex flex-column align-items-center gap-3"
       style={{ height: "auto" }}
     >
       <img src={emptyStateSvg} alt="Empty state" height={height ? height : 200} width="auto" />

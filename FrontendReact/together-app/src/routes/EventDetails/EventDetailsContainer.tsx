@@ -20,7 +20,6 @@ export function EventDetailsContainer({ event }: { event: UserEvent }) {
       </div>
       <div
         className="d-flex flex-row h-100 w-100 gap-3"
-        style={{ width: "100%" }}
       >
         <GuestListCard guests={event.guests} />
         <EventMapViewCard event={event} />

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://localhost:7241/'
+  baseURL: 'https://together-app.azurewebsites.net/',
 });
 
 
