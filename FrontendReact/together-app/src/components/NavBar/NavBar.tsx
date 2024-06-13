@@ -1,13 +1,17 @@
+import { FC, useEffect, useState } from "react";
 import { AppBar, Container, Toolbar, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Authenticate from "./Authenticate";
 import { AuthenticatedNav } from "./AuthenticatedNav";
 import { DefaultNav } from "./DefaultNav";
 import newLogo from "../../assets/images/newLogo.png";
-import { useEffect, useState } from "react";
 import { getPadding } from "../../utils/getPaddingByScreenSize";
 
-export const NavBar = () => {
+interface NavBarProps {
+  isLandingPage: boolean;
+}
+
+export const NavBar: FC<NavBarProps> = ({ isLandingPage }) => {
   const navigate = useNavigate();
   const { isAuthenticate, user } = Authenticate();
   const [padding, setPadding] = useState(20);
@@ -24,6 +28,8 @@ export const NavBar = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+
 
   return (
     <AppBar
@@ -45,7 +51,11 @@ export const NavBar = () => {
           <img
             src={newLogo}
             alt="logo"
-            style={{ marginRight: "0.5rem", fontFamily: "cursive", cursor: "pointer"}}
+            style={{
+              marginRight: "0.5rem",
+              fontFamily: "cursive",
+              cursor: "pointer",
+            }}
             onClick={() => {
               navigate("/events");
             }}
@@ -66,7 +76,7 @@ export const NavBar = () => {
           {isAuthenticate && user ? (
             <AuthenticatedNav user={user} />
           ) : (
-            <DefaultNav />
+            <DefaultNav isLandinPage={isLandingPage}/>
           )}
         </Toolbar>
       </Container>

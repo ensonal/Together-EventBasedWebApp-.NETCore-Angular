@@ -1,0 +1,17 @@
+.landing {
+  position: relative;
+  height: 70vh !important;
+}
+
+.info {
+  z-index: 2;
+  position: relative;
+  padding: 20px; 
+  background-color: rgba(137, 137, 137, 0.414);
+}
+
+.background-image{
+  height: 30vh;
+}
+
+

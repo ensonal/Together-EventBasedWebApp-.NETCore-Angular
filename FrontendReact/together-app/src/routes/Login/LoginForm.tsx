@@ -26,7 +26,7 @@ export default function LoginForm(props: LoginProps) {
 
   const navigate = useNavigate();
 
-  if (localStorage.getItem("jwToken") != null) return <Link to="/"></Link>;
+  if (localStorage.getItem("jwToken") != null) return <Link to="/events"></Link>;
 
   return (
     <div className="d-flex flex-column">

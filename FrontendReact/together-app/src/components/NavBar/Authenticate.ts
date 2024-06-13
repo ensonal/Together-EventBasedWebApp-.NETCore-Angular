@@ -5,16 +5,19 @@ import IUserInfo from '../../api/models/UserInfo';
 const Authenticate = () => {
   const [isAuthenticate, setIsAuthenticate] = useState(false);
   const [user, setUser] = useState<IUserInfo>();
+  const isLandingPage = window.location.pathname === '/' ? true : false;
 
   async function requestForAuthenticate() {
-    get('/User/isLoginSuccessful').then((response) => {
-      if (response.succeeded) {
-        setIsAuthenticate(true);
-        getUser();
-      }else{
-        setIsAuthenticate(false);
-      }
-    });
+    if (!isLandingPage) {
+      get('/User/isLoginSuccessful').then((response) => {
+        if (response.succeeded) {
+          setIsAuthenticate(true);
+          getUser();
+        } else {
+          setIsAuthenticate(false);
+        }
+      });
+    }
   }
 
   async function getUser() {
@@ -24,9 +27,9 @@ const Authenticate = () => {
   }
 
   useEffect(() => {
-    requestForAuthenticate(); 
+    requestForAuthenticate();
   }, [localStorage.getItem('jwToken')]);
-  
+
 
   return { isAuthenticate, setIsAuthenticate, user };
 };
