@@ -146,6 +146,7 @@ public class EventService : IEventService
                 EventImageUrl = ue.EventImageUrl,
                 IsFavorite = userFavoriteEventIds.Contains(ue.UserEventId)
             })
+            .OrderBy(x => x.EventDate)
             .ToListAsync();
         
         var totalCount = await userEventView.CountAsync();
