@@ -12,13 +12,13 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.RegisterServices(configuration);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddCors(p => p.AddPolicy("devCorsPolicy", 
-    builder => {
-        builder.WithOrigins("http://localhost:3000")
-            .AllowAnyMethod()
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder.WithOrigins("https://icy-moss-03cc2520f.5.azurestaticapps.net")
             .AllowAnyHeader()
-            .AllowCredentials();
-    }));
+            .AllowAnyMethod());
+});
 
 builder.Services.AddSignalR(); 
 
@@ -33,7 +33,7 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-app.UseCors("devCorsPolicy");
+app.UseCors("AllowSpecificOrigin");
 app.UseAuthentication();
 app.UseAuthorization();
 
